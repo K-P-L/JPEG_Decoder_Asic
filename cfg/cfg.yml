@@ -1,7 +1,7 @@
 # cfg.yml - Main hammer config file
 
 # Set top level for synthesis
-synthesis.inputs.top_module: "bsg_chip"
+synthesis.inputs.top_module: "jpeg_core"
 
 # Don't synthesize these gate-level netlist modules
 synthesis.inputs.preserve_modules: []

@@ -1,5 +1,5 @@
 # src.yml - hammer source file config
-
+# FIXME: Ordering of the files and commenting out unused files for saving processing time
 # List of all Verilog source files to include in this build.
 synthesis.inputs.input_files: [
   "../../ee477-designs-module2/common/v/bsg_guts.vh", # Some definitions
@@ -119,11 +119,31 @@ synthesis.inputs.input_files: [
   "../../ee477-designs-module2/common/v/packaging/bsg_iopads.v",
   "../../ee477-designs-module2/common/v/packaging/bsg_pinout.v",
 
-  # Top level sources
-  "v/gcd.v",
-  "v/bsg_chip.v",
-  "v/bsg_test_node_client.v"
-  # TODO: add GCD module path here!
+  # Source files for the JPEG Design
+  "v/jpeg_bitbuffer.v",
+  "v/jpeg_bitbuffer.v",
+  "v/jpeg_dht_std_cx_ac.v",
+  "v/jpeg_dht_std_cx_dc.v",
+  "v/jpeg_dht_std_y_ac.v",
+  "v/jpeg_dht_std_y_dc.v",
+  "v/jpeg_dht.v",
+  "v/jpeg_dqt.v",
+  "v/jpeg_idct_fifo.v",
+  "v/jpeg_idct_ram_dp.v",
+  "v/jpeg_idct_ram.v",
+  "v/jpeg_idct_transpose_ram.v",
+  "v/jpeg_idct_transpose.v",
+  "v/jpeg_idct.v",
+  "v/jpeg_idct_x.v",
+  "v/jpeg_idct_y.v",
+  "v/jpeg_input.v",
+  "v/jpeg_mcu_id.v",
+  "v/jpeg_mcu_proc.v",
+  "v/jpeg_output_cx_ram.v",
+  "v/jpeg_output_fifo.v",
+  "v/jpeg_output.v",
+  "v/jpeg_output_y_ram.v",
+  "v/jpeg_core.v"
   
 ]
 synthesis.inputs.input_files_meta: [append, subst]
