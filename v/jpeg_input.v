@@ -69,21 +69,23 @@ wire inport_accept_w;
 
 //-----------------------------------------------------------------
 // Input data read index
+// Comments kaulad - This module takes in 32 bits of data at a time but parses only a byte at a time, below block tracks the current byte being processed
 //-----------------------------------------------------------------
 reg [1:0] byte_idx_q;
 
 always @ (posedge clk_i )
 if (rst_i)
     byte_idx_q <= 2'b0;
-else if (inport_valid_i && inport_accept_w && inport_last_i)
+else if (inport_valid_i && inport_accept_w && inport_last_i)  // TODO: kaulad - Understand the inport_list_i signal.
     byte_idx_q <= 2'b0;
 else if (inport_valid_i && inport_accept_w)
     byte_idx_q <= byte_idx_q + 2'd1;
 
 //-----------------------------------------------------------------
 // Data mux
+// Comments kaulad - Using a MuX with Masked inputs depending on the input strobe signal to track the current byte
 //-----------------------------------------------------------------
-reg [7:0] data_r;
+reg [7:0] data_r; // FIXME: kaulad - Why are we using reg for a combinational block?
 
 always @ *
 begin
@@ -99,6 +101,8 @@ end
 
 //-----------------------------------------------------------------
 // Last data
+// Comments kaulad - Storing the last indexed byte
+// TODO: kaulad - Understand why we reset when inport_last_i.
 //-----------------------------------------------------------------
 reg [7:0] last_b_q;
 
@@ -110,6 +114,8 @@ else if (inport_valid_i && inport_accept_w)
 
 //-----------------------------------------------------------------
 // Token decoder
+// Comments kaulad - 16 bit marker checks using last stored data and current data
+// TODO: kaulad - Understand all markers and why a few are unsupported.
 //-----------------------------------------------------------------
 wire token_soi_w  = (last_b_q == 8'hFF && data_r == 8'hd8);
 wire token_sof0_w = (last_b_q == 8'hFF && data_r == 8'hc0);
@@ -129,25 +135,67 @@ wire token_com_w  = (last_b_q == 8'hFF && data_r == 8'hfe);
 //-----------------------------------------------------------------
 // FSM
 //-----------------------------------------------------------------
-localparam STATE_W           = 5;
-localparam STATE_IDLE        = 5'd0;
-localparam STATE_ACTIVE      = 5'd1;
-localparam STATE_UXP_LENH    = 5'd2;
-localparam STATE_UXP_LENL    = 5'd3;
-localparam STATE_UXP_DATA    = 5'd4;
-localparam STATE_DQT_LENH    = 5'd5;
-localparam STATE_DQT_LENL    = 5'd6;
-localparam STATE_DQT_DATA    = 5'd7;
-localparam STATE_DHT_LENH    = 5'd8;
-localparam STATE_DHT_LENL    = 5'd9;
-localparam STATE_DHT_DATA    = 5'd10;
-localparam STATE_IMG_LENH    = 5'd11;
-localparam STATE_IMG_LENL    = 5'd12;
-localparam STATE_IMG_SOS     = 5'd13;
-localparam STATE_IMG_DATA    = 5'd14;
-localparam STATE_SOF_LENH    = 5'd15;
-localparam STATE_SOF_LENL    = 5'd16;
-localparam STATE_SOF_DATA    = 5'd17;
+// FSM State Definitions
+localparam STATE_W           = 5;       // 5-bit state encoding
+localparam STATE_IDLE        = 5'd0;    // Idle, waiting for SOI marker
+localparam STATE_ACTIVE      = 5'd1;    // Active processing state
+localparam STATE_UXP_LENH    = 5'd2;    // Unsupported seg: length high byte
+localparam STATE_UXP_LENL    = 5'd3;    // Unsupported seg: length low byte
+localparam STATE_UXP_DATA    = 5'd4;    // Skipping unsupported segment data
+localparam STATE_DQT_LENH    = 5'd5;    // Quant table: length high byte
+localparam STATE_DQT_LENL    = 5'd6;    // Quant table: length low byte
+localparam STATE_DQT_DATA    = 5'd7;    // Quant table data processing
+localparam STATE_DHT_LENH    = 5'd8;    // Huffman table: length high byte
+localparam STATE_DHT_LENL    = 5'd9;    // Huffman table: length low byte
+localparam STATE_DHT_DATA    = 5'd10;   // Huffman table data processing
+localparam STATE_IMG_LENH    = 5'd11;   // SOS: length high byte
+localparam STATE_IMG_LENL    = 5'd12;   // SOS: length low byte
+localparam STATE_IMG_SOS     = 5'd13;   // Start of Scan header processing
+localparam STATE_IMG_DATA    = 5'd14;   // Compressed data streaming
+localparam STATE_SOF_LENH    = 5'd15;   // SOF: length high byte
+localparam STATE_SOF_LENL    = 5'd16;   // SOF: length low byte
+localparam STATE_SOF_DATA    = 5'd17;   // SOF parameter extraction
+
+// FSM Transition Logic
+/*  FIXED: kaulad - Redundant State Transition Logic, commented out
+    always @(posedge clk_i or posedge rst_i) begin
+        if (rst_i) begin
+            state_q <= STATE_IDLE;
+        end else begin
+            case (state_q)
+                STATE_IDLE: begin
+                    // Wait for SOI marker (FFD8)
+                    if (token_soi_w)
+                        state_q <= STATE_ACTIVE;
+                end
+                
+                STATE_ACTIVE: begin
+                    // Main dispatch state
+                    if (token_sof0_w)       state_q <= STATE_SOF_LENH;
+                    else if (token_dqt_w)   state_q <= STATE_DQT_LENH;
+                    else if (token_dht_w)   state_q <= STATE_DHT_LENH;
+                    else if (token_sos_w)   state_q <= STATE_IMG_LENH;
+                    else if (token_eoi_w)   state_q <= STATE_IDLE;
+                    else                    state_q <= STATE_UXP_LENH;
+                end
+                
+                STATE_DQT_DATA: begin
+                    // Quant table data processing
+                    if (length_q == 0)      state_q <= STATE_ACTIVE;
+                end
+                
+                STATE_IMG_DATA: begin
+                    // Compressed data until EOI
+                    if (token_eoi_w)        state_q <= STATE_IDLE;
+                end
+                
+                // ... other state transitions ...
+                
+                default: state_q <= STATE_IDLE;
+            endcase
+        end
+    end
+*/
 
 reg [STATE_W-1:0] state_q;
 reg [15:0]        length_q;
@@ -294,6 +342,7 @@ begin
         next_state_r = STATE_IDLE;
 end
 
+
 always @ (posedge clk_i )
 if (rst_i)
     state_q <= STATE_IDLE;
@@ -302,6 +351,7 @@ else
 
 //-----------------------------------------------------------------
 // Length
+// Comments kaulad - Code to capture the length and track the remaining data length
 //-----------------------------------------------------------------
 always @ (posedge clk_i )
 if (rst_i)
@@ -323,13 +373,15 @@ else if ((state_q == STATE_UXP_DATA ||
 
 //-----------------------------------------------------------------
 // DQT
+// Comments kaulad - Enable DQT Logic and tells it when it is supposed to be disabled
 //-----------------------------------------------------------------
 assign dqt_cfg_valid_o = (state_q == STATE_DQT_DATA) && inport_valid_i;
 assign dqt_cfg_data_o  = data_r;
 assign dqt_cfg_last_o  = inport_last_i || (length_q == 16'd1);
 
 //-----------------------------------------------------------------
-// DQT
+// DHT
+// Comments kaulad - Enable DHT Logic and tells it when it is supposed to be disabled
 //-----------------------------------------------------------------
 assign dht_cfg_valid_o = (state_q == STATE_DHT_DATA) && inport_valid_i;
 assign dht_cfg_data_o  = data_r;
@@ -356,14 +408,15 @@ if (rst_i)
 else if (inport_valid_i && data_accept_i)
     data_data_q <= data_r;
 
-assign data_valid_o = data_valid_q && inport_valid_i && !token_eoi_w;
-assign data_data_o  = data_data_q;
+assign data_valid_o = data_valid_q && inport_valid_i && !token_eoi_w; //FIXME: kaulad - Redundant gating logic here from line 401
+assign data_data_o  = data_data_q; //FIXME: kaulad - We dont need an intermediate data_data_q
 
 // NOTE: Last is delayed by one cycles (not qualified by data_valid_o)
 assign data_last_o  = data_valid_q && inport_valid_i && token_eoi_w;
 
 //-----------------------------------------------------------------
 // Handshaking
+// TODO: kaulad - Understand the handshake interface and replace with a comment instead
 //-----------------------------------------------------------------
 wire last_byte_w = (byte_idx_q == 2'd3) || inport_last_i;
 
@@ -375,6 +428,7 @@ assign inport_accept_w =  (state_q == STATE_DQT_DATA && dqt_cfg_accept_i) ||
                            state_q != STATE_IMG_DATA);
 
 assign inport_accept_o = last_byte_w && inport_accept_w;
+
 
 //-----------------------------------------------------------------
 // Capture Index

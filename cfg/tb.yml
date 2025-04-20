@@ -1,4 +1,4 @@
-# tb.yml - Simulation Testbench Configuration
+ls# tb.yml - Simulation Testbench Configuration
 
 # List of Verilog testbenches (or other sources) needed for simulations.
 sim.inputs.tb_input_files: [
