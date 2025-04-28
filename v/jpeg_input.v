@@ -76,11 +76,12 @@ always_ff @ (posedge clk_i)
 begin
     if (rst_i)
         byte_idx_q <= 2'b0;
-    else if (inport_valid_i && inport_accept_w && inport_last_i)
+  else if (inport_valid_i && inport_accept_w && inport_last_i)  // TODO: kaulad - Understand the inport_list_i signal. According to my current understanding asserted when last word on AXI input stream but implementation suggests last byte of input AXI stream
         byte_idx_q <= 2'b0;
     else if (inport_valid_i && inport_accept_w)
         byte_idx_q <= byte_idx_q + 2'd1;
 end
+
 
 //-----------------------------------------------------------------
 // Data mux
@@ -88,7 +89,8 @@ end
 //-----------------------------------------------------------------
 logic [7:0] data_r;
 
-always_comb
+
+always_comb //FIXME: kaulad - If a strobe is 0, we send 8 bits of 0's to the logic ahead, any way to optimize the logic here to save cycles?
 begin
     data_r = 8'b0;
 
@@ -328,6 +330,7 @@ end
 // Length
 // Code to capture the length and track the remaining data length
 //-----------------------------------------------------------------
+
 always_ff @ (posedge clk_i)
 begin
     if (rst_i)
@@ -339,7 +342,7 @@ begin
     else if (state_q == STATE_UXP_LENL || state_q == STATE_DQT_LENL ||
              state_q == STATE_DHT_LENL || state_q == STATE_IMG_LENL ||
              state_q == STATE_SOF_LENL)
-        length_q <= {8'b0, data_r} - 16'd2;
+      length_q <= {8'b0, data_r} - 16'd2; // TODO: kaulad - Understand why we are overwriting upper bits?
     else if ((state_q == STATE_UXP_DATA || 
               state_q == STATE_DQT_DATA ||
               state_q == STATE_DHT_DATA ||

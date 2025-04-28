@@ -64,7 +64,8 @@ module jpeg_dqt
 //-----------------------------------------------------------------
 // 4 * 256
 // synthesis attribute ram_style of table_dqt_q is block
-logic [7:0] table_dqt_q[0:255];
+  logic [7:0] table_dqt_q[0:255];  //FIXME: kaulad - 8 * 256 instead of 4 * 256?
+
 
 //-----------------------------------------------------------------
 // Capture Index
@@ -81,7 +82,7 @@ begin
         idx_q <= idx_q + 8'd1;
 end
 
-assign cfg_accept_o = 1'b1;
+assign cfg_accept_o = 1'b1; // FIXME: kaulad - Why do we have an always high signal, can be eliminated?
 
 //-----------------------------------------------------------------
 // Write DQT table
@@ -101,10 +102,10 @@ assign cfg_table_addr_w = {cfg_table_q, idx_q[5:0]};
 
 logic [1:0] table_src_w[0:3];
 
-assign table_src_w[0] = img_dqt_table_y_i;
+assign table_src_w[0] = img_dqt_table_y_i; //FIXME: kaulad - Why are we using 2 bits for YCbCr but only using LSB here
 assign table_src_w[1] = img_dqt_table_cb_i;
 assign table_src_w[2] = img_dqt_table_cr_i;
-assign table_src_w[3] = 2'b0;
+assign table_src_w[3] = 2'b0; // FIXME: kaulad - Why is there an extra table?
 
 logic [7:0] table_rd_idx_w;
 assign table_rd_idx_w = {table_src_w[inport_id_i[31:30]], inport_idx_i};

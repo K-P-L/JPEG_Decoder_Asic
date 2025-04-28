@@ -69,19 +69,23 @@ localparam DHT_TABLE_CX_AC     = 8'h11;
 generate
 if (SUPPORT_WRITABLE_DHT)
 begin
+
     // Table storage for min/max code ranges and pointers
-    logic [15:0] y_dc_min_code_q[0:15];
-    logic [15:0] y_dc_max_code_q[0:15];
-    logic [9:0]  y_dc_ptr_q[0:15];
-    logic [15:0] y_ac_min_code_q[0:15];
-    logic [15:0] y_ac_max_code_q[0:15];
-    logic [9:0]  y_ac_ptr_q[0:15];
-    logic [15:0] cx_dc_min_code_q[0:15];
-    logic [15:0] cx_dc_max_code_q[0:15];
-    logic [9:0]  cx_dc_ptr_q[0:15];
-    logic [15:0] cx_ac_min_code_q[0:15];
-    logic [15:0] cx_ac_max_code_q[0:15];
-    logic [9:0]  cx_ac_ptr_q[0:15];
+    reg [15:0] y_dc_min_code_q[0:15];
+    reg [15:0] y_dc_max_code_q[0:15];
+    reg [9:0]  y_dc_ptr_q[0:15];
+    reg [15:0] y_ac_min_code_q[0:15];
+    reg [15:0] y_ac_max_code_q[0:15];
+    reg [9:0]  y_ac_ptr_q[0:15];
+    reg [15:0] cx_dc_min_code_q[0:15];
+    reg [15:0] cx_dc_max_code_q[0:15];
+    reg [9:0]  cx_dc_ptr_q[0:15];
+    reg [15:0] cx_ac_min_code_q[0:15];
+    reg [15:0] cx_ac_max_code_q[0:15];
+    reg [9:0]  cx_ac_ptr_q[0:15];
+    reg [11:0] idx_q; //Moved by kaulad
+    reg [11:0] total_entries_q; //Moved by kaulad
+
 
     // DHT tables can be combined into one section...
     // Reset the table state machine at the end of each table
@@ -91,7 +95,6 @@ begin
     //-----------------------------------------------------------------
     // Capture Index
     //-----------------------------------------------------------------
-    logic [11:0] idx_q;
 
     always_ff @ (posedge clk_i)
     begin
@@ -119,9 +122,10 @@ begin
     //-----------------------------------------------------------------
     // Extract symbol count (temporary)
     //-----------------------------------------------------------------
-    logic [7:0]  num_entries_q[0:15];
-    logic [15:0] has_entries_q; // bitmap
-    logic [11:0] total_entries_q;
+
+    reg [7:0]  num_entries_q[0:15];
+    reg [15:0] has_entries_q; // bitmap
+
 
     always_ff @ (posedge clk_i)
     begin

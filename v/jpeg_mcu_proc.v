@@ -337,16 +337,17 @@ assign comp_idx_w = block_type_w;
 
 always_ff @ (posedge clk_i)
 begin
+
     if (rst_i)
-    begin
+      begin
         for (int i = 0; i < 4; i = i + 1)
             prev_dc_coeff_q[i] <= 16'b0;
-    end
-    else if (img_start_i)
-    begin
+      end
+    else if (img_start_i) //FIXME: kaulad - Make a part of if condition at line 313
+     begin
         for (int i = 0; i < 4; i = i + 1)
             prev_dc_coeff_q[i] <= 16'b0;
-    end
+     end
     else if (state_q == STATE_EOB)
         prev_dc_coeff_q[comp_idx_w] <= dc_coeff_q;
 end
@@ -423,6 +424,7 @@ end
 //-----------------------------------------------------------------
 // Output push
 //-----------------------------------------------------------------
+
 logic push_q;
 
 always_ff @ (posedge clk_i)
@@ -434,11 +436,54 @@ begin
     else
         push_q <= 1'b0;
 end
-
+  
 assign v_o = push_q && (coeff_idx_q < 8'd64);
 assign outport_data_o = coeff_q;
 assign outport_idx_o = coeff_idx_q[5:0];
 assign outport_eob_o = (state_q == STATE_EOB) || 
                        (state_q == STATE_EOF && push_q);
+  
+// Comments: kaulad - Commented out the below code for performance modelling
+
+// `ifdef verilator
+// function get_valid; /*verilator public*/
+// begin
+//     get_valid = outport_valid_o && block_type_w != BLOCK_EOF;
+// end
+// endfunction
+// function [5:0] get_sample_idx; /*verilator public*/
+// begin
+//     get_sample_idx = outport_idx_o;
+// end
+// endfunction
+// function [15:0] get_sample; /*verilator public*/
+// begin
+//     get_sample = outport_data_o;
+// end
+// endfunction
+
+// function [5:0] get_bitbuffer_pop; /*verilator public*/
+// begin
+//     get_bitbuffer_pop = inport_pop_o;
+// end
+// endfunction
+
+// function get_dht_valid; /*verilator public*/
+// begin
+//     get_dht_valid = lookup_valid_i && (state_q == STATE_HUFF_LOOKUP);
+// end
+// endfunction
+// function [4:0] get_dht_width; /*verilator public*/
+// begin
+//     get_dht_width = lookup_width_i;
+// end
+// endfunction
+// function [7:0] get_dht_value; /*verilator public*/
+// begin
+//     get_dht_value = lookup_value_i;
+// end
+// endfunction
+// `endif
+
 
 endmodule

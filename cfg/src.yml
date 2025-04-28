@@ -2,7 +2,7 @@
 # FIXME: Ordering of the files and commenting out unused files for saving processing time
 # List of all Verilog source files to include in this build.
 synthesis.inputs.input_files: [
-  "../../ee477-designs-module2/common/v/bsg_guts.vh", # Some definitions
+  "../common/v/bsg_guts.vh", # Some definitions
   
   # Basejump STL sources
   "${bsg_root}/bsg_misc/bsg_defines.v",
@@ -113,11 +113,11 @@ synthesis.inputs.input_files: [
   "${bsg_root}/bsg_noc/bsg_mesh_stitch.v",
 
   # bsg_guts and IO sources
-  "../../ee477-designs-module2/common/v/bsg_guts.v",
-  "../../ee477-designs-module2/common/v/packaging/bsg_iopad_macros.v",
-  "../../ee477-designs-module2/common/v/packaging/bsg_iopad_mapping.v",
-  "../../ee477-designs-module2/common/v/packaging/bsg_iopads.v",
-  "../../ee477-designs-module2/common/v/packaging/bsg_pinout.v",
+  "../common/v/bsg_guts.v",
+  "../common/v/packaging/bsg_iopad_macros.v",
+  "../common/v/packaging/bsg_iopad_mapping.v",
+  "../common/v/packaging/bsg_iopads.v",
+  "../common/v/packaging/bsg_pinout.v",
 
   # Source files for the JPEG Design
   "v/jpeg_bitbuffer.v",
