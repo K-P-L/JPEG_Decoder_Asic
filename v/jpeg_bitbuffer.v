@@ -29,6 +29,8 @@
 // limitations under the License.
 //-----------------------------------------------------------------
 
+
+// TODO: kaulad - Potential for throughput improvement in the bitbuffer input, can we get 4 Bytes at a time?
 module jpeg_bitbuffer
 (
     // Inputs
@@ -61,6 +63,7 @@ reg       drain_q;
 
 //-----------------------------------------------------------------
 // Input side FIFO
+// FIXME: kaulad - Not a good verilog coding practice?
 //-----------------------------------------------------------------
 reg [6:0] count_r; 
 always @ *
@@ -84,7 +87,7 @@ begin
     wr_ptr_q  <= 6'b0;
     drain_q   <= 1'b0;
 end
-else if (img_start_i)
+else if (img_start_i) // FIXME: kaulad - put in if as an OR statement at line 82
 begin
     count_q   <= 7'b0;
     rd_ptr_q  <= 6'b0;
@@ -140,21 +143,19 @@ assign outport_valid_o  = (count_q >= 7'd32) || (drain_q && count_q != 7'd0);
 assign outport_data_o   = data_shifted_w[39:8];
 assign outport_last_o   = 1'b0;
 
+// Comments: kaulad - Commented out below code for performance modelling.
 
-`ifdef verilator
-function get_valid; /*verilator public*/
-begin
-    get_valid = inport_valid_i && inport_accept_o;
-end
-endfunction
-function [7:0] get_data; /*verilator public*/
-begin
-    get_data = inport_data_i;
-end
-endfunction
-`endif
-
-
-
+// `ifdef verilator
+// function get_valid; /*verilator public*/
+// begin
+//     get_valid = inport_valid_i && inport_accept_o;
+// end
+// endfunction
+// function [7:0] get_data; /*verilator public*/
+// begin
+//     get_data = inport_data_i;
+// end
+// endfunction
+// `endif
 
 endmodule

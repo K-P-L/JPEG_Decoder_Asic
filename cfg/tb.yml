@@ -58,24 +58,24 @@ sim.inputs.tb_input_files: [
   "${bsg_root}/bsg_test/test_bsg_data_gen.v",
 
   # bsg_guts and IO sources
-  "../../ee477-designs-module2/common/v/bsg_guts.v",
+  "../common/v/bsg_guts.v",
 
   # Boards sources
-  "../../ee477-designs-module2/common/v/boards/bsg_double_trouble_pcb.v",
-  "../../ee477-designs-module2/common/v/boards/bsg_asic_socket.v",
-  "../../ee477-designs-module2/common/v/boards/bsg_gateway_socket.v",
+  "../common/v/boards/bsg_double_trouble_pcb.v",
+  "../common/v/boards/bsg_asic_socket.v",
+  "../common/v/boards/bsg_gateway_socket.v",
 
   # Manycore sources
-  "../../ee477-designs-module2/common/v/manycore/bsg_manycore_spmd_loader.v",
-  "../../ee477-designs-module2/common/v/manycore/bsg_manycore_vscale_pipeline_trace.v",
-  "../../ee477-designs-module2/common/v/manycore/bsg_nonsynth_manycore_io_complex.v",
-  "../../ee477-designs-module2/common/v/manycore/bsg_nonsynth_manycore_monitor.v",
-  "../../ee477-designs-module2/common/v/manycore/bsg_1hold.v",
-  "../../ee477-designs-module2/common/v/manycore/bsg_manycore_endpoint.v",
-  "../../ee477-designs-module2/common/v/manycore/bsg_manycore_endpoint_standard.v",
-  "../../ee477-designs-module2/common/v/manycore/bsg_manycore_links_to_fsb.v",
-  "../../ee477-designs-module2/common/v/manycore/bsg_manycore_pkt_decode.v",
-  "../../ee477-designs-module2/common/v/manycore/bsg_manycore_swap_ctrl.v",
+  "../common/v/manycore/bsg_manycore_spmd_loader.v",
+  "../common/v/manycore/bsg_manycore_vscale_pipeline_trace.v",
+  "../common/v/manycore/bsg_nonsynth_manycore_io_complex.v",
+  "../common/v/manycore/bsg_nonsynth_manycore_monitor.v",
+  "../common/v/manycore/bsg_1hold.v",
+  "../common/v/manycore/bsg_manycore_endpoint.v",
+  "../common/v/manycore/bsg_manycore_endpoint_standard.v",
+  "../common/v/manycore/bsg_manycore_links_to_fsb.v",
+  "../common/v/manycore/bsg_manycore_pkt_decode.v",
+  "../common/v/manycore/bsg_manycore_swap_ctrl.v",
 
   # Toplevel sources
   "v/bsg_gateway_chip.v",
@@ -91,8 +91,8 @@ sim.inputs.dut_path: "bsg_double_trouble_pcb.asic.ASIC"
 sim.inputs.tb_incdir: [
   "${bsg_root}/bsg_misc",
   "${bsg_root}/bsg_noc",
-  "../../ee477-designs-module2/common/v/packaging",
-  "../../ee477-designs-module2/common/v/manycore",
+  "../common/v/packaging",
+  "../common/v/manycore",
 ]
 sim.inputs.tb_incdir_meta: [subst]
 

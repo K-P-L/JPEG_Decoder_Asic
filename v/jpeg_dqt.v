@@ -65,7 +65,7 @@ module jpeg_dqt
 // DQT tables
 //-----------------------------------------------------------------
 // 4 * 256
-reg [7:0] table_dqt_q[0:255];
+reg [7:0] table_dqt_q[0:255]; //FIXME: kaulad - 8 * 256 instead of 4 * 256?
 
 //-----------------------------------------------------------------
 // Capture Index
@@ -80,7 +80,7 @@ else if (cfg_valid_i && cfg_last_i && cfg_accept_o)
 else if (cfg_valid_i && cfg_accept_o)
     idx_q <= idx_q + 8'd1;
 
-assign cfg_accept_o = 1'b1;
+assign cfg_accept_o = 1'b1; // FIXME: kaulad - Why do we have an always high signal, can be eliminated?
 
 //-----------------------------------------------------------------
 // Write DQT table
@@ -97,10 +97,10 @@ wire [7:0] cfg_table_addr_w = {cfg_table_q, idx_q[5:0]};
 
 wire [1:0] table_src_w[3:0];
 
-assign table_src_w[0] = img_dqt_table_y_i;
+assign table_src_w[0] = img_dqt_table_y_i; //FIXME: kaulad - Why are we using 2 bits for YCbCr but only using LSB here
 assign table_src_w[1] = img_dqt_table_cb_i;
 assign table_src_w[2] = img_dqt_table_cr_i;
-assign table_src_w[3] = 2'b0;
+assign table_src_w[3] = 2'b0; // FIXME: kaulad - Why is there an extra table?
 
 wire [7:0] table_rd_idx_w   = {table_src_w[inport_id_i[31:30]], inport_idx_i};
 

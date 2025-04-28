@@ -317,7 +317,7 @@ begin
     prev_dc_coeff_q[2] <= 16'b0;
     prev_dc_coeff_q[3] <= 16'b0; // X
 end
-else if (img_start_i)
+else if (img_start_i) //FIXME: kaulad - Make a part of if condition at line 313
 begin
     prev_dc_coeff_q[0] <= 16'b0;
     prev_dc_coeff_q[1] <= 16'b0;
@@ -409,45 +409,47 @@ assign outport_idx_o   = coeff_idx_q[5:0];
 assign outport_eob_o   = (state_q == STATE_EOB) || 
                          (state_q == STATE_EOF && push_q);
 
-`ifdef verilator
-function get_valid; /*verilator public*/
-begin
-    get_valid = outport_valid_o && block_type_w != BLOCK_EOF;
-end
-endfunction
-function [5:0] get_sample_idx; /*verilator public*/
-begin
-    get_sample_idx = outport_idx_o;
-end
-endfunction
-function [15:0] get_sample; /*verilator public*/
-begin
-    get_sample = outport_data_o;
-end
-endfunction
+// Comments: kaulad - Commented out the below code for performance modelling
 
-function [5:0] get_bitbuffer_pop; /*verilator public*/
-begin
-    get_bitbuffer_pop = inport_pop_o;
-end
-endfunction
+// `ifdef verilator
+// function get_valid; /*verilator public*/
+// begin
+//     get_valid = outport_valid_o && block_type_w != BLOCK_EOF;
+// end
+// endfunction
+// function [5:0] get_sample_idx; /*verilator public*/
+// begin
+//     get_sample_idx = outport_idx_o;
+// end
+// endfunction
+// function [15:0] get_sample; /*verilator public*/
+// begin
+//     get_sample = outport_data_o;
+// end
+// endfunction
 
-function get_dht_valid; /*verilator public*/
-begin
-    get_dht_valid = lookup_valid_i && (state_q == STATE_HUFF_LOOKUP);
-end
-endfunction
-function [4:0] get_dht_width; /*verilator public*/
-begin
-    get_dht_width = lookup_width_i;
-end
-endfunction
-function [7:0] get_dht_value; /*verilator public*/
-begin
-    get_dht_value = lookup_value_i;
-end
-endfunction
-`endif
+// function [5:0] get_bitbuffer_pop; /*verilator public*/
+// begin
+//     get_bitbuffer_pop = inport_pop_o;
+// end
+// endfunction
+
+// function get_dht_valid; /*verilator public*/
+// begin
+//     get_dht_valid = lookup_valid_i && (state_q == STATE_HUFF_LOOKUP);
+// end
+// endfunction
+// function [4:0] get_dht_width; /*verilator public*/
+// begin
+//     get_dht_width = lookup_width_i;
+// end
+// endfunction
+// function [7:0] get_dht_value; /*verilator public*/
+// begin
+//     get_dht_value = lookup_value_i;
+// end
+// endfunction
+// `endif
 
 
 endmodule

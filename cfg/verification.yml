@@ -6,9 +6,9 @@ formal.inputs.hdl_search_paths:
   - "${bsg_root}/bsg_misc"
   - "${bsg_root}/hard/fakeram"
   - "${bsg_root}/bsg_noc"
-  - "../../../../ee477-designs-module2/common/v/packaging"
-  - "../../../../ee477-designs-module2/common/v/manycore"
-  - "../../../../ee477-designs-module2/common/v/manycore/vanilla_bean"
+  - "../common/v/packaging"
+  - "../common/v/manycore"
+  - "../common/v/manycore/vanilla_bean"
 formal.inputs.hdl_search_paths_meta: [subst]
 
 # Tempus setup: 
