@@ -296,14 +296,14 @@ u_jpeg_mcu_proc
     ,.lookup_valid_i(lookup_valid_w)
     ,.lookup_width_i(lookup_width_w)
     ,.lookup_value_i(lookup_value_w)
-    ,.outport_blk_space_i(dqt_inport_blk_space_w)
+    ,.yumi_i(dqt_inport_blk_space_w)
 
     // Outputs
     ,.inport_pop_o(bb_outport_pop_w)
     ,.lookup_req_o(lookup_req_w)
     ,.lookup_table_o(lookup_table_w)
     ,.lookup_input_o(lookup_input_w)
-    ,.outport_valid_o(dqt_inport_valid_w)
+    ,.v_o(dqt_inport_valid_w)
     ,.outport_data_o(dqt_outport_data_w)
     ,.outport_idx_o(dqt_inport_idx_w)
     ,.outport_id_o(dqt_inport_id_w)
