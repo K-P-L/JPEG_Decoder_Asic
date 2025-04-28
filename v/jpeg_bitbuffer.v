@@ -133,7 +133,8 @@ begin
     endcase
 end
 
-wire [39:0] data_shifted_w = fifo_data_r << rd_ptr_q[2:0];
+logic [39:0] data_shifted_w;
+assign data_shifted_w = fifo_data_r << rd_ptr_q[2:0];
 
 assign v_o            = (count_q >= 7'd32) || (drain_q && count_q != 7'd0);
 assign outport_data_o = data_shifted_w[39:8];

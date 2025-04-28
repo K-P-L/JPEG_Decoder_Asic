@@ -214,12 +214,12 @@ u_jpeg_dqt
     ,.inport_idx_i(dqt_inport_idx_w)
     ,.inport_id_i(dqt_inport_id_w)
     ,.inport_eob_i(dqt_inport_eob_w)
-    ,.outport_accept_i(idct_inport_accept_w)
+    ,.yumi_i(idct_inport_accept_w)
 
     // Outputs
     ,.cfg_accept_o(dqt_cfg_accept_w)
-    ,.inport_blk_space_o(dqt_inport_blk_space_w)
-    ,.outport_valid_o(idct_inport_valid_w)
+    ,.ready_o(dqt_inport_blk_space_w)
+    ,.v_o(idct_inport_valid_w)
     ,.outport_data_o(idct_outport_data_w)
     ,.outport_idx_o(idct_inport_idx_w)
     ,.outport_id_o(idct_inport_id_w)
