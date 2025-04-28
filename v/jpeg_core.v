@@ -138,7 +138,7 @@ u_jpeg_input
     ,.dqt_cfg_valid_o(dqt_cfg_valid_w)
     ,.dqt_cfg_data_o(dqt_cfg_data_w)
     ,.dqt_cfg_last_o(dqt_cfg_last_w)
-    ,.dht_cfg_valid_o(dht_cfg_valid_w)
+    ,.dht_cfg_v_o(dht_cfg_valid_w)
     ,.dht_cfg_data_o(dht_cfg_data_w)
     ,.dht_cfg_last_o(dht_cfg_last_w)
     ,.data_v_o(bb_inport_valid_w)

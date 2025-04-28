@@ -1,0 +1,527 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2022 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[13:53:20.233841] Configured Lic search path (20.02-s004): 27006@cadencels.s.uw.edu
+
+Version: 21.12-s068_1, built Fri Mar 04 14:12:46 PST 2022
+Options: -files /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/syn.tcl -no_gui 
+Date:    Mon Apr 28 13:53:20 2025
+Host:    linux-lab-045.ece.uw.edu (x86_64 w/Linux 4.18.0-553.46.1.el8_10.x86_64) (8cores*8cpus*1physical cpu*Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz 12288KB) (15962860KB)
+PID:     2867014
+OS:      AlmaLinux release 8.10 (Cerulean Leopard)
+
+
+[13:53:20.243633] Periodic Lic check successful
+[13:53:20.243635] Feature usage summary:
+[13:53:20.243640] Genus_Synthesis
+Checking out license: Genus_Synthesis
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Loading tool scripts...
+Finished loading tool scripts (11 seconds elapsed).
+
+#@ Processing -files option
+@genus 1> source /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/syn.tcl
+#@ Begin verbose source /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/syn.tcl
+@file(syn.tcl) 1: puts "set_db hdl_error_on_blackbox true" 
+set_db hdl_error_on_blackbox true
+@file(syn.tcl) 2: set_db hdl_error_on_blackbox true
+  Setting attribute of root '/': 'hdl_error_on_blackbox' = true
+@file(syn.tcl) 3: puts "set_db max_cpus_per_server 8" 
+set_db max_cpus_per_server 8
+@file(syn.tcl) 4: set_db max_cpus_per_server 8
+  Setting attribute of root '/': 'max_cpus_per_server' = 8
+@file(syn.tcl) 5: puts "set_db hdl_auto_sync_set_reset true" 
+set_db hdl_auto_sync_set_reset true
+@file(syn.tcl) 6: set_db hdl_auto_sync_set_reset true
+  Setting attribute of root '/': 'hdl_auto_sync_set_reset' = true
+@file(syn.tcl) 7: puts "set_db hdl_unconnected_value none" 
+set_db hdl_unconnected_value none
+@file(syn.tcl) 8: set_db hdl_unconnected_value none
+  Setting attribute of root '/': 'hdl_unconnected_value' = none
+@file(syn.tcl) 9: puts "read_mmmc /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/mmmc.tcl" 
+read_mmmc /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/mmmc.tcl
+@file(syn.tcl) 10: read_mmmc /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/mmmc.tcl
+  Setting attribute of root '/': 'is_read_mmmc_flow' = true
+Sourcing '/home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/mmmc.tcl' (Mon Apr 28 13:53:31 PDT 2025)...
+#@ Begin verbose source /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/mmmc.tcl
+@file(mmmc.tcl) 1: puts "create_constraint_mode -name my_constraint_mode -sdc_files [list /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/clock_constraints_fragment.sdc /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/pin_constraints_fragment.sdc /home/vmetta/Documents/JPEG_Decoder_Asic/cfg/../../../ee477-hammer-cad/tcl/bsg_tag_timing.tcl /home/vmetta/Documents/JPEG_Decoder_Asic/cfg/../../../ee477-hammer-cad/tcl/bsg_chip/bsg_chip_timing_constraint.tcl /home/vmetta/Documents/JPEG_Decoder_Asic/cfg/constraints.tcl]" 
+create_constraint_mode -name my_constraint_mode -sdc_files /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/clock_constraints_fragment.sdc /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/pin_constraints_fragment.sdc /home/vmetta/Documents/JPEG_Decoder_Asic/cfg/../../../ee477-hammer-cad/tcl/bsg_tag_timing.tcl /home/vmetta/Documents/JPEG_Decoder_Asic/cfg/../../../ee477-hammer-cad/tcl/bsg_chip/bsg_chip_timing_constraint.tcl /home/vmetta/Documents/JPEG_Decoder_Asic/cfg/constraints.tcl
+@file(mmmc.tcl) 2: create_constraint_mode -name my_constraint_mode -sdc_files [list /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/clock_constraints_fragment.sdc /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/pin_constraints_fragment.sdc /home/vmetta/Documents/JPEG_Decoder_Asic/cfg/../../../ee477-hammer-cad/tcl/bsg_tag_timing.tcl /home/vmetta/Documents/JPEG_Decoder_Asic/cfg/../../../ee477-hammer-cad/tcl/bsg_chip/bsg_chip_timing_constraint.tcl /home/vmetta/Documents/JPEG_Decoder_Asic/cfg/constraints.tcl]
+@file(mmmc.tcl) 3: puts "create_library_set -name ss_100C_1v60.setup_set -timing [list /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib]" 
+create_library_set -name ss_100C_1v60.setup_set -timing /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib
+@file(mmmc.tcl) 4: create_library_set -name ss_100C_1v60.setup_set -timing [list /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib]
+@file(mmmc.tcl) 5: puts "create_timing_condition -name ss_100C_1v60.setup_cond -library_sets [list ss_100C_1v60.setup_set]" 
+create_timing_condition -name ss_100C_1v60.setup_cond -library_sets ss_100C_1v60.setup_set
+@file(mmmc.tcl) 6: create_timing_condition -name ss_100C_1v60.setup_cond -library_sets [list ss_100C_1v60.setup_set]
+@file(mmmc.tcl) 7: puts "create_rc_corner -name ss_100C_1v60.setup_rc -temperature 100.0  " 
+create_rc_corner -name ss_100C_1v60.setup_rc -temperature 100.0  
+@file(mmmc.tcl) 8: create_rc_corner -name ss_100C_1v60.setup_rc -temperature 100.0  
+@file(mmmc.tcl) 9: puts "create_delay_corner -name ss_100C_1v60.setup_delay -timing_condition ss_100C_1v60.setup_cond -rc_corner ss_100C_1v60.setup_rc" 
+create_delay_corner -name ss_100C_1v60.setup_delay -timing_condition ss_100C_1v60.setup_cond -rc_corner ss_100C_1v60.setup_rc
+@file(mmmc.tcl) 10: create_delay_corner -name ss_100C_1v60.setup_delay -timing_condition ss_100C_1v60.setup_cond -rc_corner ss_100C_1v60.setup_rc
+@file(mmmc.tcl) 11: puts "create_analysis_view -name ss_100C_1v60.setup_view -delay_corner ss_100C_1v60.setup_delay -constraint_mode my_constraint_mode" 
+create_analysis_view -name ss_100C_1v60.setup_view -delay_corner ss_100C_1v60.setup_delay -constraint_mode my_constraint_mode
+@file(mmmc.tcl) 12: create_analysis_view -name ss_100C_1v60.setup_view -delay_corner ss_100C_1v60.setup_delay -constraint_mode my_constraint_mode
+@file(mmmc.tcl) 13: puts "create_library_set -name ff_n40C_1v95.hold_set -timing [list /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib]" 
+create_library_set -name ff_n40C_1v95.hold_set -timing /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib
+@file(mmmc.tcl) 14: create_library_set -name ff_n40C_1v95.hold_set -timing [list /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib]
+@file(mmmc.tcl) 15: puts "create_timing_condition -name ff_n40C_1v95.hold_cond -library_sets [list ff_n40C_1v95.hold_set]" 
+create_timing_condition -name ff_n40C_1v95.hold_cond -library_sets ff_n40C_1v95.hold_set
+@file(mmmc.tcl) 16: create_timing_condition -name ff_n40C_1v95.hold_cond -library_sets [list ff_n40C_1v95.hold_set]
+@file(mmmc.tcl) 17: puts "create_rc_corner -name ff_n40C_1v95.hold_rc -temperature -40.0  " 
+create_rc_corner -name ff_n40C_1v95.hold_rc -temperature -40.0  
+@file(mmmc.tcl) 18: create_rc_corner -name ff_n40C_1v95.hold_rc -temperature -40.0  
+@file(mmmc.tcl) 19: puts "create_delay_corner -name ff_n40C_1v95.hold_delay -timing_condition ff_n40C_1v95.hold_cond -rc_corner ff_n40C_1v95.hold_rc" 
+create_delay_corner -name ff_n40C_1v95.hold_delay -timing_condition ff_n40C_1v95.hold_cond -rc_corner ff_n40C_1v95.hold_rc
+@file(mmmc.tcl) 20: create_delay_corner -name ff_n40C_1v95.hold_delay -timing_condition ff_n40C_1v95.hold_cond -rc_corner ff_n40C_1v95.hold_rc
+@file(mmmc.tcl) 21: puts "create_analysis_view -name ff_n40C_1v95.hold_view -delay_corner ff_n40C_1v95.hold_delay -constraint_mode my_constraint_mode" 
+create_analysis_view -name ff_n40C_1v95.hold_view -delay_corner ff_n40C_1v95.hold_delay -constraint_mode my_constraint_mode
+@file(mmmc.tcl) 22: create_analysis_view -name ff_n40C_1v95.hold_view -delay_corner ff_n40C_1v95.hold_delay -constraint_mode my_constraint_mode
+@file(mmmc.tcl) 23: puts "create_library_set -name tt_025C_1v80.extra_set -timing [list /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib]" 
+create_library_set -name tt_025C_1v80.extra_set -timing /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+@file(mmmc.tcl) 24: create_library_set -name tt_025C_1v80.extra_set -timing [list /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib]
+@file(mmmc.tcl) 25: puts "create_timing_condition -name tt_025C_1v80.extra_cond -library_sets [list tt_025C_1v80.extra_set]" 
+create_timing_condition -name tt_025C_1v80.extra_cond -library_sets tt_025C_1v80.extra_set
+@file(mmmc.tcl) 26: create_timing_condition -name tt_025C_1v80.extra_cond -library_sets [list tt_025C_1v80.extra_set]
+@file(mmmc.tcl) 27: puts "create_rc_corner -name tt_025C_1v80.extra_rc -temperature 25.0  " 
+create_rc_corner -name tt_025C_1v80.extra_rc -temperature 25.0  
+@file(mmmc.tcl) 28: create_rc_corner -name tt_025C_1v80.extra_rc -temperature 25.0  
+@file(mmmc.tcl) 29: puts "create_delay_corner -name tt_025C_1v80.extra_delay -timing_condition tt_025C_1v80.extra_cond -rc_corner tt_025C_1v80.extra_rc" 
+create_delay_corner -name tt_025C_1v80.extra_delay -timing_condition tt_025C_1v80.extra_cond -rc_corner tt_025C_1v80.extra_rc
+@file(mmmc.tcl) 30: create_delay_corner -name tt_025C_1v80.extra_delay -timing_condition tt_025C_1v80.extra_cond -rc_corner tt_025C_1v80.extra_rc
+@file(mmmc.tcl) 31: puts "create_analysis_view -name tt_025C_1v80.extra_view -delay_corner tt_025C_1v80.extra_delay -constraint_mode my_constraint_mode" 
+create_analysis_view -name tt_025C_1v80.extra_view -delay_corner tt_025C_1v80.extra_delay -constraint_mode my_constraint_mode
+@file(mmmc.tcl) 32: create_analysis_view -name tt_025C_1v80.extra_view -delay_corner tt_025C_1v80.extra_delay -constraint_mode my_constraint_mode
+@file(mmmc.tcl) 33: puts "set_analysis_view -setup { ss_100C_1v60.setup_view } -hold { ff_n40C_1v95.hold_view tt_025C_1v80.extra_view }" 
+set_analysis_view -setup { ss_100C_1v60.setup_view } -hold { ff_n40C_1v95.hold_view tt_025C_1v80.extra_view }
+@file(mmmc.tcl) 34: set_analysis_view -setup { ss_100C_1v60.setup_view } -hold { ff_n40C_1v95.hold_view tt_025C_1v80.extra_view }
+
+Threads Configured:3
+
+  Message Summary for Library sky130_fd_sc_hd__ss_100C_1v60.lib:
+  **************************************************************
+Warning : Missing pg_pin group in the library. [LBR-702]
+        : No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_1'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib, Line 82160)
+Warning : Missing pg_pin group in the library. [LBR-702]
+        : No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_2'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib, Line 82294)
+Warning : Missing pg_pin group in the library. [LBR-702]
+        : No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_4'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib, Line 82428)
+Warning : Missing pg_pin group in the library. [LBR-702]
+        : No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_1'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib, Line 82705)
+Warning : Missing pg_pin group in the library. [LBR-702]
+        : No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_2'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib, Line 82839)
+Warning : Missing pg_pin group in the library. [LBR-702]
+        : No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_4'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib, Line 82973)
+  Missing pg_pin group in the library. [LBR-702]: 6
+  An unsupported construct was detected in this library. [LBR-40]: 12
+  **************************************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.600000, 100.000000) in library 'sky130_fd_sc_hd__ss_100C_1v60.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_12' must have an output pin.
+        : Add the missing output pin(s), then reload the library. Else the library cell will be marked as timing model i.e. unusable. Timing_model means that the cell does not have any defined function. If there is no output pin, Genus will mark library cell as unusable i.e. the attribute 'usable' will be marked to 'false' on the libcell. Therefore, the cell is not used for mapping and it will not be picked up from the library for synthesis. If you query the attribute 'unusable_reason' on the libcell; result will be: 'Library cell has no output pins.'Note: The message LBR-9 is only for the logical pins and not for the power_ground pins. Genus will depend upon the output function defined in the pin group (output pin) of the cell, to use it for mapping. The pg_pin will not have any function defined.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_12' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__diode_2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__diode_2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_bleeder_1' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_bleeder_1' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_12' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_12' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_4' must have an output pin.
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'LBR-9'.
+Info    : Set default library domain. [LBR-109]
+        : The default library domain is 'library_domain:ss_100C_1v60.setup_cond'.
+#@ End verbose source /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/mmmc.tcl
+@file(syn.tcl) 11: puts "read_physical -lef { /home/vmetta/Documents/JPEG_Decoder_Asic/build/tech-sky130-cache/sky130_fd_sc_hd__nom.tlef /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef }" 
+read_physical -lef { /home/vmetta/Documents/JPEG_Decoder_Asic/build/tech-sky130-cache/sky130_fd_sc_hd__nom.tlef /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef }
+@file(syn.tcl) 12: read_physical -lef { /home/vmetta/Documents/JPEG_Decoder_Asic/build/tech-sky130-cache/sky130_fd_sc_hd__nom.tlef /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef }
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'L1M1_PR' has no resistance value.
+        : If this is the expected behavior, this message can be ignored.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'L1M1_PR_R' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'L1M1_PR_M' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'L1M1_PR_MR' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'L1M1_PR_C' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M1M2_PR' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M1M2_PR_R' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M1M2_PR_M' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M1M2_PR_MR' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M1M2_PR_C' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M2M3_PR' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M2M3_PR_R' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M2M3_PR_M' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M2M3_PR_MR' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M2M3_PR_C' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M3M4_PR' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M3M4_PR_R' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M3M4_PR_M' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M3M4_PR_MR' has no resistance value.
+Info    : Via with no resistance will have a value of '0.0' assigned for resistance value. [PHYS-129]
+        : Via 'M3M4_PR_C' has no resistance value.
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'PHYS-129'.
+Warning : Multiple ports are found on a pin without MUSTJOINALLPORTS in the pin property in the LEF file. [PHYS-2381]
+        : Multiple ports are found on pin 'X' on cell 'sky130_fd_sc_hd__probe_p_8' without MUSTJOINALLPORTS in the pin property.
+        : This means that only one port would be connected, which may not be the expected behavior. Should consider adding MUSTJOINALLPORTS property.
+Warning : Multiple ports are found on a pin without MUSTJOINALLPORTS in the pin property in the LEF file. [PHYS-2381]
+        : Multiple ports are found on pin 'X' on cell 'sky130_fd_sc_hd__probec_p_8' without MUSTJOINALLPORTS in the pin property.
+
+  According to lef_library, there are total 6 routing layers [ V(3) / H(3) ]
+
+Warning : The variant range of wire parameters is too large. An example of wire parameters are, a WIDTH for layer, PITCH for layer, MINSPACING for layers, etc. [PHYS-12]
+        : The variant range (0.14, 1.6) of 'WIDTH' for layers 'met2' and 'met5' is too large.
+        : Check the consistency of the parameters, and see if you can ignore this message or you're using different LEF file with wrong parameters.
+Warning : The variant range of wire parameters is too large. An example of wire parameters are, a WIDTH for layer, PITCH for layer, MINSPACING for layers, etc. [PHYS-12]
+        : The variant range (0.0285, 12.8) of 'RPERSQ' for layers 'met5' and 'li1' is too large.
+Warning : The value of the wire parameter is too big. [PHYS-13]
+        : The 'RPERSQ: 12.8' of layer 'li1' is much bigger than others.
+        : Check the consistency of the specified wire parameter.
+Warning : The variant range of wire parameters is too large. An example of wire parameters are, a WIDTH for layer, PITCH for layer, MINSPACING for layers, etc. [PHYS-12]
+        : The variant range (0.14, 1.6) of 'MINSPACING' for layers 'met2' and 'met5' is too large.
+  Library has 335 usable logic and 62 usable sequential lib-cells.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Huge' is non-monotonic.
+        : Non-monotonic wireload models can cause problems during synthesis and/or mapping.  Raising some of the points in the curve to give it a monotonic shape.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Huge' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Huge' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Large' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Large' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Large' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Medium' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Medium' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Medium' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Small' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Small' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Small' is non-monotonic.
+Warning : Physical cell not defined in library. [PHYS-279]
+        : The physical (LEF) cell sky130_ef_sc_hd__decap_12 cannot be found in library.
+        : Ensure that the proper library files are available and have been imported.
+Warning : Physical cell not defined in library. [PHYS-279]
+        : The physical (LEF) cell sky130_ef_sc_hd__fakediode_2 cannot be found in library.
+Warning : Physical cell not defined in library. [PHYS-279]
+        : The physical (LEF) cell sky130_ef_sc_hd__fill_8 cannot be found in library.
+Warning : Physical cell not defined in library. [PHYS-279]
+        : The physical (LEF) cell sky130_ef_sc_hd__fill_12 cannot be found in library.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VNB' of library cell 'sky130_fd_sc_hd__a2bb2o_1' is marked as GROUND in LEF file.
+        : Overriding lib value with LEF value. To use .lib as golden do: '::legacy::set_attribute use_power_ground_pin_from_lef false'.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VPB' of library cell 'sky130_fd_sc_hd__a2bb2o_1' is marked as POWER in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VNB' of library cell 'sky130_fd_sc_hd__a2bb2o_2' is marked as GROUND in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VPB' of library cell 'sky130_fd_sc_hd__a2bb2o_2' is marked as POWER in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VNB' of library cell 'sky130_fd_sc_hd__a2bb2o_4' is marked as GROUND in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VPB' of library cell 'sky130_fd_sc_hd__a2bb2o_4' is marked as POWER in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VNB' of library cell 'sky130_fd_sc_hd__a2bb2oi_1' is marked as GROUND in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VPB' of library cell 'sky130_fd_sc_hd__a2bb2oi_1' is marked as POWER in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VNB' of library cell 'sky130_fd_sc_hd__a2bb2oi_2' is marked as GROUND in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VPB' of library cell 'sky130_fd_sc_hd__a2bb2oi_2' is marked as POWER in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VNB' of library cell 'sky130_fd_sc_hd__a2bb2oi_4' is marked as GROUND in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VPB' of library cell 'sky130_fd_sc_hd__a2bb2oi_4' is marked as POWER in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VNB' of library cell 'sky130_fd_sc_hd__a21bo_1' is marked as GROUND in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VPB' of library cell 'sky130_fd_sc_hd__a21bo_1' is marked as POWER in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VNB' of library cell 'sky130_fd_sc_hd__a21bo_2' is marked as GROUND in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VPB' of library cell 'sky130_fd_sc_hd__a21bo_2' is marked as POWER in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VNB' of library cell 'sky130_fd_sc_hd__a21bo_4' is marked as GROUND in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VPB' of library cell 'sky130_fd_sc_hd__a21bo_4' is marked as POWER in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VNB' of library cell 'sky130_fd_sc_hd__a21boi_0' is marked as GROUND in LEF file.
+Warning : Library cell pin 'use' attribute is inconsistent between lib and LEF. [PHYS-128]
+        : Pin 'VPB' of library cell 'sky130_fd_sc_hd__a21boi_0' is marked as POWER in LEF file.
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'PHYS-128'.
+Warning : Physical cell not defined in library. [PHYS-279]
+        : The physical (LEF) cell sky130_fd_sc_hd__fill_1 cannot be found in library.
+Warning : Physical cell not defined in library. [PHYS-279]
+        : The physical (LEF) cell sky130_fd_sc_hd__fill_2 cannot be found in library.
+Warning : Physical cell not defined in library. [PHYS-279]
+        : The physical (LEF) cell sky130_fd_sc_hd__fill_4 cannot be found in library.
+Warning : Physical cell not defined in library. [PHYS-279]
+        : The physical (LEF) cell sky130_fd_sc_hd__fill_8 cannot be found in library.
+Warning : Physical cell not defined in library. [PHYS-279]
+        : The physical (LEF) cell sky130_fd_sc_hd__tap_1 cannot be found in library.
+Warning : Physical cell not defined in library. [PHYS-279]
+        : The physical (LEF) cell sky130_fd_sc_hd__tap_2 cannot be found in library.
+Warning : Physical cell not defined in library. [PHYS-279]
+        : The physical (LEF) cell sky130_fd_sc_hd__tapvgnd2_1 cannot be found in library.
+Warning : Physical cell not defined in library. [PHYS-279]
+        : The physical (LEF) cell sky130_fd_sc_hd__tapvgnd_1 cannot be found in library.
+Warning : Physical cell not defined in library. [PHYS-279]
+        : The physical (LEF) cell sky130_fd_sc_hd__tapvpwrvgnd_1 cannot be found in library.
+@file(syn.tcl) 13: puts "read_hdl -sv { /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/bsg_guts.vh /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_defines.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_fsb_pkg.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_noc_links.vh /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_noc_pkg.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_mesh_router_pkg.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_overflow_set_en.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_concentrate_static.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_unconcentrate_static.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_set_down.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_array_concentrate_static.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_pkg.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_ready_and_link_async_to_wormhole.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_decoder_dor.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_input_control.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_output_control.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_async_credit_counter.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_async_fifo.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_async_ptr_gray.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_launch_sync_sync.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_sync_sync.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_1_to_n_tagged.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_1_to_n_tagged_fifo.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_narrow.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_tunnel.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_tunnel_in.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_tunnel_out.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_narrowed.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_pseudo_large.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_small.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_small_hardened.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_small_unhardened.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1rw_large.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_tracker.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_flatten_2D_array.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_make_2D_array.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_one_fifo.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_parallel_in_serial_out.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_round_robin_1_to_n.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_round_robin_fifo_to_fifo.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_round_robin_n_to_1.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_sbox.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_scatter_gather.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_serial_in_parallel_out_full.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_two_fifo.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_front_side_bus_hop_in.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_front_side_bus_hop_out.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_fsb.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_fsb_murn_gateway.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_ddr_downstream.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_ddr_upstream.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_iddr_phy.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_oddr_phy.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_source_sync_downstream.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_source_sync_upstream.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1r1w.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1r1w_synth.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1rw_sync.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1rw_sync_mask_write_byte.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1rw_sync_mask_write_byte_synth.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1rw_sync_synth.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_2r1w_sync.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_2r1w_sync_synth.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_banked_crossbar.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_adder_cin.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_and.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_arb_fixed.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_array_reverse.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_binary_plus_one_to_gray.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_buf.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_buf_ctrl.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_circular_ptr.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_clkbuf.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_clear_up.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_up_down.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_up_down_variable.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_crossbar_o_by_i.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_cycle_counter.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_decode.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_decode_with_v.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_dff.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_dff_en.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_dff_reset.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_dff_reset_en.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_encode_one_hot.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_gray_to_binary.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_idiv_iterative.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_idiv_iterative_controller.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_imul_iterative.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_mux.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_mux_one_hot.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_nor2.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_popcount.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_priority_encode.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_priority_encode_one_hot_out.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_rotate_right.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_round_robin_arb.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_scan.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_thermometer_count.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_tiehi.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_tielo.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_transpose.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_xnor.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_mesh_router.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_mesh_router_buffered.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_mesh_stitch.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/bsg_guts.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/packaging/bsg_iopad_macros.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/packaging/bsg_iopad_mapping.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/packaging/bsg_iopads.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/packaging/bsg_pinout.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_bitbuffer.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_bitbuffer.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht_std_cx_ac.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht_std_cx_dc.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht_std_y_ac.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht_std_y_dc.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dqt.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_fifo.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_ram_dp.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_ram.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_transpose_ram.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_transpose.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_x.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_y.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_input.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_mcu_id.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_mcu_proc.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output_cx_ram.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output_fifo.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output_y_ram.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_core.v }" 
+read_hdl -sv { /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/bsg_guts.vh /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_defines.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_fsb_pkg.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_noc_links.vh /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_noc_pkg.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_mesh_router_pkg.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_overflow_set_en.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_concentrate_static.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_unconcentrate_static.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_set_down.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_array_concentrate_static.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_pkg.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_ready_and_link_async_to_wormhole.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_decoder_dor.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_input_control.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_output_control.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_async_credit_counter.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_async_fifo.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_async_ptr_gray.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_launch_sync_sync.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_sync_sync.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_1_to_n_tagged.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_1_to_n_tagged_fifo.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_narrow.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_tunnel.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_tunnel_in.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_tunnel_out.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_narrowed.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_pseudo_large.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_small.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_small_hardened.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_small_unhardened.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1rw_large.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_tracker.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_flatten_2D_array.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_make_2D_array.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_one_fifo.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_parallel_in_serial_out.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_round_robin_1_to_n.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_round_robin_fifo_to_fifo.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_round_robin_n_to_1.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_sbox.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_scatter_gather.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_serial_in_parallel_out_full.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_two_fifo.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_front_side_bus_hop_in.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_front_side_bus_hop_out.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_fsb.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_fsb_murn_gateway.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_ddr_downstream.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_ddr_upstream.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_iddr_phy.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_oddr_phy.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_source_sync_downstream.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_source_sync_upstream.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1r1w.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1r1w_synth.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1rw_sync.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1rw_sync_mask_write_byte.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1rw_sync_mask_write_byte_synth.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1rw_sync_synth.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_2r1w_sync.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_2r1w_sync_synth.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_banked_crossbar.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_adder_cin.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_and.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_arb_fixed.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_array_reverse.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_binary_plus_one_to_gray.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_buf.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_buf_ctrl.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_circular_ptr.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_clkbuf.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_clear_up.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_up_down.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_up_down_variable.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_crossbar_o_by_i.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_cycle_counter.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_decode.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_decode_with_v.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_dff.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_dff_en.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_dff_reset.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_dff_reset_en.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_encode_one_hot.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_gray_to_binary.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_idiv_iterative.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_idiv_iterative_controller.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_imul_iterative.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_mux.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_mux_one_hot.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_nor2.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_popcount.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_priority_encode.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_priority_encode_one_hot_out.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_rotate_right.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_round_robin_arb.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_scan.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_thermometer_count.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_tiehi.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_tielo.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_transpose.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_xnor.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_mesh_router.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_mesh_router_buffered.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_mesh_stitch.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/bsg_guts.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/packaging/bsg_iopad_macros.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/packaging/bsg_iopad_mapping.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/packaging/bsg_iopads.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/packaging/bsg_pinout.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_bitbuffer.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_bitbuffer.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht_std_cx_ac.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht_std_cx_dc.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht_std_y_ac.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht_std_y_dc.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dqt.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_fifo.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_ram_dp.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_ram.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_transpose_ram.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_transpose.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_x.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_y.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_input.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_mcu_id.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_mcu_proc.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output_cx_ram.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output_fifo.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output_y_ram.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_core.v }
+@file(syn.tcl) 14: read_hdl -sv { /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/bsg_guts.vh /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_defines.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_fsb_pkg.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_noc_links.vh /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_noc_pkg.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_mesh_router_pkg.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_overflow_set_en.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_concentrate_static.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_unconcentrate_static.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_set_down.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_array_concentrate_static.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_pkg.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_ready_and_link_async_to_wormhole.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_decoder_dor.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_input_control.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_output_control.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_async_credit_counter.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_async_fifo.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_async_ptr_gray.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_launch_sync_sync.v /home/vmetta/Documents/basejump_stl/bsg_async/bsg_sync_sync.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_1_to_n_tagged.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_1_to_n_tagged_fifo.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_narrow.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_tunnel.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_tunnel_in.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_tunnel_out.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_narrowed.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_pseudo_large.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_small.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_small_hardened.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_small_unhardened.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1rw_large.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_tracker.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_flatten_2D_array.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_make_2D_array.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_one_fifo.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_parallel_in_serial_out.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_round_robin_1_to_n.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_round_robin_fifo_to_fifo.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_round_robin_n_to_1.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_sbox.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_scatter_gather.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_serial_in_parallel_out_full.v /home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_two_fifo.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_front_side_bus_hop_in.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_front_side_bus_hop_out.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_fsb.v /home/vmetta/Documents/basejump_stl/bsg_fsb/bsg_fsb_murn_gateway.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_ddr_downstream.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_ddr_upstream.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_iddr_phy.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_oddr_phy.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_source_sync_downstream.v /home/vmetta/Documents/basejump_stl/bsg_link/bsg_link_source_sync_upstream.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1r1w.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1r1w_synth.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1rw_sync.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1rw_sync_mask_write_byte.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1rw_sync_mask_write_byte_synth.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_1rw_sync_synth.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_2r1w_sync.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_2r1w_sync_synth.v /home/vmetta/Documents/basejump_stl/bsg_mem/bsg_mem_banked_crossbar.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_adder_cin.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_and.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_arb_fixed.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_array_reverse.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_binary_plus_one_to_gray.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_buf.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_buf_ctrl.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_circular_ptr.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_clkbuf.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_clear_up.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_up_down.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_counter_up_down_variable.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_crossbar_o_by_i.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_cycle_counter.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_decode.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_decode_with_v.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_dff.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_dff_en.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_dff_reset.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_dff_reset_en.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_encode_one_hot.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_gray_to_binary.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_idiv_iterative.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_idiv_iterative_controller.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_imul_iterative.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_mux.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_mux_one_hot.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_nor2.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_popcount.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_priority_encode.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_priority_encode_one_hot_out.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_rotate_right.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_round_robin_arb.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_scan.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_thermometer_count.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_tiehi.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_tielo.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_transpose.v /home/vmetta/Documents/basejump_stl/bsg_misc/bsg_xnor.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_mesh_router.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_mesh_router_buffered.v /home/vmetta/Documents/basejump_stl/bsg_noc/bsg_mesh_stitch.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/bsg_guts.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/packaging/bsg_iopad_macros.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/packaging/bsg_iopad_mapping.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/packaging/bsg_iopads.v /home/vmetta/Documents/JPEG_Decoder_Asic/../common/v/packaging/bsg_pinout.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_bitbuffer.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_bitbuffer.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht_std_cx_ac.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht_std_cx_dc.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht_std_y_ac.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht_std_y_dc.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dqt.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_fifo.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_ram_dp.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_ram.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_transpose_ram.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_transpose.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_x.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_idct_y.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_input.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_mcu_id.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_mcu_proc.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output_cx_ram.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output_fifo.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output_y_ram.v /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_core.v }
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_pkg.v' on line 1, column 24.
+        : The specified file could not be opened.  Check the value of the init_hdl_search_path attribute.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router.v' on line 1, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_noc/bsg_ready_and_link_async_to_wormhole.v' on line 15, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_decoder_dor.v' on line 9, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_input_control.v' on line 1, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_noc/bsg_wormhole_router_output_control.v' on line 1, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_async/bsg_async_credit_counter.v' on line 60, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_async/bsg_async_fifo.v' on line 14, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_async/bsg_async_ptr_gray.v' on line 18, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_async/bsg_launch_sync_sync.v' on line 25, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_async/bsg_sync_sync.v' on line 11, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_1_to_n_tagged.v' on line 17, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_1_to_n_tagged_fifo.v' on line 14, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_narrow.v' on line 15, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_tunnel.v' on line 62, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_tunnel_in.v' on line 10, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_channel_tunnel_out.v' on line 10, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_narrowed.v' on line 9, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_pseudo_large.v' on line 105, column 24.
+`include "bsg_defines.v"
+                       |
+Warning : Cannot open file. [VLOGPT-650]
+        : File 'bsg_defines.v' in file '/home/vmetta/Documents/basejump_stl/bsg_dataflow/bsg_fifo_1r1w_small.v' on line 20, column 24.
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'VLOGPT-650'.
+// synthesis of (x+1) ^ ((x+1) >> 1). Synopsys has some
+                                                      |
+Warning : Unrecognized Synthesis pragma_name found in HDL. [VLOGPT-502]
+        : Pragma 'synthesis of (x+1) ^ ((x+1) >> 1). Synopsys has some' in file '/home/vmetta/Documents/basejump_stl/bsg_misc/bsg_binary_plus_one_to_gray.v' on line 7, column 55.
+        : Synthesis pragmas are specially-formatted comments or attributes in the HDL that tell Genus how to synthesize the HDL.
+// synthesis attribute ram_style of ram_q is block
+                                                 |
+Warning : Unrecognized Synthesis pragma_name found in HDL. [VLOGPT-502]
+        : Pragma 'synthesis attribute ram_style of ram_q is block' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_bitbuffer.v' on line 163, column 50.
+// synthesis attribute ram_extract of ram_q is yes
+                                                 |
+Warning : Unrecognized Synthesis pragma_name found in HDL. [VLOGPT-502]
+        : Pragma 'synthesis attribute ram_extract of ram_q is yes' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_bitbuffer.v' on line 164, column 50.
+module jpeg_bitbuffer
+                    |
+Warning : Replacing previously read Verilog description. [VLOGPT-6]
+        : Replacing Verilog description 'jpeg_bitbuffer' with Verilog module in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_bitbuffer.v' on line 34, column 21.
+        : A Verilog description is replaced when a new description of the same name and same library is read again.
+    Verilog descriptions are:
+       module
+       macromodule
+       configuration
+    SystemVerilog adds the following descriptions:
+       interface
+       program
+       package.
+// synthesis attribute ram_style of ram_q is block
+                                                 |
+Warning : Unrecognized Synthesis pragma_name found in HDL. [VLOGPT-502]
+        : Pragma 'synthesis attribute ram_style of ram_q is block' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_bitbuffer.v' on line 163, column 50.
+// synthesis attribute ram_extract of ram_q is yes
+                                                 |
+Warning : Unrecognized Synthesis pragma_name found in HDL. [VLOGPT-502]
+        : Pragma 'synthesis attribute ram_extract of ram_q is yes' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_bitbuffer.v' on line 164, column 50.
+    // synthesis attribute ram_style of ram is block
+                                                   |
+Warning : Unrecognized Synthesis pragma_name found in HDL. [VLOGPT-502]
+        : Pragma 'synthesis attribute ram_style of ram is block' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dht.v' on line 483, column 52.
+// synthesis attribute ram_style of table_dqt_q is block
+                                                       |
+Warning : Unrecognized Synthesis pragma_name found in HDL. [VLOGPT-502]
+        : Pragma 'synthesis attribute ram_style of table_dqt_q is block' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_dqt.v' on line 66, column 56.
+// synthesis attribute ram_style of ram is block
+                                               |
+Warning : Unrecognized Synthesis pragma_name found in HDL. [VLOGPT-502]
+        : Pragma 'synthesis attribute ram_style of ram is block' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output_cx_ram.v' on line 534, column 48.
+// synthesis attribute ram_style of ram_q is distributed
+                                                       |
+Warning : Unrecognized Synthesis pragma_name found in HDL. [VLOGPT-502]
+        : Pragma 'synthesis attribute ram_style of ram_q is distributed' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output_fifo.v' on line 68, column 56.
+// synthesis attribute ram_style of ram is block
+                                               |
+Warning : Unrecognized Synthesis pragma_name found in HDL. [VLOGPT-502]
+        : Pragma 'synthesis attribute ram_style of ram is block' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output_y_ram.v' on line 224, column 48.
+@file(syn.tcl) 15: puts "elaborate jpeg_core" 
+elaborate jpeg_core
+@file(syn.tcl) 16: elaborate jpeg_core
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Huge' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Huge' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Huge' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Large' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Large' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Large' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Medium' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Medium' is non-monotonic.
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'LBR-81'.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'jpeg_core' from file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_core.v'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'jpeg_core' with default parameters value.
+Warning : Removing unused register. [CDFG-508]
+        : Removing unused flip-flop register 'img_precision_q' in module 'jpeg_input' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_input.v' on line 434.
+        : Genus removes the flip-flop or latch inferred for an unused signal or variable. To preserve the flip-flop or latch, set the hdl_preserve_unused_registers attribute to true or use a pragma in the RTL.
+Error   : Could not find a port. [CDFG-211] [elaborate]
+        : Unable to find port 'dqt_cfg_valid_o' of instance 'u_jpeg_input' of module 'jpeg_input'.  Available ports are 'input clk_i, input rst_i, input inport_valid_i, input inport_data_i, input inport_strb_i, input inport_last_i, input dqt_cfg_yumi_i, input dht_cfg_yumi_i, input data_yumi_i, output ready_o, output img_start_o, output img_end_o, output img_width_o, output img_height_o, output img_mode_o, output img_dqt_table_y_o, output img_dqt_table_cb_o, output img_dqt_table_cr_o, output dqt_cfg_v_o, output dqt_cfg_data_o, output dqt_cfg_last_o, output dht_cfg_v_o, output dht_cfg_data_o, output dht_cfg_last_o, output data_v_o, output data_data_o, output data_last_o' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_core.v' on line 116.
+        : Ensure that the desired port is defined in the module definition of the instantiated instance.
+Error   : Could not find a port. [CDFG-211] [elaborate]
+        : Unable to find port 'dht_cfg_valid_o' of instance 'u_jpeg_input' of module 'jpeg_input' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_core.v' on line 116.
+Error   : Could not find a port. [CDFG-211] [elaborate]
+        : Unable to find port 'v_o' of instance 'u_ram_cb' of module 'jpeg_output_cx_ram'.  Available ports are 'input clk_i, input rst_i, input wr_idx_i, input data_in_i, input push_i, input mode420_i, input pop_i, input flush_i, output data_out_o, output valid_o, output level_o' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output.v' on line 117.
+Error   : Could not find a port. [CDFG-211] [elaborate]
+        : Unable to find port 'yumi_i' of instance 'u_ram_cb' of module 'jpeg_output_cx_ram' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output.v' on line 117.
+Error   : Could not find a port. [CDFG-211] [elaborate]
+        : Unable to find port 'v_o' of instance 'u_ram_cr' of module 'jpeg_output_cx_ram_0'.  Available ports are 'input clk_i, input rst_i, input wr_idx_i, input data_in_i, input push_i, input mode420_i, input pop_i, input flush_i, output data_out_o, output valid_o, output level_o' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output.v' on line 144.
+Error   : Could not find a port. [CDFG-211] [elaborate]
+        : Unable to find port 'yumi_i' of instance 'u_ram_cr' of module 'jpeg_output_cx_ram_0' in file '/home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_output.v' on line 144.
+Info    : Unable to elaborate the design. [ELAB-4]
+        : Module 'jpeg_core' contains errors and cannot be elaborated.
+UM:   flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+#@ End verbose source /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/syn.tcl
+1
+Encountered problems processing file: /home/vmetta/Documents/JPEG_Decoder_Asic/build/syn-rundir/syn.tcl
+WARNING: This version of the tool is 1150 days old.
+
+Another Ctrl-C within 1 second will terminate the tool.
+CURRENT RESOURCES: RT {elapsed: 202s, ST: 10s, FG: 10s, CPU: 0.2%}, MEM {curr: 1.0G, peak: 1.0G, phys curr: 0.5G, phys peak: 0.5G}, SYS {load: 5.1, cpu: 8, total: 15.2G, free: 0.7G}
