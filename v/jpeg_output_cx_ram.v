@@ -452,8 +452,8 @@ assign valid_o = rd_skid_q | rd_q;
 // Dual port RAM
 //-------------------------------------------------------------------
 logic [31:0] data_out_w;
-
-jpeg_output_cx_ram_ram_dp_256_8
+// TODO (VMETTA): Where the heck is thios module?
+jpeg_output_cx_ram_ram_dp_256_8 
 u_ram
 (
     // Inputs
