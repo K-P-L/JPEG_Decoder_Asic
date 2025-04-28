@@ -32,105 +32,116 @@
 module jpeg_output_y_ram
 (
     // Inputs
-     input           clk_i
-    ,input           rst_i
-    ,input  [  5:0]  wr_idx_i
-    ,input  [ 31:0]  data_in_i
-    ,input           push_i
-    ,input           pop_i
-    ,input           flush_i
+     input  logic           clk_i
+    ,input  logic           rst_i
+    ,input  logic [  5:0]   wr_idx_i
+    ,input  logic [ 31:0]   data_in_i
+    ,input  logic           push_i
+    ,input  logic           yumi_i           // YUMI input signal (replaces pop_i)
+    ,input  logic           flush_i
 
     // Outputs
-    ,output [ 31:0]  data_out_o
-    ,output          valid_o
-    ,output [ 31:0]  level_o
+    ,output logic [ 31:0]   data_out_o
+    ,output logic           v_o              // Valid output signal (replaces valid_o)
+    ,output logic [ 31:0]   level_o
 );
-
-
 
 //-----------------------------------------------------------------
 // Registers
 //-----------------------------------------------------------------
-reg [8:0]   rd_ptr_q;
-reg [8:0]   wr_ptr_q;
+logic [8:0]   rd_ptr_q;
+logic [8:0]   wr_ptr_q;
 
 //-----------------------------------------------------------------
 // Write Side
 //-----------------------------------------------------------------
-wire [8:0] write_next_w = wr_ptr_q + 9'd1;
+logic [8:0] write_next_w;
+assign write_next_w = wr_ptr_q + 9'd1;
 
-always @ (posedge clk_i )
-if (rst_i)
-    wr_ptr_q <= 9'b0;
-else if (flush_i)
-    wr_ptr_q <= 9'b0;
-// Push
-else if (push_i)
-    wr_ptr_q <= write_next_w;
+always_ff @ (posedge clk_i)
+begin
+    if (rst_i)
+        wr_ptr_q <= 9'b0;
+    else if (flush_i)
+        wr_ptr_q <= 9'b0;
+    // Push
+    else if (push_i)
+        wr_ptr_q <= write_next_w;
+end
 
 //-----------------------------------------------------------------
 // Read Side
 //-----------------------------------------------------------------
-wire read_ok_w = (wr_ptr_q != rd_ptr_q);
-reg  rd_q;
+logic read_ok_w;
+logic rd_q;
 
-always @ (posedge clk_i )
-if (rst_i)
-    rd_q <= 1'b0;
-else if (flush_i)
-    rd_q <= 1'b0;
-else
-    rd_q <= read_ok_w;
+assign read_ok_w = (wr_ptr_q != rd_ptr_q);
 
-wire [8:0] rd_ptr_next_w = rd_ptr_q + 9'd1;
+always_ff @ (posedge clk_i)
+begin
+    if (rst_i)
+        rd_q <= 1'b0;
+    else if (flush_i)
+        rd_q <= 1'b0;
+    else
+        rd_q <= read_ok_w;
+end
 
-always @ (posedge clk_i )
-if (rst_i)
-    rd_ptr_q <= 9'b0;
-else if (flush_i)
-    rd_ptr_q <= 9'b0;
-else if (read_ok_w && ((!valid_o) || (valid_o && pop_i)))
-    rd_ptr_q <= rd_ptr_next_w;
+logic [8:0] rd_ptr_next_w;
+assign rd_ptr_next_w = rd_ptr_q + 9'd1;
 
-wire [8:0] rd_addr_w = rd_ptr_q;
+always_ff @ (posedge clk_i)
+begin
+    if (rst_i)
+        rd_ptr_q <= 9'b0;
+    else if (flush_i)
+        rd_ptr_q <= 9'b0;
+    else if (read_ok_w && ((!v_o) || (v_o && yumi_i)))
+        rd_ptr_q <= rd_ptr_next_w;
+end
+
+logic [8:0] rd_addr_w;
+assign rd_addr_w = rd_ptr_q;
 
 //-------------------------------------------------------------------
 // Read Skid Buffer
 //-------------------------------------------------------------------
-reg                rd_skid_q;
-reg [31:0] rd_skid_data_q;
+logic                rd_skid_q;
+logic [31:0]         rd_skid_data_q;
 
-always @ (posedge clk_i )
-if (rst_i)
+always_ff @ (posedge clk_i)
 begin
-    rd_skid_q <= 1'b0;
-    rd_skid_data_q <= 32'b0;
-end
-else if (flush_i)
-begin
-    rd_skid_q <= 1'b0;
-    rd_skid_data_q <= 32'b0;
-end
-else if (valid_o && !pop_i)
-begin
-    rd_skid_q      <= 1'b1;
-    rd_skid_data_q <= data_out_o;
-end
-else
-begin
-    rd_skid_q      <= 1'b0;
-    rd_skid_data_q <= 32'b0;
+    if (rst_i)
+    begin
+        rd_skid_q <= 1'b0;
+        rd_skid_data_q <= 32'b0;
+    end
+    else if (flush_i)
+    begin
+        rd_skid_q <= 1'b0;
+        rd_skid_data_q <= 32'b0;
+    end
+    else if (v_o && !yumi_i)
+    begin
+        rd_skid_q      <= 1'b1;
+        rd_skid_data_q <= data_out_o;
+    end
+    else
+    begin
+        rd_skid_q      <= 1'b0;
+        rd_skid_data_q <= 32'b0;
+    end
 end
 
 //-------------------------------------------------------------------
 // Combinatorial
 //-------------------------------------------------------------------
-assign valid_o       = rd_skid_q | rd_q;
+assign v_o = rd_skid_q | rd_q;
 
 //-------------------------------------------------------------------
 // Dual port RAM
 //-------------------------------------------------------------------
-wire [31:0] data_out_w;
+logic [31:0] data_out_w;
 
 jpeg_output_y_ram_ram_dp_512_9
 u_ram
@@ -156,31 +167,32 @@ u_ram
 
 assign data_out_o = rd_skid_q ? rd_skid_data_q : data_out_w;
 
-
 //-------------------------------------------------------------------
 // Level
 //-------------------------------------------------------------------
-reg [31:0]  count_q;
-reg [31:0]  count_r;
+logic [31:0]  count_q;
+logic [31:0]  count_r;
 
-always @ *
+always_comb
 begin
     count_r = count_q;
 
-    if (pop_i && valid_o)
+    if (yumi_i && v_o)
         count_r = count_r - 32'd1;
 
     if (push_i)
         count_r = count_r + 32'd1;
 end
 
-always @ (posedge clk_i )
-if (rst_i)
-    count_q   <= 32'b0;
-else if (flush_i)
-    count_q   <= 32'b0;
-else
-    count_q <= count_r;
+always_ff @ (posedge clk_i)
+begin
+    if (rst_i)
+        count_q <= 32'b0;
+    else if (flush_i)
+        count_q <= 32'b0;
+    else
+        count_q <= count_r;
+end
 
 assign level_o = count_q;
 
@@ -192,31 +204,30 @@ endmodule
 module jpeg_output_y_ram_ram_dp_512_9
 (
     // Inputs
-     input           clk0_i
-    ,input           rst0_i
-    ,input  [ 8:0]  addr0_i
-    ,input  [ 31:0]  data0_i
-    ,input           wr0_i
-    ,input           clk1_i
-    ,input           rst1_i
-    ,input  [ 8:0]  addr1_i
-    ,input  [ 31:0]  data1_i
-    ,input           wr1_i
+     input  logic           clk0_i
+    ,input  logic           rst0_i
+    ,input  logic [ 8:0]    addr0_i
+    ,input  logic [ 31:0]   data0_i
+    ,input  logic           wr0_i
+    ,input  logic           clk1_i
+    ,input  logic           rst1_i
+    ,input  logic [ 8:0]    addr1_i
+    ,input  logic [ 31:0]   data1_i
+    ,input  logic           wr1_i
 
     // Outputs
-    ,output [ 31:0]  data0_o
-    ,output [ 31:0]  data1_o
+    ,output logic [ 31:0]   data0_o
+    ,output logic [ 31:0]   data1_o
 );
 
-/* verilator lint_off MULTIDRIVEN */
-reg [31:0]   ram [511:0] /*verilator public*/;
-/* verilator lint_on MULTIDRIVEN */
-
-reg [31:0] ram_read0_q;
-reg [31:0] ram_read1_q;
+// Synthesis attributes for RAM inference
+// synthesis attribute ram_style of ram is block
+logic [31:0] ram[0:511];
+logic [31:0] ram_read0_q;
+logic [31:0] ram_read1_q;
 
 // Synchronous write
-always @ (posedge clk0_i)
+always_ff @ (posedge clk0_i)
 begin
     if (wr0_i)
         ram[addr0_i] <= data0_i;
@@ -224,7 +235,7 @@ begin
     ram_read0_q <= ram[addr0_i];
 end
 
-always @ (posedge clk1_i)
+always_ff @ (posedge clk1_i)
 begin
     if (wr1_i)
         ram[addr1_i] <= data1_i;
@@ -234,7 +245,5 @@ end
 
 assign data0_o = ram_read0_q;
 assign data1_o = ram_read1_q;
-
-
 
 endmodule
