@@ -38,10 +38,10 @@ module jpeg_dht_std_y_dc
 //-----------------------------------------------------------------
 // Y DC Table (standard)
 //-----------------------------------------------------------------
-reg [7:0] y_dc_value_r;
-reg [4:0] y_dc_width_r;
+logic [7:0] y_dc_value_r;
+logic [4:0] y_dc_width_r;
 
-always @ *
+always_comb
 begin
     y_dc_value_r = 8'b0;
     y_dc_width_r = 5'b0;

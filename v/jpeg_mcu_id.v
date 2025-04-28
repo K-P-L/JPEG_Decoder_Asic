@@ -32,152 +32,166 @@
 module jpeg_mcu_id
 (
     // Inputs
-     input           clk_i
-    ,input           rst_i
-    ,input           img_start_i
-    ,input           img_end_i
-    ,input  [ 15:0]  img_width_i
-    ,input  [ 15:0]  img_height_i
-    ,input  [  1:0]  img_mode_i
-    ,input           start_of_block_i
-    ,input           end_of_block_i
+     input  logic           clk_i
+    ,input  logic           rst_i
+    ,input  logic           img_start_i
+    ,input  logic           img_end_i
+    ,input  logic [ 15:0]   img_width_i
+    ,input  logic [ 15:0]   img_height_i
+    ,input  logic [  1:0]   img_mode_i
+    ,input  logic           start_of_block_i
+    ,input  logic           end_of_block_i
 
     // Outputs
-    ,output [ 31:0]  block_id_o
-    ,output [  1:0]  block_type_o
-    ,output          end_of_image_o
+    ,output logic [ 31:0]   block_id_o
+    ,output logic [  1:0]   block_type_o
+    ,output logic           end_of_image_o
 );
-
-
 
 //-----------------------------------------------------------------
 // Block Type (Y, Cb, Cr)
 //-----------------------------------------------------------------
-localparam JPEG_MONOCHROME  = 2'd0;
-localparam JPEG_YCBCR_444   = 2'd1;
-localparam JPEG_YCBCR_420   = 2'd2;
-localparam JPEG_UNSUPPORTED = 2'd3;
+// Image format constants
+typedef enum logic [1:0] {
+    JPEG_MONOCHROME  = 2'd0,
+    JPEG_YCBCR_444   = 2'd1,
+    JPEG_YCBCR_420   = 2'd2,
+    JPEG_UNSUPPORTED = 2'd3
+} jpeg_format_e;
 
-localparam BLOCK_Y          = 2'd0;
-localparam BLOCK_CB         = 2'd1;
-localparam BLOCK_CR         = 2'd2;
-localparam BLOCK_EOF        = 2'd3;
+// Block type constants
+typedef enum logic [1:0] {
+    BLOCK_Y          = 2'd0,
+    BLOCK_CB         = 2'd1,
+    BLOCK_CR         = 2'd2,
+    BLOCK_EOF        = 2'd3
+} block_type_e;
 
-reg [1:0] block_type_q;
-reg [2:0] type_idx_q;
+logic [1:0] block_type_q;  // Current block type
+logic [2:0] type_idx_q;    // Position within MCU
 
-always @ (posedge clk_i )
-if (rst_i)
+always_ff @ (posedge clk_i)
 begin
-    block_type_q <= BLOCK_Y;
-    type_idx_q   <= 3'd0;
-end
-else if (img_start_i)
-begin
-    block_type_q <= BLOCK_Y;
-    type_idx_q   <= 3'd0;
-end
-else if (start_of_block_i && end_of_image_o)
-begin
-    block_type_q <= BLOCK_EOF;
-    type_idx_q   <= 3'd0;
-end
-else if (img_mode_i == JPEG_MONOCHROME)
-    block_type_q <= BLOCK_Y;
-else if (img_mode_i == JPEG_YCBCR_444 && end_of_block_i)
-begin
-    if (block_type_q == BLOCK_CR)
-        block_type_q <= BLOCK_Y;
-    else
-        block_type_q <= block_type_q + 2'd1;
-end
-else if (img_mode_i == JPEG_YCBCR_420 && end_of_block_i)
-begin
-    type_idx_q <= type_idx_q + 3'd1;
-
-    case (type_idx_q)
-    default:
-        block_type_q <= BLOCK_Y;
-    3'd3:
-        block_type_q <= BLOCK_CB;
-    3'd4:
-        block_type_q <= BLOCK_CR;
-    3'd5:
+    if (rst_i)
     begin
         block_type_q <= BLOCK_Y;
         type_idx_q   <= 3'd0;
     end
-    endcase
+    else if (img_start_i)
+    begin
+        block_type_q <= BLOCK_Y;
+        type_idx_q   <= 3'd0;
+    end
+    else if (start_of_block_i && end_of_image_o)
+    begin
+        block_type_q <= BLOCK_EOF;
+        type_idx_q   <= 3'd0;
+    end
+    else if (img_mode_i == JPEG_MONOCHROME)
+        block_type_q <= BLOCK_Y;
+    else if (img_mode_i == JPEG_YCBCR_444 && end_of_block_i)
+    begin
+        if (block_type_q == BLOCK_CR)
+            block_type_q <= BLOCK_Y;
+        else
+            block_type_q <= block_type_q + 2'd1;
+    end
+    else if (img_mode_i == JPEG_YCBCR_420 && end_of_block_i)
+    begin
+        type_idx_q <= type_idx_q + 3'd1;
+
+        case (type_idx_q)
+        default:
+            block_type_q <= BLOCK_Y;
+        3'd3:
+            block_type_q <= BLOCK_CB;
+        3'd4:
+            block_type_q <= BLOCK_CR;
+        3'd5:
+        begin
+            block_type_q <= BLOCK_Y;
+            type_idx_q   <= 3'd0;
+        end
+        endcase
+    end
 end
 
 //-----------------------------------------------------------------
 // Block index
 //-----------------------------------------------------------------
-wire [15:0] width_rnd_w   = ((img_width_i+7) / 8) * 8;
-wire [15:0] block_x_max_w = width_rnd_w / 8;
-wire [15:0] img_w_div4_w  = width_rnd_w / 4;
+// Calculate block dimensions
+logic [15:0] width_rnd_w;
+logic [15:0] block_x_max_w;
+logic [15:0] img_w_div4_w;
 
-reg  [15:0] block_x_q;
-reg  [15:0] block_y_q;
+assign width_rnd_w   = ((img_width_i+7) / 8) * 8;
+assign block_x_max_w = width_rnd_w / 8;
+assign img_w_div4_w  = width_rnd_w / 4;
 
-reg  [15:0] x_idx_q;
-reg  [15:0] y_idx_q;
+// Block tracking registers
+logic [15:0] block_x_q;     // Current block X position
+logic [15:0] block_y_q;     // Current block Y position
+logic [15:0] x_idx_q;       // X index for YCbCr 4:2:0
+logic [15:0] y_idx_q;       // Y index for YCbCr 4:2:0
+logic        end_of_image_q; // End of image flag
 
-wire [15:0] block_x_next_w = block_x_q + 16'd1;
+// Next block X position
+logic [15:0] block_x_next_w;
+assign block_x_next_w = block_x_q + 16'd1;
 
-reg         end_of_image_q;
-
-always @ (posedge clk_i )
-if (rst_i)
+always_ff @ (posedge clk_i)
 begin
-    block_x_q      <= 16'b0;
-    block_y_q      <= 16'b0;
-    x_idx_q        <= 16'b0;
-    y_idx_q        <= 16'b0;
-    end_of_image_q <= 1'b0;
-end
-else if (img_start_i)
-begin
-    block_x_q      <= 16'b0;
-    block_y_q      <= 16'b0;
-    x_idx_q        <= 16'b0;
-    y_idx_q        <= 16'b0;
-    end_of_image_q <= 1'b0;
-end
-else if (end_of_block_i && ((img_mode_i == JPEG_MONOCHROME) || (img_mode_i == JPEG_YCBCR_444 && block_type_q == BLOCK_CR)))
-begin
-    if (block_x_next_w == block_x_max_w)
+    if (rst_i)
     begin
-        block_x_q <= 16'b0;
-        block_y_q <= block_y_q + 16'd1;
+        block_x_q      <= 16'b0;
+        block_y_q      <= 16'b0;
+        x_idx_q        <= 16'b0;
+        y_idx_q        <= 16'b0;
+        end_of_image_q <= 1'b0;
     end
-    else
-        block_x_q <= block_x_next_w;
-
-    if (img_end_i && block_x_next_w == block_x_max_w)
-        end_of_image_q <= 1'b1;
-end
-else if (start_of_block_i && img_mode_i == JPEG_YCBCR_420 && block_type_q == BLOCK_Y)
-begin
-    block_x_q <= ({x_idx_q[15:2], 2'b0} / 2) + (type_idx_q[0] ? 16'd1 : 16'd0);
-    block_y_q <= y_idx_q + (type_idx_q[1] ? 16'd1 : 16'd0);
-
-    // Y component
-    if (type_idx_q < 3'd4)
+    else if (img_start_i)
     begin
-        if ((x_idx_q + 16'd1) == img_w_div4_w)
+        block_x_q      <= 16'b0;
+        block_y_q      <= 16'b0;
+        x_idx_q        <= 16'b0;
+        y_idx_q        <= 16'b0;
+        end_of_image_q <= 1'b0;
+    end
+    else if (end_of_block_i && ((img_mode_i == JPEG_MONOCHROME) || (img_mode_i == JPEG_YCBCR_444 && block_type_q == BLOCK_CR)))
+    begin
+        if (block_x_next_w == block_x_max_w)
         begin
-            x_idx_q <= 16'd0;
-            y_idx_q <= y_idx_q + 16'd2;
+            block_x_q <= 16'b0;
+            block_y_q <= block_y_q + 16'd1;
         end
         else
-            x_idx_q <= x_idx_q + 16'd1;
+            block_x_q <= block_x_next_w;
+
+        if (img_end_i && block_x_next_w == block_x_max_w)
+            end_of_image_q <= 1'b1;
     end
-end
-else if (start_of_block_i && img_mode_i == JPEG_YCBCR_420 && block_type_q == BLOCK_CR)
-begin
-    if (img_end_i && block_x_next_w == block_x_max_w)
-        end_of_image_q <= 1'b1;
+    else if (start_of_block_i && img_mode_i == JPEG_YCBCR_420 && block_type_q == BLOCK_Y)
+    begin
+        block_x_q <= ({x_idx_q[15:2], 2'b0} / 2) + (type_idx_q[0] ? 16'd1 : 16'd0);
+        block_y_q <= y_idx_q + (type_idx_q[1] ? 16'd1 : 16'd0);
+
+        // Y component
+        if (type_idx_q < 3'd4)
+        begin
+            if ((x_idx_q + 16'd1) == img_w_div4_w)
+            begin
+                x_idx_q <= 16'd0;
+                y_idx_q <= y_idx_q + 16'd2;
+            end
+            else
+                x_idx_q <= x_idx_q + 16'd1;
+        end
+    end
+    else if (start_of_block_i && img_mode_i == JPEG_YCBCR_420 && block_type_q == BLOCK_CR)
+    begin
+        if (img_end_i && block_x_next_w == block_x_max_w)
+            end_of_image_q <= 1'b1;
+    end
 end
 
 //-----------------------------------------------------------------
@@ -189,6 +203,5 @@ assign block_type_o   = block_type_q;
 
 // End of image detection
 assign end_of_image_o = end_of_image_q;
-
 
 endmodule
