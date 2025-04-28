@@ -269,11 +269,11 @@ u_jpeg_bitbuffer
     ,.inport_valid_i(bb_inport_valid_w)
     ,.inport_data_i(bb_inport_data_w)
     ,.inport_last_i(bb_inport_last_w)
-    ,.outport_pop_i(bb_outport_pop_w)
+    ,.yumi_i(bb_outport_pop_w)
 
     // Outputs
-    ,.inport_accept_o(bb_inport_accept_w)
-    ,.outport_valid_o(bb_outport_valid_w)
+    ,.ready_o(bb_inport_accept_w)
+    ,.v_o(bb_outport_valid_w)
     ,.outport_data_o(bb_outport_data_w)
     ,.outport_last_o(bb_outport_last_w)
 );
