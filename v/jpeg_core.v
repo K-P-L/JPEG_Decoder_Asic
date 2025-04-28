@@ -121,12 +121,12 @@ u_jpeg_input
     ,.inport_data_i(inport_data_i)
     ,.inport_strb_i(inport_strb_i)
     ,.inport_last_i(inport_last_i)
-    ,.dqt_cfg_accept_i(dqt_cfg_accept_w)
-    ,.dht_cfg_accept_i(dht_cfg_accept_w)
-    ,.data_accept_i(bb_inport_accept_w)
+    ,.dqt_cfg_yumi_i(dqt_cfg_accept_w)
+    ,.dht_cfg_yumi_i(dht_cfg_accept_w)
+    ,.data_yumi_i(bb_inport_accept_w)
 
     // Outputs
-    ,.inport_accept_o(inport_accept_o)
+    ,.ready_o(inport_accept_o)
     ,.img_start_o(img_start_w)
     ,.img_end_o(img_end_w)
     ,.img_width_o(img_width_w)
@@ -141,7 +141,7 @@ u_jpeg_input
     ,.dht_cfg_valid_o(dht_cfg_valid_w)
     ,.dht_cfg_data_o(dht_cfg_data_w)
     ,.dht_cfg_last_o(dht_cfg_last_w)
-    ,.data_valid_o(bb_inport_valid_w)
+    ,.data_v_o(bb_inport_valid_w)
     ,.data_data_o(bb_inport_data_w)
     ,.data_last_o(bb_inport_last_w)
 );

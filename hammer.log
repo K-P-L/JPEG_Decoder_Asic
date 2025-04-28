@@ -2303,3 +2303,10 @@
 [synthesis] [Exec ...S211/bin/genus -f /home/kaulad...] Level.DEBUG: write_db -to_file pre_genus_syn_with_preserve
 [synthesis] [Exec ...S211/bin/genus -f /home/kaulad...] Level.DEBUG: @file(syn.tcl) 52: write_db -to_file pre_genus_syn_with_preserve
 [synthesis] [Exec ...S211/bin/genus -f /home/kaulad...] Level.DEBUG:   Libraries have 333 usable logic and 43 usable sequential lib-cells.
+[<global>] Level.INFO: Loading hammer-vlsi libraries and reading settings
+[<global>] Level.INFO: Loading technology 'sky130'
+[tech] Level.ERROR: installs  does not exist
+[tech] Level.INFO: Modifying CDL netlist: /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/cdl/sky130_fd_sc_hd.cdl -> /home/vmetta/Documents/JPEG_Decoder_Asic/build/tech-sky130-cache/sky130_fd_sc_hd.cdl
+[tech] Level.INFO: Modifying Verilog netlist: /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v -> /home/vmetta/Documents/JPEG_Decoder_Asic/build/tech-sky130-cache/sky130_fd_sc_hd.v
+[tech] Level.INFO: Modifying Verilog netlist: /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v -> /home/vmetta/Documents/JPEG_Decoder_Asic/build/tech-sky130-cache/primitives.v
+[tech] Level.INFO: Modifying Technology LEF: /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef -> /home/vmetta/Documents/JPEG_Decoder_Asic/build/tech-sky130-cache/sky130_fd_sc_hd__nom.tlef
