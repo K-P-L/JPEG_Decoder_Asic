@@ -1,0 +1,1275 @@
+
+Cadence Innovus(TM) Implementation System.
+Copyright 2021 Cadence Design Systems, Inc. All rights reserved worldwide.
+
+Version:	v21.13-s100_1, built Fri Mar 4 14:32:31 PST 2022
+Options:	-nowin -common_ui -files /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/par.tcl 
+Date:		Mon Apr 28 12:01:23 2025
+Host:		linux-lab-076.ece.uw.edu (x86_64 w/Linux 4.18.0-553.45.1.el8_10.x86_64) (8cores*8cpus*Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz 12288KB)
+OS:		AlmaLinux release 8.10 (Cerulean Leopard)
+
+License:
+		[12:01:23.233801] Configured Lic search path (20.02-s004): 27006@cadencels.s.uw.edu
+
+		invs	Innovus Implementation System	21.1	checkout succeeded
+		8 CPU jobs allowed with the current license(s). Use set_multi_cpu_usage to set your required CPU count.
+
+
+**WARN: (IMPOPT-801):	Genus executable not found in PATH. Install Genus, add the path to the genus executable in the PATH variable and rerun Innovus.
+Create and set the environment variable TMPDIR to /tmp/innovus_temp_3377898_linux-lab-076.ece.uw.edu_kaulad_45LAOa.
+
+Change the soft stacksize limit to 0.2%RAM (31 mbytes). Set global soft_stack_size_limit to change the value.
+
+**INFO:  MMMC transition support version v31-84 
+
+#@ Processing -files option
+@innovus 1> source /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/par.tcl
+#@ Begin verbose source (pre): source /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/par.tcl
+@file 1: puts "set_db design_process_node 130" 
+set_db design_process_node 130
+@file 2: set_db design_process_node 130
+##  Process: 130           (User Set)               
+##     Node: (not set)                           
+
+##  Check design process and node:  
+##  Design tech node is not set.
+
+Applying the recommended capacitance filtering threshold values for 130nm process node: total_c_th=0, relative_c_th=1 and coupling_c_th=0.4.
+	These values will be used by all post-route extraction engines, including TQuantus, IQuantus and Quantus QRC extraction.
+	Capacitance filtering mode(extract_rc_cap_filter_mode option of the set_db) is 'relative_and_coupling' for all engines.
+	The accuracy mode for post_route extract_rc_effort_level low extraction will be set to 'standard'.
+	Default value for EffortLevel(extract_rc_effort_level option of the set_db) in post_route extraction mode is 'low'.
+@file 3: puts "set_multi_cpu_usage -local_cpu 8" 
+set_multi_cpu_usage -local_cpu 8
+@file 4: set_multi_cpu_usage -local_cpu 8
+@file 5: puts "set_db timing_analysis_cppr both" 
+set_db timing_analysis_cppr both
+@file 6: set_db timing_analysis_cppr both
+@file 7: puts "set_db timing_analysis_type ocv" 
+set_db timing_analysis_type ocv
+@file 8: set_db timing_analysis_type ocv
+@file 9: puts "set_library_unit -time 1ns" 
+set_library_unit -time 1ns
+@file 10: set_library_unit -time 1ns
+@file 11: puts "set_db init_design_uniquify true" 
+set_db init_design_uniquify true
+@file 12: set_db init_design_uniquify true
+@file 13: puts "set_db si_delay_separate_on_data true" 
+set_db si_delay_separate_on_data true
+@file 14: set_db si_delay_separate_on_data true
+@file 15: puts "set_db si_delay_enable_report true" 
+set_db si_delay_enable_report true
+@file 16: set_db si_delay_enable_report true
+@file 17: puts "read_physical -lef { /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/tech-sky130-cache/sky130_fd_sc_hd__nom.tlef /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef }" 
+read_physical -lef { /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/tech-sky130-cache/sky130_fd_sc_hd__nom.tlef /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef }
+@file 18: read_physical -lef { /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/tech-sky130-cache/sky130_fd_sc_hd__nom.tlef /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef }
+
+Loading LEF file /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/tech-sky130-cache/sky130_fd_sc_hd__nom.tlef ...
+
+Loading LEF file /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef ...
+WARNING (LEFPARS-2008): NOWIREEXTENSIONATPIN statement is obsolete in version 5.6 or later.
+The NOWIREEXTENSIONATPIN statement will be ignored. See file /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef at line 2.
+**WARN: (IMPLF-108):	There is no overlap layer defined in any LEF file
+so you are unable to create rectilinear partition in a hierarchical flow.
+Set DBUPerIGU to M1 pitch 460.
+**WARN: (IMPLF-201):	Pin 'LO' in macro 'sky130_fd_sc_hd__macro_sparecell' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+Type 'man IMPLF-201' for more detail.
+**WARN: (IMPLF-200):	Pin 'DIODE' in macro 'sky130_fd_sc_hd__diode_2' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+Type 'man IMPLF-200' for more detail.
+**WARN: (IMPLF-201):	Pin 'HI' in macro 'sky130_fd_sc_hd__conb_1' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+Type 'man IMPLF-201' for more detail.
+**WARN: (IMPLF-201):	Pin 'LO' in macro 'sky130_fd_sc_hd__conb_1' has no ANTENNADIFFAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+Type 'man IMPLF-201' for more detail.
+**WARN: (IMPLF-200):	Pin 'DIODE' in macro 'sky130_ef_sc_hd__fakediode_2' has no ANTENNAGATEAREA value defined. The library data is incomplete and some process antenna rules will not be checked correctly.
+Type 'man IMPLF-200' for more detail.
+
+viaInitial starts at Mon Apr 28 12:01:51 2025
+viaInitial ends at Mon Apr 28 12:01:51 2025
+
+##  Check design process and node:  
+##  Design tech node is not set.
+
+@file 19: puts "read_mmmc /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/mmmc.tcl" 
+read_mmmc /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/mmmc.tcl
+@file 20: read_mmmc /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/mmmc.tcl
+#@ Begin verbose source /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/mmmc.tcl (pre)
+@file 1: puts "create_constraint_mode -name my_constraint_mode -sdc_files [list /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/syn-rundir/jpeg_core.mapped.sdc]" 
+create_constraint_mode -name my_constraint_mode -sdc_files /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/syn-rundir/jpeg_core.mapped.sdc
+@file 2: create_constraint_mode -name my_constraint_mode -sdc_files [list /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/syn-rundir/jpeg_core.mapped.sdc]
+@file 3: puts "create_library_set -name ss_100C_1v60.setup_set -timing [list /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib]" 
+create_library_set -name ss_100C_1v60.setup_set -timing /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib
+@file 4: create_library_set -name ss_100C_1v60.setup_set -timing [list /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib]
+@file 5: puts "create_timing_condition -name ss_100C_1v60.setup_cond -library_sets [list ss_100C_1v60.setup_set]" 
+create_timing_condition -name ss_100C_1v60.setup_cond -library_sets ss_100C_1v60.setup_set
+@file 6: create_timing_condition -name ss_100C_1v60.setup_cond -library_sets [list ss_100C_1v60.setup_set]
+@file 7: puts "create_rc_corner -name ss_100C_1v60.setup_rc -temperature 100.0  " 
+create_rc_corner -name ss_100C_1v60.setup_rc -temperature 100.0  
+@file 8: create_rc_corner -name ss_100C_1v60.setup_rc -temperature 100.0  
+@file 9: puts "create_delay_corner -name ss_100C_1v60.setup_delay -timing_condition ss_100C_1v60.setup_cond -rc_corner ss_100C_1v60.setup_rc" 
+create_delay_corner -name ss_100C_1v60.setup_delay -timing_condition ss_100C_1v60.setup_cond -rc_corner ss_100C_1v60.setup_rc
+@file 10: create_delay_corner -name ss_100C_1v60.setup_delay -timing_condition ss_100C_1v60.setup_cond -rc_corner ss_100C_1v60.setup_rc
+@file 11: puts "create_analysis_view -name ss_100C_1v60.setup_view -delay_corner ss_100C_1v60.setup_delay -constraint_mode my_constraint_mode" 
+create_analysis_view -name ss_100C_1v60.setup_view -delay_corner ss_100C_1v60.setup_delay -constraint_mode my_constraint_mode
+@file 12: create_analysis_view -name ss_100C_1v60.setup_view -delay_corner ss_100C_1v60.setup_delay -constraint_mode my_constraint_mode
+@file 13: puts "create_library_set -name ff_n40C_1v95.hold_set -timing [list /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib]" 
+create_library_set -name ff_n40C_1v95.hold_set -timing /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib
+@file 14: create_library_set -name ff_n40C_1v95.hold_set -timing [list /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib]
+@file 15: puts "create_timing_condition -name ff_n40C_1v95.hold_cond -library_sets [list ff_n40C_1v95.hold_set]" 
+create_timing_condition -name ff_n40C_1v95.hold_cond -library_sets ff_n40C_1v95.hold_set
+@file 16: create_timing_condition -name ff_n40C_1v95.hold_cond -library_sets [list ff_n40C_1v95.hold_set]
+@file 17: puts "create_rc_corner -name ff_n40C_1v95.hold_rc -temperature -40.0  " 
+create_rc_corner -name ff_n40C_1v95.hold_rc -temperature -40.0  
+@file 18: create_rc_corner -name ff_n40C_1v95.hold_rc -temperature -40.0  
+@file 19: puts "create_delay_corner -name ff_n40C_1v95.hold_delay -timing_condition ff_n40C_1v95.hold_cond -rc_corner ff_n40C_1v95.hold_rc" 
+create_delay_corner -name ff_n40C_1v95.hold_delay -timing_condition ff_n40C_1v95.hold_cond -rc_corner ff_n40C_1v95.hold_rc
+@file 20: create_delay_corner -name ff_n40C_1v95.hold_delay -timing_condition ff_n40C_1v95.hold_cond -rc_corner ff_n40C_1v95.hold_rc
+@file 21: puts "create_analysis_view -name ff_n40C_1v95.hold_view -delay_corner ff_n40C_1v95.hold_delay -constraint_mode my_constraint_mode" 
+create_analysis_view -name ff_n40C_1v95.hold_view -delay_corner ff_n40C_1v95.hold_delay -constraint_mode my_constraint_mode
+@file 22: create_analysis_view -name ff_n40C_1v95.hold_view -delay_corner ff_n40C_1v95.hold_delay -constraint_mode my_constraint_mode
+@file 23: puts "create_library_set -name tt_025C_1v80.extra_set -timing [list /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib]" 
+create_library_set -name tt_025C_1v80.extra_set -timing /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+@file 24: create_library_set -name tt_025C_1v80.extra_set -timing [list /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib]
+@file 25: puts "create_timing_condition -name tt_025C_1v80.extra_cond -library_sets [list tt_025C_1v80.extra_set]" 
+create_timing_condition -name tt_025C_1v80.extra_cond -library_sets tt_025C_1v80.extra_set
+@file 26: create_timing_condition -name tt_025C_1v80.extra_cond -library_sets [list tt_025C_1v80.extra_set]
+@file 27: puts "create_rc_corner -name tt_025C_1v80.extra_rc -temperature 25.0  " 
+create_rc_corner -name tt_025C_1v80.extra_rc -temperature 25.0  
+@file 28: create_rc_corner -name tt_025C_1v80.extra_rc -temperature 25.0  
+@file 29: puts "create_delay_corner -name tt_025C_1v80.extra_delay -timing_condition tt_025C_1v80.extra_cond -rc_corner tt_025C_1v80.extra_rc" 
+create_delay_corner -name tt_025C_1v80.extra_delay -timing_condition tt_025C_1v80.extra_cond -rc_corner tt_025C_1v80.extra_rc
+@file 30: create_delay_corner -name tt_025C_1v80.extra_delay -timing_condition tt_025C_1v80.extra_cond -rc_corner tt_025C_1v80.extra_rc
+@file 31: puts "create_analysis_view -name tt_025C_1v80.extra_view -delay_corner tt_025C_1v80.extra_delay -constraint_mode my_constraint_mode" 
+create_analysis_view -name tt_025C_1v80.extra_view -delay_corner tt_025C_1v80.extra_delay -constraint_mode my_constraint_mode
+@file 32: create_analysis_view -name tt_025C_1v80.extra_view -delay_corner tt_025C_1v80.extra_delay -constraint_mode my_constraint_mode
+@file 33: puts "set_analysis_view -setup { ss_100C_1v60.setup_view } -hold { ff_n40C_1v95.hold_view tt_025C_1v80.extra_view }" 
+set_analysis_view -setup { ss_100C_1v60.setup_view } -hold { ff_n40C_1v95.hold_view tt_025C_1v80.extra_view }
+@file 34: set_analysis_view -setup { ss_100C_1v60.setup_view } -hold { ff_n40C_1v95.hold_view tt_025C_1v80.extra_view }
+#@ End verbose source /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/mmmc.tcl
+Starting library reading in 'Multi-threaded flow' (with '8' threads)
+
+Threads Configured:8
+Reading ss_100C_1v60.setup_set timing library /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib.
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_1'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib, Line 82160)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_2'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib, Line 82294)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_4'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib, Line 82428)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_1'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib, Line 82705)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_2'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib, Line 82839)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_4'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib, Line 82973)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__lpflow_decapkapwr_8'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__lpflow_decapkapwr_6'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__lpflow_decapkapwr_4'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__lpflow_decapkapwr_3'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__lpflow_decapkapwr_12'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__lpflow_bleeder_1'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__diode_2'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__decap_8'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__decap_6'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__decap_4'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__decap_3'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__decap_12'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib)
+Read 428 cells in library sky130_fd_sc_hd__ss_100C_1v60.
+Library reading multithread flow ended.
+Starting library reading in 'Multi-threaded flow' (with '8' threads)
+
+Threads Configured:8
+Reading ff_n40C_1v95.hold_set timing library /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_1'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 294932)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_2'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 295602)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_4'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 296272)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_1'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 297621)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_2'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 298291)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_4'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 298961)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__lpflow_decapkapwr_8'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__lpflow_decapkapwr_6'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__lpflow_decapkapwr_4'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__lpflow_decapkapwr_3'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__lpflow_decapkapwr_12'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__lpflow_bleeder_1'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__diode_2'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-302):	No function defined for cell 'sky130_fd_sc_hd__decap_8'. The cell will only be used for analysis. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+Message <TECHLIB-302> has exceeded the message display limit of '20'. Use 'set_message -no_limit -id list_of_msgIDs' to reset the message limit.
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '0.1625639936' to '0.1629330048' (for the absolute threshold 0.000029) for 'output_voltage' '0.390000' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fahcon_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 266910)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '0.1459289984' to '0.1460739968' (for the absolute threshold 0.000029) for 'output_voltage' '0.487500' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fahcon_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 266910)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '0.1327049984' to '0.140704' (for the absolute threshold 0.000040) for 'input_voltage' '0.097500' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fahcon_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 266740)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '0.1122519936' to '0.1233020032' (for the absolute threshold 0.000040) for 'input_voltage' '0.195000' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fahcon_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 266740)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '0.0933882944' to '0.1058190016' (for the absolute threshold 0.000040) for 'input_voltage' '0.292500' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fahcon_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 266740)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '0.0772453056' to '0.088515296' (for the absolute threshold 0.000040) for 'input_voltage' '0.390000' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fahcon_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 266740)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '0.0628145984' to '0.0716473024' (for the absolute threshold 0.000040) for 'input_voltage' '0.487500' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fahcon_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 266740)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '0.0488305024' to '0.0551499968' (for the absolute threshold 0.000040) for 'input_voltage' '0.585000' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fahcon_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 266740)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '0.0330482016' to '0.0364724' (for the absolute threshold 0.000040) for 'input_voltage' '0.682500' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fahcon_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 266740)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '0.0100686' to '0.0101502' (for the absolute threshold 0.000040) for 'input_voltage' '0.780000' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fahcon_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 266740)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '-0.0559884032' to '-0.0557942016' (for the absolute threshold 0.000039) for 'input_voltage' '0.975000' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fahcon_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 266230)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '-0.0907820992' to '-0.0904640064' (for the absolute threshold 0.000039) for 'input_voltage' '1.072500' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fahcon_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 266230)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '-0.0200721008' to '0.00141183' (for the absolute threshold 0.000039) for 'input_voltage' '0.877500' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fah_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 259288)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '-0.0557648' to '-0.0338502016' (for the absolute threshold 0.000039) for 'input_voltage' '0.975000' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fah_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 259288)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '-0.0897673984' to '-0.0693484032' (for the absolute threshold 0.000039) for 'input_voltage' '1.072500' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fah_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 259288)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '-0.1210700032' to '-0.1026209984' (for the absolute threshold 0.000039) for 'input_voltage' '1.170000' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fah_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 259288)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '-0.15104' to '-0.1351239936' (for the absolute threshold 0.000039) for 'input_voltage' '1.267500' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fah_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 259288)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '-0.1806749952' to '-0.1676079872' (for the absolute threshold 0.000039) for 'input_voltage' '1.365000' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fah_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 259288)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '-0.2101099904' to '-0.200088' (for the absolute threshold 0.000039) for 'input_voltage' '1.462500' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fah_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 259288)
+**WARN: (TECHLIB-1435):	The dc_current values are not monotonically decreasing in the range '-0.2392999936' to '-0.2324819968' (for the absolute threshold 0.000039) for 'input_voltage' '1.560000' for dc_current table defined in pin 'B' and cell 'sky130_fd_sc_hd__fah_1'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib, Line 259288)
+Message <TECHLIB-1435> has exceeded the message display limit of '20'. Use 'set_message -no_limit -id list_of_msgIDs' to reset the message limit.
+Read 428 cells in library sky130_fd_sc_hd__ff_n40C_1v95.
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbn_1' and for pin 'CLK_N', with  related_pin 'CLK_N' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ff_n40C_1v95' is not defined in the cell 'sky130_fd_sc_hd__dfbbn_1' in library 'sky130_fd_sc_hd__ss_100C_1v60'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbn_1' and for pin 'CLK_N', with  related_pin 'CLK_N' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ss_100C_1v60' is not defined in the cell 'sky130_fd_sc_hd__dfbbn_1' in library 'sky130_fd_sc_hd__ff_n40C_1v95'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbn_1' and for pin 'RESET_B', with  related_pin 'RESET_B' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ff_n40C_1v95' is not defined in the cell 'sky130_fd_sc_hd__dfbbn_1' in library 'sky130_fd_sc_hd__ss_100C_1v60'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbn_1' and for pin 'RESET_B', with  related_pin 'RESET_B' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ss_100C_1v60' is not defined in the cell 'sky130_fd_sc_hd__dfbbn_1' in library 'sky130_fd_sc_hd__ff_n40C_1v95'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbn_1' and for pin 'SET_B', with  related_pin 'SET_B' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ff_n40C_1v95' is not defined in the cell 'sky130_fd_sc_hd__dfbbn_1' in library 'sky130_fd_sc_hd__ss_100C_1v60'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbn_1' and for pin 'SET_B', with  related_pin 'SET_B' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ss_100C_1v60' is not defined in the cell 'sky130_fd_sc_hd__dfbbn_1' in library 'sky130_fd_sc_hd__ff_n40C_1v95'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbn_2' and for pin 'CLK_N', with  related_pin 'CLK_N' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ff_n40C_1v95' is not defined in the cell 'sky130_fd_sc_hd__dfbbn_2' in library 'sky130_fd_sc_hd__ss_100C_1v60'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbn_2' and for pin 'CLK_N', with  related_pin 'CLK_N' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ss_100C_1v60' is not defined in the cell 'sky130_fd_sc_hd__dfbbn_2' in library 'sky130_fd_sc_hd__ff_n40C_1v95'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbn_2' and for pin 'RESET_B', with  related_pin 'RESET_B' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ff_n40C_1v95' is not defined in the cell 'sky130_fd_sc_hd__dfbbn_2' in library 'sky130_fd_sc_hd__ss_100C_1v60'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbn_2' and for pin 'RESET_B', with  related_pin 'RESET_B' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ss_100C_1v60' is not defined in the cell 'sky130_fd_sc_hd__dfbbn_2' in library 'sky130_fd_sc_hd__ff_n40C_1v95'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbn_2' and for pin 'SET_B', with  related_pin 'SET_B' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ff_n40C_1v95' is not defined in the cell 'sky130_fd_sc_hd__dfbbn_2' in library 'sky130_fd_sc_hd__ss_100C_1v60'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbn_2' and for pin 'SET_B', with  related_pin 'SET_B' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ss_100C_1v60' is not defined in the cell 'sky130_fd_sc_hd__dfbbn_2' in library 'sky130_fd_sc_hd__ff_n40C_1v95'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbp_1' and for pin 'CLK', with  related_pin 'CLK' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ff_n40C_1v95' is not defined in the cell 'sky130_fd_sc_hd__dfbbp_1' in library 'sky130_fd_sc_hd__ss_100C_1v60'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbp_1' and for pin 'CLK', with  related_pin 'CLK' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ss_100C_1v60' is not defined in the cell 'sky130_fd_sc_hd__dfbbp_1' in library 'sky130_fd_sc_hd__ff_n40C_1v95'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbp_1' and for pin 'RESET_B', with  related_pin 'RESET_B' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ff_n40C_1v95' is not defined in the cell 'sky130_fd_sc_hd__dfbbp_1' in library 'sky130_fd_sc_hd__ss_100C_1v60'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbp_1' and for pin 'RESET_B', with  related_pin 'RESET_B' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ss_100C_1v60' is not defined in the cell 'sky130_fd_sc_hd__dfbbp_1' in library 'sky130_fd_sc_hd__ff_n40C_1v95'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbp_1' and for pin 'SET_B', with  related_pin 'SET_B' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ff_n40C_1v95' is not defined in the cell 'sky130_fd_sc_hd__dfbbp_1' in library 'sky130_fd_sc_hd__ss_100C_1v60'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfbbp_1' and for pin 'SET_B', with  related_pin 'SET_B' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ss_100C_1v60' is not defined in the cell 'sky130_fd_sc_hd__dfbbp_1' in library 'sky130_fd_sc_hd__ff_n40C_1v95'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfrbp_1' and for pin 'CLK', with  related_pin 'CLK' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ff_n40C_1v95' is not defined in the cell 'sky130_fd_sc_hd__dfrbp_1' in library 'sky130_fd_sc_hd__ss_100C_1v60'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+**WARN: (TECHLIB-1442):	The timing arc defined for cell 'sky130_fd_sc_hd__dfrbp_1' and for pin 'CLK', with  related_pin 'CLK' and  timing_type 'min_pulse_width'  in library 'sky130_fd_sc_hd__ss_100C_1v60' is not defined in the cell 'sky130_fd_sc_hd__dfrbp_1' in library 'sky130_fd_sc_hd__ff_n40C_1v95'. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib)
+Message <TECHLIB-1442> has exceeded the message display limit of '20'. Use 'set_message -no_limit -id list_of_msgIDs' to reset the message limit.
+Library reading multithread flow ended.
+@file 21: puts "read_netlist { /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/syn-rundir/jpeg_core.mapped.v } -top jpeg_core" 
+read_netlist { /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/syn-rundir/jpeg_core.mapped.v } -top jpeg_core
+@file 22: read_netlist { /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/syn-rundir/jpeg_core.mapped.v } -top jpeg_core
+#% Begin Load netlist data ... (date=04/28 12:01:53, mem=894.9M)
+*** Begin netlist parsing (mem=1111.0M) ***
+Created 428 new cells from 2 timing libraries.
+Reading netlist ...
+Backslashed names will retain backslash and a trailing blank character.
+Reading verilog netlist '/home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/syn-rundir/jpeg_core.mapped.v'
+
+*** Memory Usage v#1 (Current mem = 1175.969M, initial mem = 404.078M) ***
+*** End netlist parsing (cpu=0:00:00.7, real=0:00:00.0, mem=1176.0M) ***
+#% End Load netlist data ... (date=04/28 12:01:53, total cpu=0:00:00.7, real=0:00:00.0, peak res=984.5M, current mem=984.5M)
+Set top cell to jpeg_core.
+Hooked 856 DB cells to tlib cells.
+Starting recursive module instantiation check.
+No recursion found.
+Building hierarchical netlist for Cell jpeg_core ...
+*** Netlist is unique.
+** info: there are 902 modules.
+** info: there are 146217 stdCell insts.
+
+*** Memory Usage v#1 (Current mem = 1286.383M, initial mem = 404.078M) ***
+@file 23: puts "init_design" 
+init_design
+@file 24: init_design
+**WARN: (IMPFP-3961):	The techSite 'unithddbl' has no related standard cells in the LEF/OA library. The calculations for this site type cannot be made unless standard cell models of this type exist in the LEF/OA library. Ignore this warning if the SITE is not used by the library. Alternatively, remove the SITE definition for the LEF/OA library to avoid this message.
+Type 'man IMPFP-3961' for more detail.
+Adjust met3 preferred direction offset from 0.34 to 0.17.
+Adjust met4 preferred direction offset from 0.46 to 0.23.
+Adjust met5 preferred direction offset from 1.7 to 0.17.
+Start create_tracks
+Generated pitch 3.66 in met5 is different from 3.4 defined in technology file in preferred direction.
+Generated pitch 0.69 in met4 is different from 0.92 defined in technology file in preferred direction.
+Generated pitch 0.61 in met3 is different from 0.68 defined in technology file in preferred direction.
+Extraction setup Started 
+Initializing multi-corner RC extraction with 3 active RC Corners ...
+**WARN: (IMPEXT-2773):	The via resistance between layers POLY and M1 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M1 and M2 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M2 and M3 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M3 and M4 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M4 and M5 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M5 and M6 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M1 is not defined in the cap table. Therefore, the LEF value 12.8 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M2 is not defined in the cap table. Therefore, the LEF value 0.125 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M3 is not defined in the cap table. Therefore, the LEF value 0.125 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M4 is not defined in the cap table. Therefore, the LEF value 0.047 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M5 is not defined in the cap table. Therefore, the LEF value 0.047 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M6 is not defined in the cap table. Therefore, the LEF value 0.0285 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2773):	The via resistance between layers POLY and M1 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M1 and M2 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M2 and M3 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M3 and M4 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M4 and M5 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M5 and M6 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M1 is not defined in the cap table. Therefore, the LEF value 12.8 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M2 is not defined in the cap table. Therefore, the LEF value 0.125 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M3 is not defined in the cap table. Therefore, the LEF value 0.125 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M4 is not defined in the cap table. Therefore, the LEF value 0.047 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M5 is not defined in the cap table. Therefore, the LEF value 0.047 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M6 is not defined in the cap table. Therefore, the LEF value 0.0285 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2773):	The via resistance between layers POLY and M1 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M1 and M2 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M2 and M3 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M3 and M4 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M4 and M5 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2773):	The via resistance between layers M5 and M6 could not be determined from the LEF technology file because the via resistance specification is missing. A default of 4 Ohms will be used as via resistance between these layers.
+Type 'man IMPEXT-2773' for more detail.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M1 is not defined in the cap table. Therefore, the LEF value 12.8 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M2 is not defined in the cap table. Therefore, the LEF value 0.125 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M3 is not defined in the cap table. Therefore, the LEF value 0.125 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M4 is not defined in the cap table. Therefore, the LEF value 0.047 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M5 is not defined in the cap table. Therefore, the LEF value 0.047 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+**WARN: (IMPEXT-2766):	The sheet resistance for layer M6 is not defined in the cap table. Therefore, the LEF value 0.0285 will be used instead. To avoid this message, update the relevant cap table to include the sheet resistance for the specified layer and read it back in.
+Summary of Active RC-Corners : 
+ 
+ Analysis View: ss_100C_1v60.setup_view
+    RC-Corner Name        : ss_100C_1v60.setup_rc
+    RC-Corner Index       : 0
+    RC-Corner Temperature : 100 Celsius
+    RC-Corner Cap Table   : ''
+    RC-Corner PreRoute Res Factor         : 1
+    RC-Corner PreRoute Cap Factor         : 1
+    RC-Corner PostRoute Res Factor        : 1 {1 1 1}
+    RC-Corner PostRoute Cap Factor        : 1 {1 1 1}
+    RC-Corner PostRoute XCap Factor       : 1 {1 1 1}
+    RC-Corner PreRoute Clock Res Factor   : 1	[Derived from Cap Table]
+    RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from Cap Table]
+    RC-Corner PostRoute Clock Cap Factor  : 1 {1 1 1} 	[Derived from postRoute_cap (effortLevel low)]
+    RC-Corner PostRoute Clock Res Factor  : 1 {1 1 1} 	[Derived from postRoute_res (effortLevel low)]
+    RC-Corner PostRoute Clock coupling capacitance Factor : 1 {1 1 1} 
+ 
+ Analysis View: ff_n40C_1v95.hold_view
+    RC-Corner Name        : ff_n40C_1v95.hold_rc
+    RC-Corner Index       : 1
+    RC-Corner Temperature : -40 Celsius
+    RC-Corner Cap Table   : ''
+    RC-Corner PreRoute Res Factor         : 1
+    RC-Corner PreRoute Cap Factor         : 1
+    RC-Corner PostRoute Res Factor        : 1 {1 1 1}
+    RC-Corner PostRoute Cap Factor        : 1 {1 1 1}
+    RC-Corner PostRoute XCap Factor       : 1 {1 1 1}
+    RC-Corner PreRoute Clock Res Factor   : 1	[Derived from Cap Table]
+    RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from Cap Table]
+    RC-Corner PostRoute Clock Cap Factor  : 1 {1 1 1} 	[Derived from postRoute_cap (effortLevel low)]
+    RC-Corner PostRoute Clock Res Factor  : 1 {1 1 1} 	[Derived from postRoute_res (effortLevel low)]
+    RC-Corner PostRoute Clock coupling capacitance Factor : 1 {1 1 1} 
+ 
+ Analysis View: tt_025C_1v80.extra_view
+    RC-Corner Name        : tt_025C_1v80.extra_rc
+    RC-Corner Index       : 2
+    RC-Corner Temperature : 25 Celsius
+    RC-Corner Cap Table   : ''
+    RC-Corner PreRoute Res Factor         : 1
+    RC-Corner PreRoute Cap Factor         : 1
+    RC-Corner PostRoute Res Factor        : 1 {1 1 1}
+    RC-Corner PostRoute Cap Factor        : 1 {1 1 1}
+    RC-Corner PostRoute XCap Factor       : 1 {1 1 1}
+    RC-Corner PreRoute Clock Res Factor   : 1	[Derived from Cap Table]
+    RC-Corner PreRoute Clock Cap Factor   : 1	[Derived from Cap Table]
+    RC-Corner PostRoute Clock Cap Factor  : 1 {1 1 1} 	[Derived from postRoute_cap (effortLevel low)]
+    RC-Corner PostRoute Clock Res Factor  : 1 {1 1 1} 	[Derived from postRoute_res (effortLevel low)]
+    RC-Corner PostRoute Clock coupling capacitance Factor : 1 {1 1 1} 
+Updating RC grid for preRoute extraction ...
+Initializing multi-corner resistance tables ...
+*Info: initialize multi-corner CTS.
+Starting library reading in 'Multi-threaded flow' (with '8' threads)
+
+Threads Configured:8
+Reading tt_025C_1v80.extra_set timing library /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib.
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_1'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib, Line 82158)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_2'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib, Line 82292)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_4'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib, Line 82426)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_1'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib, Line 82703)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_2'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib, Line 82837)
+**ERROR: (TECHLIB-702):	No pg_pin with name 'VNB' has been read in the cell 'sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_4'. The attribute 'related_bias_pin' specified for the pg_pin 'VPWR' is being ignored. (File /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib, Line 82971)
+Read 428 cells in library sky130_fd_sc_hd__tt_025C_1v80.
+Library reading multithread flow ended.
+Reading timing constraints file '/home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/syn-rundir/jpeg_core.mapped.sdc' ...
+Current (total cpu=0:00:19.7, real=0:00:32.0, peak res=1368.8M, current mem=1368.8M)
+**WARN: (TCLCMD-1461):	Skipped unsupported command: set_units (File /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/syn-rundir/jpeg_core.mapped.sdc, Line 9).
+
+**WARN: (TCLCMD-1461):	Skipped unsupported command: set_units (File /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/syn-rundir/jpeg_core.mapped.sdc, Line 10).
+
+jpeg_core
+INFO (CTE): Reading of timing constraints file /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/syn-rundir/jpeg_core.mapped.sdc completed, with 2 WARNING
+Ending "Constraint file reading stats" (total cpu=0:00:00.1, real=0:00:00.0, peak res=1388.7M, current mem=1388.7M)
+Current (total cpu=0:00:19.8, real=0:00:32.0, peak res=1388.7M, current mem=1388.7M)
+Total number of combinational cells: 329
+Total number of sequential cells: 68
+Total number of tristate cells: 13
+Total number of level shifter cells: 7
+Total number of power gating cells: 0
+Total number of isolation cells: 11
+Total number of power switch cells: 0
+Total number of pulse generator cells: 0
+Total number of always on buffers: 0
+Total number of retention cells: 0
+List of usable buffers: sky130_fd_sc_hd__buf_1 sky130_fd_sc_hd__buf_12 sky130_fd_sc_hd__buf_16 sky130_fd_sc_hd__buf_2 sky130_fd_sc_hd__buf_4 sky130_fd_sc_hd__buf_6 sky130_fd_sc_hd__buf_8 sky130_fd_sc_hd__clkbuf_1 sky130_fd_sc_hd__clkbuf_16 sky130_fd_sc_hd__clkbuf_2 sky130_fd_sc_hd__clkbuf_4 sky130_fd_sc_hd__clkbuf_8 sky130_fd_sc_hd__dlymetal6s2s_1
+Total number of usable buffers: 13
+List of unusable buffers: sky130_fd_sc_hd__probec_p_8 sky130_fd_sc_hd__probe_p_8
+Total number of unusable buffers: 2
+List of usable inverters: sky130_fd_sc_hd__bufinv_16 sky130_fd_sc_hd__clkinv_1 sky130_fd_sc_hd__bufinv_8 sky130_fd_sc_hd__clkinv_16 sky130_fd_sc_hd__clkinv_2 sky130_fd_sc_hd__clkinv_4 sky130_fd_sc_hd__clkinv_8 sky130_fd_sc_hd__inv_1 sky130_fd_sc_hd__clkinvlp_2 sky130_fd_sc_hd__clkinvlp_4 sky130_fd_sc_hd__inv_12 sky130_fd_sc_hd__inv_16 sky130_fd_sc_hd__inv_2 sky130_fd_sc_hd__inv_4 sky130_fd_sc_hd__inv_6 sky130_fd_sc_hd__inv_8
+Total number of usable inverters: 16
+List of unusable inverters:
+Total number of unusable inverters: 0
+List of identified usable delay cells: sky130_fd_sc_hd__bufbuf_16 sky130_fd_sc_hd__bufbuf_8 sky130_fd_sc_hd__clkdlybuf4s15_1 sky130_fd_sc_hd__clkdlybuf4s15_2 sky130_fd_sc_hd__clkdlybuf4s18_1 sky130_fd_sc_hd__clkdlybuf4s18_2 sky130_fd_sc_hd__clkdlybuf4s25_1 sky130_fd_sc_hd__clkdlybuf4s50_1 sky130_fd_sc_hd__clkdlybuf4s25_2 sky130_fd_sc_hd__clkdlybuf4s50_2 sky130_fd_sc_hd__dlygate4sd2_1 sky130_fd_sc_hd__dlygate4sd1_1 sky130_fd_sc_hd__dlygate4sd3_1 sky130_fd_sc_hd__dlymetal6s6s_1 sky130_fd_sc_hd__dlymetal6s4s_1
+Total number of identified usable delay cells: 15
+List of identified unusable delay cells:
+Total number of identified unusable delay cells: 0
+tt_025C_1v80.extra_view ss_100C_1v60.setup_view ff_n40C_1v95.hold_view
+@file 25: puts "read_power_intent -cpf /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/power_spec.cpf" 
+read_power_intent -cpf /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/power_spec.cpf
+@file 26: read_power_intent -cpf /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/power_spec.cpf
+Loading CPF file /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/power_spec.cpf ...
+INFO: processed 16 CPF commands in 16 lines from file /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/power_spec.cpf, with 0 errors
+Checking CPF file ...
+INFO: The CPF has only one domain defined.
+Domain-based global connection will be applied to top cell. Other domain-related CPF commands will be ignored.
+tt_025C_1v80.extra_set ss_100C_1v60.setup_set ff_n40C_1v95.hold_set
+tt_025C_1v80.extra_set ss_100C_1v60.setup_set ff_n40C_1v95.hold_set
+tt_025C_1v80.extra_set ss_100C_1v60.setup_set ff_n40C_1v95.hold_set
+@file 27: puts "commit_power_intent" 
+commit_power_intent
+@file 28: commit_power_intent
+CPF_RUNTIME: freeTimingGraph: cpu=0:00:00.10 real=0:00:00.00
+CPF_RUNTIME: clean_up_msv: cpu=0:00:00.00 real=0:00:00.00
+CPF_RUNTIME: commit_pg_nets: cpu=0:00:00.01 real=0:00:00.00
+CPF_RUNTIME: switchable_pg_nets: cpu=0:00:00.00 real=0:00:00.00
+CPF_RUNTIME: virtual_ports: cpu=0:00:00.00 real=0:00:00.00
+CPF_RUNTIME: make_secondary_pgconn: cpu=0:00:00.00 real=0:00:00.00
+Total 0 new pin(s) connected to net 'VDD'
+Total 0 new pin(s) connected to net 'VSS'
+**WARN: (IMPCPF-980):	Power domain AO is not bound to any library. Power domain library binding is through 'update_delay_corner -power_domain' in the MMMC file viewDefinition.tcl. Please make sure that 'update_delay_corner -power_domain AO' is specified for each delay corner in the MMMC file.
+ss_100C_1v60.setup_delay tt_025C_1v80.extra_delay ff_n40C_1v95.hold_delay
+CPF_RUNTIME: commit_power_domain: cpu=0:00:00.87 real=0:00:01.00
+CPF_RUNTIME: assignSNetVoltages: cpu=0:00:00.01 real=0:00:00.00
+**ERROR: (IMPMSMV-3502):	Power net VPWR is not associated with any power domain. It is probably because this power net is not specified as any domain's primary power net. You need to modify CPF to create a virtual power domain using 'create_power_domain' without -instances and -default options then specify this power net as its primary power net using 'update_power_domain'.
+Type 'man IMPMSMV-3502' for more detail.
+INFO: Power domain of power net VPWR is set to AO.
+	To fix this in IEEE1801, specify a supply_set of this power net and a ground net so that an internal power domain will be created for this power net
+**ERROR: (IMPMSMV-3502):	Power net VPB is not associated with any power domain. It is probably because this power net is not specified as any domain's primary power net. You need to modify CPF to create a virtual power domain using 'create_power_domain' without -instances and -default options then specify this power net as its primary power net using 'update_power_domain'.
+Type 'man IMPMSMV-3502' for more detail.
+INFO: Power domain of power net VPB is set to AO.
+	To fix this in IEEE1801, specify a supply_set of this power net and a ground net so that an internal power domain will be created for this power net
+CPF_RUNTIME: define_low_power_cells: cpu=0:00:00.00 real=0:00:00.00
+Current (total cpu=0:00:21.0, real=0:00:33.0, peak res=1419.8M, current mem=1416.8M)
+jpeg_core
+Ending "Constraint file reading stats" (total cpu=0:00:00.1, real=0:00:00.0, peak res=1428.7M, current mem=1428.7M)
+Current (total cpu=0:00:21.1, real=0:00:33.0, peak res=1428.7M, current mem=1428.7M)
+CPF_RUNTIME: buildTimingGraph: cpu=0:00:00.19 real=0:00:00.00
+CPF_RUNTIME: commit_retention: cpu=0:00:00.00 real=0:00:00.00
+CPF_RUNTIME: applyDefaultGncRules: cpu=0:00:00.00 real=0:00:00.00
+CPF_RUNTIME: commit_global_connect: cpu=0:00:00.39 real=0:00:01.00
+Checking existing shifter/isolation cell for global net connection ...
+CPF_RUNTIME: GNC_connect_existing_iso_shifter: cpu=0:00:00.11 real=0:00:00.00
+CPF_RUNTIME: connectAlwaysOnBuf: cpu=0:00:00.00 real=0:00:00.00
+CPF_RUNTIME: replaceWithAlwaysOnBuffer: cpu=0:00:00.01 real=0:00:00.00
+CPF_RUNTIME: commit_iso: cpu=0:00:00.00 real=0:00:00.00
+CPF_RUNTIME: commitEnbConn: cpu=0:00:00.00 real=0:00:00.00
+CPF_RUNTIME: commit_shifter: cpu=0:00:00.00 real=0:00:00.00
+CPF_RUNTIME: commit_pso: cpu=0:00:00.00 real=0:00:00.00
+Total number of combinational cells: 319
+Total number of sequential cells: 68
+Total number of tristate cells: 13
+Total number of level shifter cells: 7
+Total number of power gating cells: 0
+Total number of isolation cells: 0
+Total number of power switch cells: 0
+Total number of pulse generator cells: 0
+Total number of always on buffers: 10
+Total number of retention cells: 0
+List of usable buffers: sky130_fd_sc_hd__buf_1 sky130_fd_sc_hd__buf_12 sky130_fd_sc_hd__buf_16 sky130_fd_sc_hd__buf_2 sky130_fd_sc_hd__buf_4 sky130_fd_sc_hd__buf_6 sky130_fd_sc_hd__buf_8 sky130_fd_sc_hd__clkbuf_1 sky130_fd_sc_hd__clkbuf_16 sky130_fd_sc_hd__clkbuf_2 sky130_fd_sc_hd__clkbuf_4 sky130_fd_sc_hd__clkbuf_8 sky130_fd_sc_hd__dlymetal6s2s_1
+Total number of usable buffers: 13
+List of unusable buffers: sky130_fd_sc_hd__probec_p_8 sky130_fd_sc_hd__probe_p_8
+Total number of unusable buffers: 2
+List of usable inverters: sky130_fd_sc_hd__bufinv_16 sky130_fd_sc_hd__clkinv_1 sky130_fd_sc_hd__bufinv_8 sky130_fd_sc_hd__clkinv_16 sky130_fd_sc_hd__clkinv_2 sky130_fd_sc_hd__clkinv_4 sky130_fd_sc_hd__clkinv_8 sky130_fd_sc_hd__inv_1 sky130_fd_sc_hd__clkinvlp_2 sky130_fd_sc_hd__clkinvlp_4 sky130_fd_sc_hd__inv_12 sky130_fd_sc_hd__inv_16 sky130_fd_sc_hd__inv_2 sky130_fd_sc_hd__inv_4 sky130_fd_sc_hd__inv_6 sky130_fd_sc_hd__inv_8
+Total number of usable inverters: 16
+List of unusable inverters:
+Total number of unusable inverters: 0
+List of identified usable delay cells: sky130_fd_sc_hd__bufbuf_16 sky130_fd_sc_hd__bufbuf_8 sky130_fd_sc_hd__clkdlybuf4s15_1 sky130_fd_sc_hd__clkdlybuf4s15_2 sky130_fd_sc_hd__clkdlybuf4s18_1 sky130_fd_sc_hd__clkdlybuf4s18_2 sky130_fd_sc_hd__clkdlybuf4s25_1 sky130_fd_sc_hd__clkdlybuf4s50_1 sky130_fd_sc_hd__clkdlybuf4s25_2 sky130_fd_sc_hd__clkdlybuf4s50_2 sky130_fd_sc_hd__dlygate4sd2_1 sky130_fd_sc_hd__dlygate4sd1_1 sky130_fd_sc_hd__dlygate4sd3_1 sky130_fd_sc_hd__dlymetal6s6s_1 sky130_fd_sc_hd__dlymetal6s4s_1
+Total number of identified usable delay cells: 15
+List of identified unusable delay cells:
+Total number of identified unusable delay cells: 0
+No isolation cell in libraries.
+No level shifter cell in libraries.
+tt_025C_1v80.extra_view ss_100C_1v60.setup_view ff_n40C_1v95.hold_view
+**WARN: (IMPFP-3961):	The techSite 'unithddbl' has no related standard cells in the LEF/OA library. The calculations for this site type cannot be made unless standard cell models of this type exist in the LEF/OA library. Ignore this warning if the SITE is not used by the library. Alternatively, remove the SITE definition for the LEF/OA library to avoid this message.
+Type 'man IMPFP-3961' for more detail.
+**WARN: (IMPFP-3961):	The techSite 'unithddbl' has no related standard cells in the LEF/OA library. The calculations for this site type cannot be made unless standard cell models of this type exist in the LEF/OA library. Ignore this warning if the SITE is not used by the library. Alternatively, remove the SITE definition for the LEF/OA library to avoid this message.
+Type 'man IMPFP-3961' for more detail.
+@file 29: puts "set_db design_flow_effort extreme" 
+set_db design_flow_effort extreme
+@file 30: set_db design_flow_effort extreme
+**INFO: setDesignMode -flowEffort extreme -> setting 'setOptMode -expExtremeHighEffOpt true'
+**ERROR: (IMPOPT-801):	Genus executable not found in PATH. Install Genus, add the path to the genus executable in the PATH variable and rerun Innovus.
+@file 31:
+@file 32: puts "set_dont_use \[get_db lib_cells */*sdf*\]"
+set_dont_use [get_db lib_cells */*sdf*]
+@file 33: if { [get_db lib_cells */*sdf*] ne "" } {
+@file 34: set_dont_use [get_db lib_cells */*sdf*]
+@file 35: }
+@file 38:
+@file 39:
+@file 40: puts "set_dont_use \[get_db lib_cells */sky130_fd_sc_hd__probe_p_*\]"
+set_dont_use [get_db lib_cells */sky130_fd_sc_hd__probe_p_*]
+@file 41: if { [get_db lib_cells */sky130_fd_sc_hd__probe_p_*] ne "" } {
+@file 42: set_dont_use [get_db lib_cells */sky130_fd_sc_hd__probe_p_*]
+@file 43: }
+@file 46:
+@file 47:
+@file 48: puts "set_dont_use \[get_db lib_cells */sky130_fd_sc_hd__probec_p_*\]"
+set_dont_use [get_db lib_cells */sky130_fd_sc_hd__probec_p_*]
+@file 49: if { [get_db lib_cells */sky130_fd_sc_hd__probec_p_*] ne "" } {
+@file 50: set_dont_use [get_db lib_cells */sky130_fd_sc_hd__probec_p_*]
+@file 51: }
+@file 54:
+@file 55: puts "write_db pre_sky130_innovus_settings" 
+write_db pre_sky130_innovus_settings
+@file 56: write_db pre_sky130_innovus_settings
+ff_n40C_1v95.hold_cond tt_025C_1v80.extra_cond ss_100C_1v60.setup_cond
+#% Begin save design ... (date=04/28 12:01:58, mem=1438.7M)
+% Begin Save ccopt configuration ... (date=04/28 12:01:58, mem=1438.7M)
+% End Save ccopt configuration ... (date=04/28 12:01:58, total cpu=0:00:00.0, real=0:00:00.0, peak res=1440.2M, current mem=1440.2M)
+% Begin Save netlist data ... (date=04/28 12:01:58, mem=1440.2M)
+Writing Binary DB to pre_sky130_innovus_settings/vbin/jpeg_core.v.bin in multi-threaded mode...
+% End Save netlist data ... (date=04/28 12:01:58, total cpu=0:00:00.3, real=0:00:00.0, peak res=1485.3M, current mem=1448.6M)
+Saving symbol-table file in separate thread ...
+Saving congestion map file in separate thread ...
+Saving congestion map file pre_sky130_innovus_settings/jpeg_core.route.congmap.gz ...
+% Begin Save AAE data ... (date=04/28 12:01:58, mem=1451.7M)
+Saving AAE Data ...
+% End Save AAE data ... (date=04/28 12:01:58, total cpu=0:00:00.0, real=0:00:00.0, peak res=1451.7M, current mem=1451.7M)
+Saving preference file pre_sky130_innovus_settings/gui.pref.tcl ...
+Saving mode setting ...
+Saving root attributes to be loaded post write_db ...
+Saving global file ...
+Saving root attributes to be loaded previous write_db ...
+Saving Drc markers ...
+... No Drc file written since there is no markers found.
+Saving special route data file in separate thread ...
+TAT_INFO: ::saveSpecialRoute REAL = 0 : CPU = 0 : MEM = 0.
+*** Completed saveProperty (cpu=0:00:00.1 real=0:00:00.0 mem=1687.2M) ***
+*** Completed savePGFile (cpu=0:00:00.2 real=0:00:01.0 mem=1687.2M) ***
+TAT_INFO: ::savePGFile REAL = 1 : CPU = 0 : MEM = 0.
+TAT_INFO: ::savePlace REAL = 0 : CPU = 0 : MEM = 0.
+*** Completed saveRoute (cpu=0:00:00.3 real=0:00:01.0 mem=1687.2M) ***
+TAT_INFO: ::saveRoute REAL = 1 : CPU = 0 : MEM = 0.
+TAT_INFO: ::db::saveAnnotationAndProp REAL = 0 : CPU = 0 : MEM = 0.
+Saving CPF database ...
+ss_100C_1v60.setup_delay tt_025C_1v80.extra_delay ff_n40C_1v95.hold_delay
+*** End saving CPF database: cpu=0:00:00.02 real=0:00:00.00 ***
+TAT_INFO: ::db::saveSymbolTable REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::saveCongMap REAL = 0 : CPU = 0 : MEM = 0.
+% Begin Save power constraints data ... (date=04/28 12:02:00, mem=1464.9M)
+% End Save power constraints data ... (date=04/28 12:02:00, total cpu=0:00:00.0, real=0:00:00.0, peak res=1464.9M, current mem=1464.9M)
+tt_025C_1v80.extra_rc ff_n40C_1v95.hold_rc ss_100C_1v60.setup_rc
+Generated self-contained design pre_sky130_innovus_settings
+#% End save design ... (date=04/28 12:02:01, total cpu=0:00:01.9, real=0:00:03.0, peak res=1497.6M, current mem=1467.8M)
+*** Message Summary: 0 warning(s), 0 error(s)
+
+@file 57: puts "ln -sfn pre_sky130_innovus_settings latest" 
+ln -sfn pre_sky130_innovus_settings latest
+@file 58: ln -sfn pre_sky130_innovus_settings latest
+@file 59:
+@file 60:
+@file 61: ##########################################################
+@file 62: # Placement attributes  [get_db -category place]
+@file 63: ##########################################################
+@file 64: #-------------------------------------------------------------------------------
+@file 65: set_db place_global_place_io_pins  true
+@file 66:
+@file 67: set_db opt_honor_fences true
+@file 68: set_db place_detail_dpt_flow true
+**WARN: (IMPSP-510):	There is no SAMEMASK rule defined in the libraries. The option '-place_detail_dpt_flow' is set to false 
+@file 69: set_db place_detail_color_aware_legal true
+**WARN: (IMPSP-510):	There is no SAMEMASK rule defined in the libraries. The option '-place_detail_color_aware_legal' is set to false 
+@file 70: set_db place_global_solver_effort high
+@file 71: set_db place_detail_check_cut_spacing true
+@file 72: set_db place_global_cong_effort high
+@file 73:
+@file 74: ##########################################################
+@file 75: # Optimization attributes  [get_db -category opt]
+@file 76: ##########################################################
+@file 77: #-------------------------------------------------------------------------------
+@file 78:
+@file 79: set_db opt_fix_fanout_load true
+@file 80: set_db opt_clock_gate_aware false
+@file 81: set_db opt_area_recovery true
+@file 82: set_db opt_post_route_area_reclaim setup_aware
+@file 83: set_db opt_fix_hold_verbose true
+@file 84:
+@file 85: ##########################################################
+@file 86: # Clock attributes  [get_db -category cts]
+@file 87: ##########################################################
+@file 88: #-------------------------------------------------------------------------------
+@file 89: set_db cts_target_skew 0.03
+@file 90: set_db cts_max_fanout 10
+@file 91: set_db cts_target_max_transition_time .3
+@file 92: set_db opt_setup_target_slack 0.10
+@file 93: set_db opt_hold_target_slack 0.10
+@file 94:
+@file 95: ##########################################################
+@file 96: # Routing attributes  [get_db -category route]
+@file 97: ##########################################################
+@file 98: #-------------------------------------------------------------------------------
+@file 99: set_db route_design_bottom_routing_layer 2
+#WARNING (NRIF-90) Option set_db route_design_bottom_routing_layer is obsolete. It will continue to work for the current release. To ensure compatibility with future releases, use option set_db design_bottom_routing_layer instead.
+@file 100:
+@file 101: puts "write_db pre_floorplan_design" 
+write_db pre_floorplan_design
+@file 102: write_db pre_floorplan_design
+ff_n40C_1v95.hold_cond tt_025C_1v80.extra_cond ss_100C_1v60.setup_cond
+#% Begin save design ... (date=04/28 12:02:01, mem=1469.0M)
+% Begin Save ccopt configuration ... (date=04/28 12:02:01, mem=1469.0M)
+% End Save ccopt configuration ... (date=04/28 12:02:01, total cpu=0:00:00.0, real=0:00:00.0, peak res=1469.1M, current mem=1469.1M)
+% Begin Save netlist data ... (date=04/28 12:02:01, mem=1469.1M)
+Writing Binary DB to pre_floorplan_design/vbin/jpeg_core.v.bin in multi-threaded mode...
+% End Save netlist data ... (date=04/28 12:02:01, total cpu=0:00:00.3, real=0:00:00.0, peak res=1507.4M, current mem=1470.2M)
+Saving symbol-table file in separate thread ...
+Saving congestion map file in separate thread ...
+Saving congestion map file pre_floorplan_design/jpeg_core.route.congmap.gz ...
+% Begin Save AAE data ... (date=04/28 12:02:01, mem=1470.2M)
+Saving AAE Data ...
+% End Save AAE data ... (date=04/28 12:02:01, total cpu=0:00:00.0, real=0:00:00.0, peak res=1470.2M, current mem=1470.2M)
+Saving preference file pre_floorplan_design/gui.pref.tcl ...
+Saving mode setting ...
+Saving root attributes to be loaded post write_db ...
+Saving global file ...
+Saving root attributes to be loaded previous write_db ...
+Saving Drc markers ...
+... No Drc file written since there is no markers found.
+Saving special route data file in separate thread ...
+Saving PG file in separate thread ...
+Saving placement file in separate thread ...
+Saving route file in separate thread ...
+Saving property file in separate thread ...
+TAT_INFO: ::saveSpecialRoute REAL = 0 : CPU = 0 : MEM = 0.
+Saving PG file pre_floorplan_design/jpeg_core.pg.gz, version#2, (Created by Innovus v21.13-s100_1 on Mon Apr 28 12:02:02 2025)
+Saving property file pre_floorplan_design/jpeg_core.prop
+** Saving stdCellPlacement_binary (version# 2) ...
+Save Adaptive View Pruning View Names to Binary file
+*** Completed saveProperty (cpu=0:00:00.1 real=0:00:00.0 mem=1726.1M) ***
+*** Completed savePGFile (cpu=0:00:00.2 real=0:00:00.0 mem=1726.1M) ***
+TAT_INFO: ::savePGFile REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::savePlace REAL = 0 : CPU = 0 : MEM = 0.
+*** Completed saveRoute (cpu=0:00:00.2 real=0:00:00.0 mem=1726.1M) ***
+TAT_INFO: ::saveRoute REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::db::saveAnnotationAndProp REAL = 0 : CPU = 0 : MEM = 0.
+Saving CPF database ...
+ss_100C_1v60.setup_delay tt_025C_1v80.extra_delay ff_n40C_1v95.hold_delay
+*** End saving CPF database: cpu=0:00:00.02 real=0:00:01.00 ***
+TAT_INFO: ::db::saveSymbolTable REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::saveCongMap REAL = 0 : CPU = 0 : MEM = 0.
+% Begin Save power constraints data ... (date=04/28 12:02:03, mem=1470.9M)
+% End Save power constraints data ... (date=04/28 12:02:03, total cpu=0:00:00.0, real=0:00:00.0, peak res=1470.9M, current mem=1470.9M)
+tt_025C_1v80.extra_rc ff_n40C_1v95.hold_rc ss_100C_1v60.setup_rc
+Generated self-contained design pre_floorplan_design
+#% End save design ... (date=04/28 12:02:03, total cpu=0:00:01.9, real=0:00:02.0, peak res=1507.4M, current mem=1471.0M)
+*** Message Summary: 0 warning(s), 0 error(s)
+
+@file 103: puts "ln -sfn pre_floorplan_design latest" 
+ln -sfn pre_floorplan_design latest
+@file 104: ln -sfn pre_floorplan_design latest
+@file 105: puts "source -echo -verbose /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/floorplan.tcl" 
+source -echo -verbose /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/floorplan.tcl
+@file 106: source -echo -verbose /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/floorplan.tcl
+#@ Begin verbose source /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/floorplan.tcl (pre)
+@file 1: create_floorplan -core_margins_by die -flip f -die_size_by_io_height max -site unithd -die_size { 500 500 0 0 0 0 }
+Adjusting die size togrid(PlacementGrid): width :500.02 height : 500.14
+**WARN: (IMPFP-3961):	The techSite 'unithddbl' has no related standard cells in the LEF/OA library. The calculations for this site type cannot be made unless standard cell models of this type exist in the LEF/OA library. Ignore this warning if the SITE is not used by the library. Alternatively, remove the SITE definition for the LEF/OA library to avoid this message.
+Type 'man IMPFP-3961' for more detail.
+Adjust met3 preferred direction offset from 0.34 to 0.17.
+Adjust met4 preferred direction offset from 0.46 to 0.23.
+Adjust met5 preferred direction offset from 1.7 to 0.17.
+Start create_tracks
+Generated pitch 3.66 in met5 is different from 3.4 defined in technology file in preferred direction.
+Generated pitch 0.69 in met4 is different from 0.92 defined in technology file in preferred direction.
+Generated pitch 0.61 in met3 is different from 0.68 defined in technology file in preferred direction.
+**WARN: (IMPFP-325):	Floorplan of the design is resized. All current create_floorplan objects are automatically derived based on specified new create_floorplan. This may change blocks, fixed standard cells, existing routes and blockages.
+@file 2: # Floorplan automatically generated from HAMMER
+@file 3: # Floorplan manually specified from HAMMER
+@file 4: create_fence -name guts/link_downstream -area  40 40 340 310 
+**WARN: (IMPFP-3318):	guts/link_downstream is not an HInst name or a Group name.
+@file 5: create_fence -name guts/link_upstream -area 300 250 450 450 
+**WARN: (IMPFP-3318):	guts/link_upstream is not an HInst name or a Group name.
+#@ End verbose source /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/floorplan.tcl
+@file 107: puts "write_db pre_place_bumps" 
+write_db pre_place_bumps
+@file 108: write_db pre_place_bumps
+ff_n40C_1v95.hold_cond tt_025C_1v80.extra_cond ss_100C_1v60.setup_cond
+#% Begin save design ... (date=04/28 12:02:04, mem=1470.1M)
+% Begin Save ccopt configuration ... (date=04/28 12:02:04, mem=1470.1M)
+% End Save ccopt configuration ... (date=04/28 12:02:04, total cpu=0:00:00.0, real=0:00:00.0, peak res=1470.1M, current mem=1470.1M)
+% Begin Save netlist data ... (date=04/28 12:02:04, mem=1470.1M)
+Writing Binary DB to pre_place_bumps/vbin/jpeg_core.v.bin in multi-threaded mode...
+% End Save netlist data ... (date=04/28 12:02:04, total cpu=0:00:00.2, real=0:00:00.0, peak res=1510.9M, current mem=1473.9M)
+Saving symbol-table file in separate thread ...
+Saving congestion map file in separate thread ...
+Saving congestion map file pre_place_bumps/jpeg_core.route.congmap.gz ...
+% Begin Save AAE data ... (date=04/28 12:02:04, mem=1473.9M)
+Saving AAE Data ...
+% End Save AAE data ... (date=04/28 12:02:04, total cpu=0:00:00.0, real=0:00:00.0, peak res=1473.9M, current mem=1473.9M)
+Saving preference file pre_place_bumps/gui.pref.tcl ...
+Saving mode setting ...
+Saving root attributes to be loaded post write_db ...
+Saving global file ...
+Saving root attributes to be loaded previous write_db ...
+Saving Drc markers ...
+... No Drc file written since there is no markers found.
+Saving special route data file in separate thread ...
+Saving PG file in separate thread ...
+Saving placement file in separate thread ...
+Saving route file in separate thread ...
+Saving property file in separate thread ...
+TAT_INFO: ::saveSpecialRoute REAL = 0 : CPU = 0 : MEM = 0.
+** Saving stdCellPlacement_binary (version# 2) ...
+Saving property file pre_place_bumps/jpeg_core.prop
+Saving PG file pre_place_bumps/jpeg_core.pg.gz, version#2, (Created by Innovus v21.13-s100_1 on Mon Apr 28 12:02:05 2025)
+Save Adaptive View Pruning View Names to Binary file
+*** Completed saveProperty (cpu=0:00:00.0 real=0:00:00.0 mem=1733.7M) ***
+*** Completed savePGFile (cpu=0:00:00.1 real=0:00:00.0 mem=1733.7M) ***
+TAT_INFO: ::savePGFile REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::savePlace REAL = 0 : CPU = 0 : MEM = 0.
+*** Completed saveRoute (cpu=0:00:00.2 real=0:00:00.0 mem=1733.7M) ***
+TAT_INFO: ::saveRoute REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::db::saveAnnotationAndProp REAL = 0 : CPU = 0 : MEM = 0.
+Saving CPF database ...
+ss_100C_1v60.setup_delay tt_025C_1v80.extra_delay ff_n40C_1v95.hold_delay
+*** End saving CPF database: cpu=0:00:00.02 real=0:00:01.00 ***
+TAT_INFO: ::db::saveSymbolTable REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::saveCongMap REAL = 0 : CPU = 0 : MEM = 0.
+% Begin Save power constraints data ... (date=04/28 12:02:06, mem=1475.1M)
+% End Save power constraints data ... (date=04/28 12:02:06, total cpu=0:00:00.0, real=0:00:00.0, peak res=1475.1M, current mem=1475.1M)
+tt_025C_1v80.extra_rc ff_n40C_1v95.hold_rc ss_100C_1v60.setup_rc
+Generated self-contained design pre_place_bumps
+#% End save design ... (date=04/28 12:02:06, total cpu=0:00:01.9, real=0:00:02.0, peak res=1510.9M, current mem=1473.9M)
+*** Message Summary: 0 warning(s), 0 error(s)
+
+@file 109: puts "ln -sfn pre_place_bumps latest" 
+ln -sfn pre_place_bumps latest
+@file 110: ln -sfn pre_place_bumps latest
+@file 111: puts "write_db pre_sky130_add_endcaps" 
+write_db pre_sky130_add_endcaps
+@file 112: write_db pre_sky130_add_endcaps
+ff_n40C_1v95.hold_cond tt_025C_1v80.extra_cond ss_100C_1v60.setup_cond
+#% Begin save design ... (date=04/28 12:02:06, mem=1473.9M)
+% Begin Save ccopt configuration ... (date=04/28 12:02:06, mem=1473.9M)
+% End Save ccopt configuration ... (date=04/28 12:02:06, total cpu=0:00:00.0, real=0:00:00.0, peak res=1473.9M, current mem=1473.9M)
+% Begin Save netlist data ... (date=04/28 12:02:06, mem=1473.9M)
+Writing Binary DB to pre_sky130_add_endcaps/vbin/jpeg_core.v.bin in multi-threaded mode...
+% End Save netlist data ... (date=04/28 12:02:06, total cpu=0:00:00.3, real=0:00:00.0, peak res=1474.1M, current mem=1474.1M)
+Saving symbol-table file in separate thread ...
+Saving congestion map file in separate thread ...
+Saving congestion map file pre_sky130_add_endcaps/jpeg_core.route.congmap.gz ...
+% Begin Save AAE data ... (date=04/28 12:02:06, mem=1474.1M)
+Saving AAE Data ...
+% End Save AAE data ... (date=04/28 12:02:06, total cpu=0:00:00.0, real=0:00:00.0, peak res=1474.1M, current mem=1474.1M)
+Saving preference file pre_sky130_add_endcaps/gui.pref.tcl ...
+Saving mode setting ...
+Saving root attributes to be loaded post write_db ...
+Saving global file ...
+Saving root attributes to be loaded previous write_db ...
+Saving Drc markers ...
+... No Drc file written since there is no markers found.
+Saving special route data file in separate thread ...
+Saving PG file in separate thread ...
+Saving placement file in separate thread ...
+Saving route file in separate thread ...
+Saving property file in separate thread ...
+TAT_INFO: ::saveSpecialRoute REAL = 0 : CPU = 0 : MEM = 0.
+** Saving stdCellPlacement_binary (version# 2) ...
+Saving property file pre_sky130_add_endcaps/jpeg_core.prop
+Saving PG file pre_sky130_add_endcaps/jpeg_core.pg.gz, version#2, (Created by Innovus v21.13-s100_1 on Mon Apr 28 12:02:08 2025)
+Save Adaptive View Pruning View Names to Binary file
+*** Completed saveProperty (cpu=0:00:00.0 real=0:00:00.0 mem=1717.5M) ***
+*** Completed savePGFile (cpu=0:00:00.2 real=0:00:00.0 mem=1717.5M) ***
+TAT_INFO: ::savePGFile REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::savePlace REAL = 0 : CPU = 0 : MEM = 0.
+*** Completed saveRoute (cpu=0:00:00.3 real=0:00:00.0 mem=1717.5M) ***
+TAT_INFO: ::saveRoute REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::db::saveAnnotationAndProp REAL = 0 : CPU = 0 : MEM = 0.
+Saving CPF database ...
+ss_100C_1v60.setup_delay tt_025C_1v80.extra_delay ff_n40C_1v95.hold_delay
+*** End saving CPF database: cpu=0:00:00.02 real=0:00:00.00 ***
+TAT_INFO: ::db::saveSymbolTable REAL = 1 : CPU = 0 : MEM = 0.
+TAT_INFO: ::saveCongMap REAL = 0 : CPU = 0 : MEM = 0.
+% Begin Save power constraints data ... (date=04/28 12:02:08, mem=1474.5M)
+% End Save power constraints data ... (date=04/28 12:02:08, total cpu=0:00:00.0, real=0:00:00.0, peak res=1474.5M, current mem=1474.5M)
+tt_025C_1v80.extra_rc ff_n40C_1v95.hold_rc ss_100C_1v60.setup_rc
+Generated self-contained design pre_sky130_add_endcaps
+#% End save design ... (date=04/28 12:02:09, total cpu=0:00:01.9, real=0:00:03.0, peak res=1474.9M, current mem=1474.9M)
+*** Message Summary: 0 warning(s), 0 error(s)
+
+@file 113: puts "ln -sfn pre_sky130_add_endcaps latest" 
+ln -sfn pre_sky130_add_endcaps latest
+@file 114: ln -sfn pre_sky130_add_endcaps latest
+@file 115:
+@file 116: set_db add_endcaps_boundary_tap     true
+@file 117: set_db add_endcaps_left_edge        sky130_fd_sc_hd__tap_1
+@file 118: set_db add_endcaps_right_edge       sky130_fd_sc_hd__tap_1
+@file 119: add_endcaps
+**WARN: (IMPSP-5534):	'add_endcaps_left_edge' and 'add_endcaps_right_edge' are using the same endcap cells
+**WARN: (IMPSP-5534):	'add_endcaps_left_bottom_corner' and 'add_endcaps_right_bottom_corner' are using the same endcap cells
+**WARN: (IMPSP-5534):	'add_endcaps_left_top_corner' and 'add_endcaps_right_top_corner' are using the same endcap cells
+Multithreaded Timing Analysis is initialized with 8 threads
+
+Estimated cell power/ground rail width = 0.340 um
+Minimum row-size in sites for endcap insertion = 3.
+Minimum number of sites for row blockage       = 1.
+Inserted 183 pre-endcap <sky130_fd_sc_hd__tap_1> cells (prefix ENDCAP_AO).
+Inserted 183 post-endcap <sky130_fd_sc_hd__tap_1> cells (prefix ENDCAP_AO).
+For 366 new insts, *** Applied 6 GNC rules (cpu = 0:00:00.0)
+@file 120:
+@file 121: puts "write_db pre_place_tap_cells" 
+write_db pre_place_tap_cells
+@file 122: write_db pre_place_tap_cells
+ff_n40C_1v95.hold_cond tt_025C_1v80.extra_cond ss_100C_1v60.setup_cond
+#% Begin save design ... (date=04/28 12:02:10, mem=1573.5M)
+% Begin Save ccopt configuration ... (date=04/28 12:02:10, mem=1573.5M)
+% End Save ccopt configuration ... (date=04/28 12:02:10, total cpu=0:00:00.0, real=0:00:00.0, peak res=1573.5M, current mem=1571.7M)
+% Begin Save netlist data ... (date=04/28 12:02:10, mem=1571.7M)
+Writing Binary DB to pre_place_tap_cells/vbin/jpeg_core.v.bin in multi-threaded mode...
+% End Save netlist data ... (date=04/28 12:02:10, total cpu=0:00:00.3, real=0:00:00.0, peak res=1613.6M, current mem=1573.0M)
+Saving symbol-table file in separate thread ...
+Saving congestion map file in separate thread ...
+% Begin Save AAE data ... (date=04/28 12:02:10, mem=1574.0M)
+Saving AAE Data ...
+Saving congestion map file pre_place_tap_cells/jpeg_core.route.congmap.gz ...
+% End Save AAE data ... (date=04/28 12:02:10, total cpu=0:00:00.0, real=0:00:00.0, peak res=1574.0M, current mem=1574.0M)
+Saving preference file pre_place_tap_cells/gui.pref.tcl ...
+Saving mode setting ...
+Saving root attributes to be loaded post write_db ...
+Saving global file ...
+Saving root attributes to be loaded previous write_db ...
+Saving Drc markers ...
+... No Drc file written since there is no markers found.
+Saving special route data file in separate thread ...
+Saving PG file in separate thread ...
+Saving placement file in separate thread ...
+Saving route file in separate thread ...
+Saving property file in separate thread ...
+TAT_INFO: ::saveSpecialRoute REAL = 0 : CPU = 0 : MEM = 0.
+Saving PG file pre_place_tap_cells/jpeg_core.pg.gz, version#2, (Created by Innovus v21.13-s100_1 on Mon Apr 28 12:02:11 2025)
+** Saving stdCellPlacement_binary (version# 2) ...
+Saving property file pre_place_tap_cells/jpeg_core.prop
+Save Adaptive View Pruning View Names to Binary file
+*** Completed saveProperty (cpu=0:00:00.1 real=0:00:00.0 mem=1926.5M) ***
+*** Completed savePGFile (cpu=0:00:00.2 real=0:00:00.0 mem=1926.5M) ***
+TAT_INFO: ::savePGFile REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::savePlace REAL = 0 : CPU = 0 : MEM = 0.
+*** Completed saveRoute (cpu=0:00:00.3 real=0:00:00.0 mem=1926.5M) ***
+TAT_INFO: ::saveRoute REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::db::saveAnnotationAndProp REAL = 0 : CPU = 0 : MEM = 0.
+Saving CPF database ...
+ss_100C_1v60.setup_delay tt_025C_1v80.extra_delay ff_n40C_1v95.hold_delay
+*** End saving CPF database: cpu=0:00:00.02 real=0:00:00.00 ***
+TAT_INFO: ::db::saveSymbolTable REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::saveCongMap REAL = 0 : CPU = 0 : MEM = 0.
+% Begin Save power constraints data ... (date=04/28 12:02:11, mem=1574.0M)
+% End Save power constraints data ... (date=04/28 12:02:11, total cpu=0:00:00.0, real=0:00:00.0, peak res=1574.0M, current mem=1574.0M)
+tt_025C_1v80.extra_rc ff_n40C_1v95.hold_rc ss_100C_1v60.setup_rc
+Generated self-contained design pre_place_tap_cells
+#% End save design ... (date=04/28 12:02:12, total cpu=0:00:01.9, real=0:00:02.0, peak res=1615.3M, current mem=1573.3M)
+*** Message Summary: 0 warning(s), 0 error(s)
+
+@file 123: puts "ln -sfn pre_place_tap_cells latest" 
+ln -sfn pre_place_tap_cells latest
+@file 124: ln -sfn pre_place_tap_cells latest
+@file 125: set_db add_well_taps_cell sky130_fd_sc_hd__tapvpwrvgnd_1
+@file 126: add_well_taps -cell_interval 15 -in_row_offset 5
+**WARN: (IMPSP-5134):	Setting cellInterval to 14.720 (microns) as a multiple of cell sky130_fd_sc_hd__tapvpwrvgnd_1's techSite 'unithd' width of 0.460 microns
+Type 'man IMPSP-5134' for more detail.
+**WARN: (IMPSP-5134):	Setting inRowOffset to 4.600 (microns) as a multiple of cell sky130_fd_sc_hd__tapvpwrvgnd_1's techSite 'unithd' width of 0.460 microns
+Type 'man IMPSP-5134' for more detail.
+For 6405 new insts, *** Applied 6 GNC rules (cpu = 0:00:00.0)
+Inserted 6405 well-taps <sky130_fd_sc_hd__tapvpwrvgnd_1> cells (prefix WELLTAP_AO).
+@file 127: puts "write_db pre_sky130_connect_nets" 
+write_db pre_sky130_connect_nets
+@file 128: write_db pre_sky130_connect_nets
+ff_n40C_1v95.hold_cond tt_025C_1v80.extra_cond ss_100C_1v60.setup_cond
+#% Begin save design ... (date=04/28 12:02:12, mem=1578.7M)
+% Begin Save ccopt configuration ... (date=04/28 12:02:12, mem=1578.7M)
+% End Save ccopt configuration ... (date=04/28 12:02:12, total cpu=0:00:00.0, real=0:00:00.0, peak res=1578.7M, current mem=1578.7M)
+% Begin Save netlist data ... (date=04/28 12:02:12, mem=1578.7M)
+Writing Binary DB to pre_sky130_connect_nets/vbin/jpeg_core.v.bin in multi-threaded mode...
+% End Save netlist data ... (date=04/28 12:02:13, total cpu=0:00:00.3, real=0:00:01.0, peak res=1622.1M, current mem=1580.2M)
+Saving symbol-table file in separate thread ...
+Saving congestion map file in separate thread ...
+% Begin Save AAE data ... (date=04/28 12:02:13, mem=1581.5M)
+Saving AAE Data ...
+Saving congestion map file pre_sky130_connect_nets/jpeg_core.route.congmap.gz ...
+% End Save AAE data ... (date=04/28 12:02:13, total cpu=0:00:00.0, real=0:00:00.0, peak res=1581.5M, current mem=1581.5M)
+Saving preference file pre_sky130_connect_nets/gui.pref.tcl ...
+Saving mode setting ...
+Saving root attributes to be loaded post write_db ...
+Saving global file ...
+Saving root attributes to be loaded previous write_db ...
+Saving Drc markers ...
+... No Drc file written since there is no markers found.
+Saving special route data file in separate thread ...
+Saving PG file in separate thread ...
+Saving placement file in separate thread ...
+Saving route file in separate thread ...
+Saving property file in separate thread ...
+TAT_INFO: ::saveSpecialRoute REAL = 0 : CPU = 0 : MEM = 0.
+** Saving stdCellPlacement_binary (version# 2) ...
+Saving property file pre_sky130_connect_nets/jpeg_core.prop
+Saving PG file pre_sky130_connect_nets/jpeg_core.pg.gz, version#2, (Created by Innovus v21.13-s100_1 on Mon Apr 28 12:02:14 2025)
+Save Adaptive View Pruning View Names to Binary file
+*** Completed saveProperty (cpu=0:00:00.1 real=0:00:00.0 mem=1934.1M) ***
+*** Completed savePGFile (cpu=0:00:00.2 real=0:00:00.0 mem=1934.1M) ***
+TAT_INFO: ::savePGFile REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::savePlace REAL = 0 : CPU = 0 : MEM = 0.
+*** Completed saveRoute (cpu=0:00:00.3 real=0:00:00.0 mem=1934.1M) ***
+TAT_INFO: ::saveRoute REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::db::saveAnnotationAndProp REAL = 0 : CPU = 0 : MEM = 0.
+Saving CPF database ...
+ss_100C_1v60.setup_delay tt_025C_1v80.extra_delay ff_n40C_1v95.hold_delay
+*** End saving CPF database: cpu=0:00:00.02 real=0:00:00.00 ***
+TAT_INFO: ::db::saveSymbolTable REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::saveCongMap REAL = 0 : CPU = 0 : MEM = 0.
+% Begin Save power constraints data ... (date=04/28 12:02:14, mem=1582.0M)
+% End Save power constraints data ... (date=04/28 12:02:14, total cpu=0:00:00.0, real=0:00:00.0, peak res=1582.0M, current mem=1582.0M)
+tt_025C_1v80.extra_rc ff_n40C_1v95.hold_rc ss_100C_1v60.setup_rc
+Generated self-contained design pre_sky130_connect_nets
+#% End save design ... (date=04/28 12:02:15, total cpu=0:00:01.9, real=0:00:03.0, peak res=1622.1M, current mem=1581.8M)
+*** Message Summary: 0 warning(s), 0 error(s)
+
+@file 129: puts "ln -sfn pre_sky130_connect_nets latest" 
+ln -sfn pre_sky130_connect_nets latest
+@file 130: ln -sfn pre_sky130_connect_nets latest
+@file 131: connect_global_net VDD -type pg_pin -pin_base_name VPWR -all -auto_tie -netlist_override
+@file 132: connect_global_net VDD -type net    -net_base_name VPWR -all -netlist_override
+@file 133: connect_global_net VDD -type pg_pin -pin_base_name VPB -all -auto_tie -netlist_override
+@file 134: connect_global_net VDD -type net    -net_base_name VPB -all -netlist_override
+@file 135: connect_global_net VSS -type pg_pin -pin_base_name VGND -all -auto_tie -netlist_override
+@file 136: connect_global_net VSS -type net    -net_base_name VGND -all -netlist_override
+@file 137: connect_global_net VSS -type pg_pin -pin_base_name VNB -all -auto_tie -netlist_override
+@file 138: connect_global_net VSS -type net    -net_base_name VNB -all -netlist_override
+@file 139: puts "write_db pre_power_straps" 
+write_db pre_power_straps
+@file 140: write_db pre_power_straps
+ff_n40C_1v95.hold_cond tt_025C_1v80.extra_cond ss_100C_1v60.setup_cond
+#% Begin save design ... (date=04/28 12:02:15, mem=1581.8M)
+% Begin Save ccopt configuration ... (date=04/28 12:02:15, mem=1581.8M)
+% End Save ccopt configuration ... (date=04/28 12:02:15, total cpu=0:00:00.0, real=0:00:00.0, peak res=1581.8M, current mem=1581.8M)
+% Begin Save netlist data ... (date=04/28 12:02:15, mem=1581.8M)
+Writing Binary DB to pre_power_straps/vbin/jpeg_core.v.bin in multi-threaded mode...
+% End Save netlist data ... (date=04/28 12:02:15, total cpu=0:00:00.3, real=0:00:00.0, peak res=1581.8M, current mem=1581.8M)
+Saving symbol-table file in separate thread ...
+Saving congestion map file in separate thread ...
+Saving congestion map file pre_power_straps/jpeg_core.route.congmap.gz ...
+% Begin Save AAE data ... (date=04/28 12:02:15, mem=1581.8M)
+Saving AAE Data ...
+% End Save AAE data ... (date=04/28 12:02:15, total cpu=0:00:00.0, real=0:00:00.0, peak res=1581.8M, current mem=1581.8M)
+Saving preference file pre_power_straps/gui.pref.tcl ...
+Saving mode setting ...
+Saving root attributes to be loaded post write_db ...
+Saving global file ...
+Saving root attributes to be loaded previous write_db ...
+Saving Drc markers ...
+... No Drc file written since there is no markers found.
+Saving special route data file in separate thread ...
+Saving PG file in separate thread ...
+Saving placement file in separate thread ...
+Saving route file in separate thread ...
+Saving property file in separate thread ...
+TAT_INFO: ::saveSpecialRoute REAL = 0 : CPU = 0 : MEM = 0.
+** Saving stdCellPlacement_binary (version# 2) ...
+Saving property file pre_power_straps/jpeg_core.prop
+Saving PG file pre_power_straps/jpeg_core.pg.gz, version#2, (Created by Innovus v21.13-s100_1 on Mon Apr 28 12:02:17 2025)
+Save Adaptive View Pruning View Names to Binary file
+*** Completed saveProperty (cpu=0:00:00.1 real=0:00:00.0 mem=1934.6M) ***
+*** Completed savePGFile (cpu=0:00:00.2 real=0:00:00.0 mem=1934.6M) ***
+TAT_INFO: ::savePGFile REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::savePlace REAL = 0 : CPU = 0 : MEM = 0.
+*** Completed saveRoute (cpu=0:00:00.3 real=0:00:00.0 mem=1934.6M) ***
+TAT_INFO: ::saveRoute REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::db::saveAnnotationAndProp REAL = 0 : CPU = 0 : MEM = 0.
+Saving CPF database ...
+ss_100C_1v60.setup_delay tt_025C_1v80.extra_delay ff_n40C_1v95.hold_delay
+*** End saving CPF database: cpu=0:00:00.02 real=0:00:00.00 ***
+TAT_INFO: ::db::saveSymbolTable REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::saveCongMap REAL = 0 : CPU = 0 : MEM = 0.
+% Begin Save power constraints data ... (date=04/28 12:02:17, mem=1581.4M)
+% End Save power constraints data ... (date=04/28 12:02:17, total cpu=0:00:00.0, real=0:00:00.0, peak res=1581.4M, current mem=1581.4M)
+tt_025C_1v80.extra_rc ff_n40C_1v95.hold_rc ss_100C_1v60.setup_rc
+Generated self-contained design pre_power_straps
+#% End save design ... (date=04/28 12:02:18, total cpu=0:00:01.9, real=0:00:03.0, peak res=1581.8M, current mem=1581.7M)
+*** Message Summary: 0 warning(s), 0 error(s)
+
+@file 141: puts "ln -sfn pre_power_straps latest" 
+ln -sfn pre_power_straps latest
+@file 142: ln -sfn pre_power_straps latest
+@file 143: puts "source -echo -verbose /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/power_straps.tcl" 
+source -echo -verbose /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/power_straps.tcl
+@file 144: source -echo -verbose /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/power_straps.tcl
+#@ Begin verbose source /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/power_straps.tcl (pre)
+@file 1: # Power strap definition for layer met1 (rails):
+@file 2:
+@file 3: reset_db -category add_stripes
+@file 4: set_db add_stripes_stacked_via_bottom_layer met1
+@file 5: set_db add_stripes_stacked_via_top_layer met1
+@file 6: set_db add_stripes_spacing_from_block 3.000
+Global stripes will break 3.000000 user units from obstructed blocks.
+@file 7: add_stripes -pin_layer met1 -layer met1 -over_pins 1 -master "sky130_fd_sc_hd__tap*" -block_ring_bottom_layer_limit met1 -block_ring_top_layer_limit met1 -pad_core_ring_bottom_layer_limit met1 -pad_core_ring_top_layer_limit met1 -direction horizontal -width pin_width -nets { VSS VDD }
+#% Begin add_stripes (date=04/28 12:02:18, mem=1581.7M)
+
+Initialize fgc environment(mem: 1880.6M) ...  fail and won't use fgc to check drc(cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 1880.6M)
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_1' instance was increased to (0.000000 0.000000) (0.460000 2.960000) because the (0.000000 2.480000) (0.460000 2.960000) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_2' instance was increased to (499.559998 0.000000) (500.019989 2.960000) because the (499.559998 2.480000) (500.019989 2.960000) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_3' instance was increased to (0.000000 2.720000) (0.460000 5.680000) because the (0.000000 5.200000) (0.460000 5.680000) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_4' instance was increased to (499.559998 2.720000) (500.019989 5.680000) because the (499.559998 5.200000) (500.019989 5.680000) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_5' instance was increased to (0.000000 5.440000) (0.460000 8.400000) because the (0.000000 7.920000) (0.460000 8.400000) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_6' instance was increased to (499.559998 5.440000) (500.019989 8.400000) because the (499.559998 7.920000) (500.019989 8.400000) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_7' instance was increased to (0.000000 8.160000) (0.460000 11.120000) because the (0.000000 10.640000) (0.460000 11.120000) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_8' instance was increased to (499.559998 8.160000) (500.019989 11.120000) because the (499.559998 10.640000) (500.019989 11.120000) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_9' instance was increased to (0.000000 10.880000) (0.460000 13.840000) because the (0.000000 13.360000) (0.460000 13.840000) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_10' instance was increased to (499.559998 10.880000) (500.019989 13.840000) because the (499.559998 13.360000) (500.019989 13.840000) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_11' instance was increased to (0.000000 13.600000) (0.460000 16.559999) because the (0.000000 16.080000) (0.460000 16.559999) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_12' instance was increased to (499.559998 13.600000) (500.019989 16.559999) because the (499.559998 16.080000) (500.019989 16.559999) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_13' instance was increased to (0.000000 16.320000) (0.460000 19.280001) because the (0.000000 18.799999) (0.460000 19.280001) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_14' instance was increased to (499.559998 16.320000) (500.019989 19.280001) because the (499.559998 18.799999) (500.019989 19.280001) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_15' instance was increased to (0.000000 19.040001) (0.460000 22.000000) because the (0.000000 21.520000) (0.460000 22.000000) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_16' instance was increased to (499.559998 19.040001) (500.019989 22.000000) because the (499.559998 21.520000) (500.019989 22.000000) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_17' instance was increased to (0.000000 21.760000) (0.460000 24.719999) because the (0.000000 24.240000) (0.460000 24.719999) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_18' instance was increased to (499.559998 21.760000) (500.019989 24.719999) because the (499.559998 24.240000) (500.019989 24.719999) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_19' instance was increased to (0.000000 24.480000) (0.460000 27.440001) because the (0.000000 26.959999) (0.460000 27.440001) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (IMPPP-133):	The block boundary of the 'ENDCAP_AO_20' instance was increased to (499.559998 24.480000) (500.019989 27.440001) because the (499.559998 26.959999) (500.019989 27.440001) cell geometry was outside the original block boundary.
+Type 'man IMPPP-133' for more detail.
+**WARN: (EMS-27):	Message (IMPPP-133) has exceeded the current message display limit of 20.
+To increase the message display limit, refer to the product command reference manual.
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 1880.6M)
+Loading wires (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 1880.6M)
+Loading via instances (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 1880.6M)
+Starting stripe generation ...
+Non-Default Mode Option Settings :
+  -spacing_from_block  3.00 
+The core ring for VSS is incomplete. The core ring will not be used as a boundary for stripes. In this situation, the power planner will generate stripes only within the core area.
+The core ring for VDD is incomplete. The core ring will not be used as a boundary for stripes. In this situation, the power planner will generate stripes only within the core area.
+Stripe generation is complete.
+add_stripes created 184 wires.
+ViaGen created 0 via, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+|  met1  |       184      |       NA       |
++--------+----------------+----------------+
+#% End add_stripes (date=04/28 12:02:18, total cpu=0:00:00.4, real=0:00:00.0, peak res=1600.8M, current mem=1600.8M)
+@file 8:
+@file 9: # Power strap definition for layer met4:
+@file 10:
+@file 11: reset_db -category add_stripes
+@file 12: set_db add_stripes_stacked_via_top_layer met4
+@file 13: set_db add_stripes_stacked_via_bottom_layer met1
+@file 14: set_db add_stripes_trim_antenna_back_to_shape {stripe}
+The power planner will set stripe antenna targets to stripe.
+@file 15: set_db add_stripes_spacing_from_block 3.000
+Global stripes will break 3.000000 user units from obstructed blocks.
+@file 16: add_stripes -create_pins 0 -block_ring_bottom_layer_limit met4 -block_ring_top_layer_limit met1 -direction vertical -layer met4 -nets {VSS VDD} -pad_core_ring_bottom_layer_limit met1 -set_to_set_distance 25.800 -spacing 1.100 -switch_layer_over_obs 0 -width 3.100 -area [get_db designs .core_bbox] -start [expr [lindex [lindex [get_db designs .core_bbox] 0] 0] + 7.010]
+#% Begin add_stripes (date=04/28 12:02:18, mem=1600.8M)
+
+Initialize fgc environment(mem: 1890.8M) ...  fail and won't use fgc to check drc(cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 1890.8M)
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 1890.8M)
+Loading wires (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 1890.8M)
+Loading via instances (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 1890.8M)
+Starting stripe generation ...
+**WARN: (IMPPP-358):	The left edge of the area you specified is out of design boundary and only stripes in design boundary will be generated. 
+  Use option add_stripes_extend_to_closest_target {area_boundary} if stripes must be generated in specified area.
+**WARN: (IMPPP-358):	The right edge of the area you specified is out of design boundary and only stripes in design boundary will be generated. 
+  Use option add_stripes_extend_to_closest_target {area_boundary} if stripes must be generated in specified area.
+**WARN: (IMPPP-358):	The bottom edge of the area you specified is out of design boundary and only stripes in design boundary will be generated. 
+  Use option add_stripes_extend_to_closest_target {area_boundary} if stripes must be generated in specified area.
+**WARN: (IMPPP-358):	The top edge of the area you specified is out of design boundary and only stripes in design boundary will be generated. 
+  Use option add_stripes_extend_to_closest_target {area_boundary} if stripes must be generated in specified area.
+Non-Default Mode Option Settings :
+  -spacing_from_block  3.00 
+  -trim_antenna_back_to_shape  stripe
+**WARN: (IMPPP-4063):	Multi-CPU is set to 4 in add_stripes automatically according to the free memory on the current machine.  When the number of CPU in set_multi_cpu_usage is more than 4, add_stripes gets worse runtime caused by data exchange and other time consuming operations
+Multi-CPU acceleration using 4 CPU(s).
+Stripe generation is complete.
+vias are now being generated.
+**WARN: (IMPPP-4063):	Multi-CPU is set to 1 in add_stripes automatically according to the free memory on the current machine.  When the number of CPU in set_multi_cpu_usage is more than 1, add_stripes gets worse runtime caused by data exchange and other time consuming operations
+add_stripes created 38 wires.
+ViaGen created 10488 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+|   via  |      3496      |        0       |
+|  via2  |      3496      |        0       |
+|  via3  |      3496      |        0       |
+|  met4  |       38       |       NA       |
++--------+----------------+----------------+
+#% End add_stripes (date=04/28 12:02:19, total cpu=0:00:00.3, real=0:00:01.0, peak res=1602.4M, current mem=1602.4M)
+@file 17:
+@file 18: # Power strap definition for layer met5:
+@file 19:
+@file 20: reset_db -category add_stripes
+@file 21: set_db add_stripes_stacked_via_top_layer met5
+@file 22: set_db add_stripes_stacked_via_bottom_layer met4
+@file 23: set_db add_stripes_trim_antenna_back_to_shape {stripe}
+The power planner will set stripe antenna targets to stripe.
+@file 24: set_db add_stripes_spacing_from_block 3.000
+Global stripes will break 3.000000 user units from obstructed blocks.
+@file 25: add_stripes -create_pins 1 -block_ring_bottom_layer_limit met5 -block_ring_top_layer_limit met4 -direction horizontal -layer met5 -nets {VSS VDD} -pad_core_ring_bottom_layer_limit met4 -set_to_set_distance 32.000 -spacing 4.800 -switch_layer_over_obs 0 -width 4.800 -area [get_db designs .core_bbox] -start [expr [lindex [lindex [get_db designs .core_bbox] 0] 1] + 7.300]
+#% Begin add_stripes (date=04/28 12:02:19, mem=1602.4M)
+
+Initialize fgc environment(mem: 1890.8M) ...  fail and won't use fgc to check drc(cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 1890.8M)
+Loading cell geometries (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 1890.8M)
+Loading wires (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 1890.8M)
+Loading via instances (cpu: 0:00:00.0, real: 0:00:00.0, peak mem: 1890.8M)
+Starting stripe generation ...
+**WARN: (IMPPP-358):	The left edge of the area you specified is out of design boundary and only stripes in design boundary will be generated. 
+  Use option add_stripes_extend_to_closest_target {area_boundary} if stripes must be generated in specified area.
+**WARN: (IMPPP-358):	The right edge of the area you specified is out of design boundary and only stripes in design boundary will be generated. 
+  Use option add_stripes_extend_to_closest_target {area_boundary} if stripes must be generated in specified area.
+**WARN: (IMPPP-358):	The bottom edge of the area you specified is out of design boundary and only stripes in design boundary will be generated. 
+  Use option add_stripes_extend_to_closest_target {area_boundary} if stripes must be generated in specified area.
+**WARN: (IMPPP-358):	The top edge of the area you specified is out of design boundary and only stripes in design boundary will be generated. 
+  Use option add_stripes_extend_to_closest_target {area_boundary} if stripes must be generated in specified area.
+Non-Default Mode Option Settings :
+  -spacing_from_block  3.00 
+  -trim_antenna_back_to_shape  stripe
+**WARN: (IMPPP-4063):	Multi-CPU is set to 4 in add_stripes automatically according to the free memory on the current machine.  When the number of CPU in set_multi_cpu_usage is more than 4, add_stripes gets worse runtime caused by data exchange and other time consuming operations
+Multi-CPU acceleration using 4 CPU(s).
+Stripe generation is complete.
+vias are now being generated.
+**WARN: (IMPPP-4063):	Multi-CPU is set to 1 in add_stripes automatically according to the free memory on the current machine.  When the number of CPU in set_multi_cpu_usage is more than 1, add_stripes gets worse runtime caused by data exchange and other time consuming operations
+add_stripes created 31 wires.
+ViaGen created 589 vias, deleted 0 via to avoid violation.
++--------+----------------+----------------+
+|  Layer |     Created    |     Deleted    |
++--------+----------------+----------------+
+|  via4  |       589      |        0       |
+|  met5  |       31       |       NA       |
++--------+----------------+----------------+
+#% End add_stripes (date=04/28 12:02:19, total cpu=0:00:00.1, real=0:00:00.0, peak res=1602.5M, current mem=1602.5M)
+#@ End verbose source /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/power_straps.tcl
+@file 145: puts "write_db pre_place_pins" 
+write_db pre_place_pins
+@file 146: write_db pre_place_pins
+ff_n40C_1v95.hold_cond tt_025C_1v80.extra_cond ss_100C_1v60.setup_cond
+#% Begin save design ... (date=04/28 12:02:19, mem=1602.5M)
+% Begin Save ccopt configuration ... (date=04/28 12:02:19, mem=1602.5M)
+% End Save ccopt configuration ... (date=04/28 12:02:19, total cpu=0:00:00.0, real=0:00:00.0, peak res=1602.7M, current mem=1602.7M)
+% Begin Save netlist data ... (date=04/28 12:02:19, mem=1602.7M)
+Writing Binary DB to pre_place_pins/vbin/jpeg_core.v.bin in multi-threaded mode...
+% End Save netlist data ... (date=04/28 12:02:19, total cpu=0:00:00.3, real=0:00:00.0, peak res=1644.1M, current mem=1610.2M)
+Saving symbol-table file in separate thread ...
+Saving congestion map file in separate thread ...
+Saving congestion map file pre_place_pins/jpeg_core.route.congmap.gz ...
+% Begin Save AAE data ... (date=04/28 12:02:19, mem=1612.4M)
+Saving AAE Data ...
+% End Save AAE data ... (date=04/28 12:02:19, total cpu=0:00:00.0, real=0:00:00.0, peak res=1612.4M, current mem=1612.4M)
+Saving preference file pre_place_pins/gui.pref.tcl ...
+Saving mode setting ...
+Saving root attributes to be loaded post write_db ...
+Saving global file ...
+Saving root attributes to be loaded previous write_db ...
+Saving Drc markers ...
+... No Drc file written since there is no markers found.
+Saving special route data file in separate thread ...
+Saving PG file in separate thread ...
+Saving placement file in separate thread ...
+Saving route file in separate thread ...
+Saving property file in separate thread ...
+TAT_INFO: ::saveSpecialRoute REAL = 0 : CPU = 0 : MEM = 0.
+** Saving stdCellPlacement_binary (version# 2) ...
+Saving property file pre_place_pins/jpeg_core.prop
+Saving PG file pre_place_pins/jpeg_core.pg.gz, version#2, (Created by Innovus v21.13-s100_1 on Mon Apr 28 12:02:20 2025)
+Save Adaptive View Pruning View Names to Binary file
+*** Completed saveProperty (cpu=0:00:00.1 real=0:00:00.0 mem=1953.4M) ***
+*** Completed savePGFile (cpu=0:00:00.2 real=0:00:00.0 mem=1953.4M) ***
+TAT_INFO: ::savePGFile REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::savePlace REAL = 0 : CPU = 0 : MEM = 0.
+*** Completed saveRoute (cpu=0:00:00.3 real=0:00:01.0 mem=1953.4M) ***
+TAT_INFO: ::saveRoute REAL = 1 : CPU = 0 : MEM = 0.
+TAT_INFO: ::db::saveAnnotationAndProp REAL = 0 : CPU = 0 : MEM = 0.
+Saving CPF database ...
+ss_100C_1v60.setup_delay tt_025C_1v80.extra_delay ff_n40C_1v95.hold_delay
+*** End saving CPF database: cpu=0:00:00.02 real=0:00:00.00 ***
+TAT_INFO: ::db::saveSymbolTable REAL = 0 : CPU = 0 : MEM = 0.
+TAT_INFO: ::saveCongMap REAL = 0 : CPU = 0 : MEM = 0.
+% Begin Save power constraints data ... (date=04/28 12:02:21, mem=1613.3M)
+% End Save power constraints data ... (date=04/28 12:02:21, total cpu=0:00:00.0, real=0:00:00.0, peak res=1613.3M, current mem=1613.3M)
+tt_025C_1v80.extra_rc ff_n40C_1v95.hold_rc ss_100C_1v60.setup_rc
+Generated self-contained design pre_place_pins
+#% End save design ... (date=04/28 12:02:22, total cpu=0:00:01.9, real=0:00:03.0, peak res=1653.7M, current mem=1613.5M)
+*** Message Summary: 0 warning(s), 0 error(s)
+
+@file 147: puts "ln -sfn pre_place_pins latest" 
+ln -sfn pre_place_pins latest
+@file 148: ln -sfn pre_place_pins latest
+@file 149: puts "set_db assign_pins_edit_in_batch true" 
+set_db assign_pins_edit_in_batch true
+@file 150: set_db assign_pins_edit_in_batch true
+@file 151: puts "edit_pin -fixed_pin -pin * -hinst jpeg_core -spread_type range -layer { met2 } -side bottom -start { 500 0 } -end { 0 0 }   " 
+edit_pin -fixed_pin -pin * -hinst jpeg_core -spread_type range -layer { met2 } -side bottom -start { 500 0 } -end { 0 0 }   
+@file 152: edit_pin -fixed_pin -pin * -hinst jpeg_core -spread_type range -layer { met2 } -side bottom -start { 500 0 } -end { 0 0 }   
+Successfully spread [132] pins.
+editPin : finished (cpu = 0:00:00.4 real = 0:00:00.0, mem = 1941.4M).
+@file 153: puts "edit_pin -fixed_pin -pin p_sdi_* -hinst jpeg_core -spread_type range -layer { met2 } -side left -end { 0 500 } -start { 0 0 }   " 
+edit_pin -fixed_pin -pin p_sdi_* -hinst jpeg_core -spread_type range -layer { met2 } -side left -end { 0 500 } -start { 0 0 }   
+@file 154: edit_pin -fixed_pin -pin p_sdi_* -hinst jpeg_core -spread_type range -layer { met2 } -side left -end { 0 500 } -start { 0 0 }   
+**ERROR: (IMPPTN-963):	Either specified pin name for the selected partition does not exist or has status 'cover'. Specify the pin or the list of pins correctly and run the command again.
+**ERROR: (IMPSE-110):	File '/home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/par.tcl' line 154: errors out.
+#@ End verbose source /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/par.tcl
+**ERROR: (IMPSYT-6692):	Invalid return code while executing '/home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/par.tcl' was returned and script processing was stopped. Review the following error in '/home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/par.tcl' then restart.
+Error info: /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/par.tcl: 
+    while executing
+"edit_pin -fixed_pin -pin p_sdi_* -hinst jpeg_core -spread_type range -layer { met2 } -side left -end { 0 500 } -start { 0 0 }   "
+    (file "/home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/par.tcl" line 154)
+    invoked from within
+"::se_source_orig /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/par.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel [concat ::se_source_orig $args]"
+    invoked from within
+"if {[::SE::source_verbose_file_state $file_name] == 1} {
+              ::SE::source_verbose_start $file_name
+              set st [uplevel [concat ::s..."
+    invoked from within
+"if {$useTclVerbose} {
+          # use tcl internal method
+          set st ""
+          if {[::SE::source_verbose_file_state $file_name] == 1} {
+     ..."
+    invoked from within
+"if {$largeFile == 1} {
+    if {$enableVerbose == 0 && [::SE::isEchoFile] == 1} {
+      $putCmd "Sourcing $file_name"
+    }
+    set st [uplevel [concat..."
+    (procedure "source" line 157)
+    invoked from within
+"source /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/par.tcl"
+    invoked from within
+"::se::run_command_from_console "source /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/par.tcl""
+    invoked from within
+"eval_novus {::se::run_command_from_console "source /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/par.tcl"}"
+    (in namespace inscope "::" script line 1)
+    invoked from within
+"namespace inscope :: eval_novus "::se::run_command_from_console \"source $fileName\""".
+@innovus 2> 

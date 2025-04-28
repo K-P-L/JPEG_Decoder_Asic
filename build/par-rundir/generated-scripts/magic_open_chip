@@ -1,0 +1,6 @@
+#!/bin/bash
+/home/projects/ee477.2025wtr/cad/magic/bin/magic -d XR -rcfile /home/projects/ee477.2025wtr/cad/pdk/sky130A/libs.tech/magic/sky130A.magicrc /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/jpeg_core.gds &
+echo 
+echo "### MAGIC launched in the background."
+echo "### Once the GDS has loaded, enter the command 'load jpeg_core' to view the top level cell."
+echo 
