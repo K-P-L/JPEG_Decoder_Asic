@@ -11,9 +11,9 @@ synthesis.inputs.preserve_modules: []
 synthesis.clock_gating_mode: ""
 
 par.innovus.floorplan_mode: "generateplusmanual"
-par.innovus.floorplan_script_contents: "
-  create_fence -name guts/link_downstream -area  40 40 340 310 \n
-  create_fence -name guts/link_upstream -area 300 250 450 450 \n"
+par.innovus.floorplan_script_contents: #"
+#  create_fence -name guts/link_downstream -area  40 40 340 310 \n
+#  create_fence -name guts/link_upstream -area 300 250 450 450 \n"
 
 
 # Custom SDC constraints
@@ -37,11 +37,11 @@ vlsi.inputs:
 
 # Placement Constraints
 vlsi.inputs.placement_constraints:
-  - path: "TOP" # (this name isn't actually checked...)
+  - path: "jpeg_core" # (this name isn't actually checked...)
     type: toplevel
     # Define chip dimensions
-    width:  500
-    height: 500
+    width:  5000
+    height: 5000
     x: 0
     y: 0
     margins: {left: 0, right: 0, top: 0, bottom: 0}

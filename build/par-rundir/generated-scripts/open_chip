@@ -1,5 +1,0 @@
-#!/bin/bash
-        cd /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir
-        source enter
-        $INNOVUS_BIN -common_ui -win -files /home/kaulad/myEE478/jpeg_bsg/jpeg_decoder_asic/build/par-rundir/generated-scripts/open_chip.tcl
-                
