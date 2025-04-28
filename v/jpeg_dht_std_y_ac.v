@@ -38,10 +38,10 @@ module jpeg_dht_std_y_ac
 //-----------------------------------------------------------------
 // Y AC Table (standard)
 //-----------------------------------------------------------------
-reg [7:0] y_ac_value_r;
-reg [4:0] y_ac_width_r;
+logic [7:0] y_ac_value_r;
+logic [4:0] y_ac_width_r;
 
-always @ *
+always_comb
 begin
     y_ac_value_r = 8'b0;
     y_ac_width_r = 5'b0;
