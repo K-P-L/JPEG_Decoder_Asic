@@ -11,7 +11,7 @@ synthesis.inputs.preserve_modules: []
 synthesis.clock_gating_mode: ""
 
 par.innovus.floorplan_mode: "generateplusmanual"
-par.innovus.floorplan_script_contents: #"
+par.innovus.floorplan_script_contents: "" #"
 #  create_fence -name guts/link_downstream -area  40 40 340 310 \n
 #  create_fence -name guts/link_upstream -area 300 250 450 450 \n"
 
