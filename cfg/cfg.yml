@@ -29,7 +29,7 @@ vlsi.inputs:
   custom_sdc_files_meta: prependlocal # Prepend path of this config file!
 
   # Pin constraints: p_sdi_* on the left, p_sdo_* on the right, everything else on the bottom
-  pin.assignments: [
+  pin.assignments: [ #TODO (VMETTA) : THERE IS AN ERROR HERE, PAR IS FAILIING.
     {pins: "*", layers: ["met2"], side: "bottom"}, # Default to bottom
     {pins: "p_sdi_*", layers: ["met2"], side: "left"}, # Inputs
     {pins: "p_sdo_*", layers: ["met2"], side: "right"}, # Outputs
