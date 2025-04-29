@@ -38,12 +38,12 @@ module jpeg_output_cx_ram
     ,input  logic [ 31:0]   data_in_i
     ,input  logic           push_i
     ,input  logic           mode420_i
-    ,input  logic           pop_i
+    ,input  logic           yumi_i           // YUMI input signal (replaces pop_i)
     ,input  logic           flush_i
 
     // Outputs
     ,output logic [ 31:0]   data_out_o
-    ,output logic           valid_o
+    ,output logic           v_o              // Valid output signal (replaces valid_o)
     ,output logic [ 31:0]   level_o
 );
 
@@ -97,7 +97,7 @@ begin
         rd_ptr_q <= 8'b0;
     else if (flush_i)
         rd_ptr_q <= 8'b0;
-    else if (read_ok_w && ((!valid_o) || (valid_o && pop_i)))
+    else if (read_ok_w && ((!v_o) || (v_o && yumi_i)))  // Using v_o and yumi_i
         rd_ptr_q <= rd_ptr_next_w;
 end
 
@@ -384,7 +384,7 @@ begin
         cx_idx_q <= 8'b0;
     else if (flush_i)
         cx_idx_q <= 8'b0;
-    else if (read_ok_w && ((!valid_o) || (valid_o && pop_i)))
+    else if (read_ok_w && ((!v_o) || (v_o && yumi_i)))  // Using v_o and yumi_i
         cx_idx_q <= cx_idx_q + 8'd1;
 end
 
@@ -396,7 +396,7 @@ begin
         cx_half_q <= 2'b0;
     else if (flush_i)
         cx_half_q <= 2'b0;
-    else if (read_ok_w && ((!valid_o) || (valid_o && pop_i)) && cx_idx_q == 8'd255)
+    else if (read_ok_w && ((!v_o) || (v_o && yumi_i)) && cx_idx_q == 8'd255)  // Using v_o and yumi_i
         cx_half_q <= cx_half_q + 2'd1;
 end
 
@@ -406,7 +406,7 @@ always_ff @ (posedge clk_i)
 begin
     if (rst_i)
         cx_rd_ptr_q <= 6'b0;
-    else if (read_ok_w && ((!valid_o) || (valid_o && pop_i)))
+    else if (read_ok_w && ((!v_o) || (v_o && yumi_i)))  // Using v_o and yumi_i
         cx_rd_ptr_q <= cx_rd_ptr_r;
 end
 
@@ -431,7 +431,7 @@ begin
         rd_skid_q <= 1'b0;
         rd_skid_data_q <= 32'b0;
     end
-    else if (valid_o && !pop_i)
+    else if (v_o && !yumi_i)  // Using v_o and yumi_i
     begin
         rd_skid_q      <= 1'b1;
         rd_skid_data_q <= data_out_o;
@@ -446,13 +446,13 @@ end
 //-------------------------------------------------------------------
 // Combinatorial
 //-------------------------------------------------------------------
-assign valid_o = rd_skid_q | rd_q;
+assign v_o = rd_skid_q | rd_q;  // Renamed from valid_o to v_o
 
 //-------------------------------------------------------------------
 // Dual port RAM
 //-------------------------------------------------------------------
 logic [31:0] data_out_w;
-// TODO (VMETTA): Where the heck is thios module?
+
 jpeg_output_cx_ram_ram_dp_256_8 
 u_ram
 (
@@ -487,7 +487,7 @@ always_comb
 begin
     count_r = count_q;
 
-    if (pop_i && valid_o)
+    if (yumi_i && v_o)  // Using v_o and yumi_i
         count_r = count_r - 32'd1;
 
     if (push_i)

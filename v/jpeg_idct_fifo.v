@@ -108,13 +108,10 @@ begin
         count_q <= count_q - 1;
 end
 
-//-------------------------------------------------------------------
-// Combinatorial
-//-------------------------------------------------------------------
-/* verilator lint_off WIDTH */
+
 assign valid_o       = (count_q != 0);
 assign accept_o      = (count_q != DEPTH);
-/* verilator lint_on WIDTH */
+
 
 assign data_out_o    = ram_q[rd_ptr_q];
 

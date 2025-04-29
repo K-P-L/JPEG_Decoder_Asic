@@ -135,7 +135,7 @@ u_jpeg_input
     ,.img_dqt_table_y_o(img_dqt_table_y_w)
     ,.img_dqt_table_cb_o(img_dqt_table_cb_w)
     ,.img_dqt_table_cr_o(img_dqt_table_cr_w)
-    ,.dqt_cfg_valid_o(dqt_cfg_valid_w)
+    ,.dqt_cfg_v_o(dqt_cfg_valid_w)
     ,.dqt_cfg_data_o(dqt_cfg_data_w)
     ,.dqt_cfg_last_o(dqt_cfg_last_w)
     ,.dht_cfg_v_o(dht_cfg_valid_w)
@@ -242,11 +242,11 @@ u_jpeg_output
     ,.inport_data_i(output_outport_data_w)
     ,.inport_idx_i(output_inport_idx_w)
     ,.inport_id_i(output_inport_id_w)
-    ,.outport_accept_i(outport_accept_i)
+    ,.yumi_i(outport_accept_i)
 
     // Outputs
-    ,.inport_accept_o(output_inport_accept_w)
-    ,.outport_valid_o(outport_valid_o)
+    ,.ready_o(output_inport_accept_w)
+    ,.v_o(outport_valid_o)
     ,.outport_width_o(outport_width_o)
     ,.outport_height_o(outport_height_o)
     ,.outport_pixel_x_o(outport_pixel_x_o)
