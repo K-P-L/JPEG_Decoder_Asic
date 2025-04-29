@@ -49,10 +49,17 @@ module jpeg_idct
     ,output [ 31:0]  outport_data_o
     ,output [  5:0]  outport_idx_o
     ,output [ 31:0]  outport_id_o
+
+    // Debug outputs (optional for ASIC - can be removed if not needed)
+    //,output          dbg_valid_o
+    //,output [  5:0]  dbg_sample_idx_o
+    //,output [ 31:0]  dbg_sample_o
 );
 
-
-
+// Debug outputs connect directly to the internal signals
+assign dbg_valid_o      = outport_valid_o;
+assign dbg_sample_idx_o = outport_idx_o;
+assign dbg_sample_o     = outport_data_o;
 
 wire          input_valid_w;
 wire [ 15:0]  input_data0_w;
@@ -76,15 +83,15 @@ u_input
     ,.inport_data_i(inport_data_i)
     ,.inport_idx_i(inport_idx_i)
     ,.inport_eob_i(inport_eob_i)
-    ,.inport_accept_o(inport_accept_o)
+    ,.ready_o(inport_accept_o)
 
-    ,.outport_valid_o(input_valid_w)
+    ,.v_o(input_valid_w)
     ,.outport_data0_o(input_data0_w)
     ,.outport_data1_o(input_data1_w)
     ,.outport_data2_o(input_data2_w)
     ,.outport_data3_o(input_data3_w)
     ,.outport_idx_o(input_idx_w)
-    ,.outport_ready_i(outport_accept_i)
+    ,.yumi_i(outport_accept_i)
 );
 
 wire          idct_x_valid_w;
@@ -133,15 +140,15 @@ u_transpose
     ,.inport_valid_i(idct_x_valid_w)
     ,.inport_data_i(idct_x_data_w)
     ,.inport_idx_i(idct_x_idx_w)
-    ,.inport_accept_o(idct_x_accept_w)
+    ,.ready_o(idct_x_accept_w)
 
-    ,.outport_valid_o(transpose_valid_w)
+    ,.v_o(transpose_valid_w)
     ,.outport_data0_o(transpose_data0_w)
     ,.outport_data1_o(transpose_data1_w)
     ,.outport_data2_o(transpose_data2_w)
     ,.outport_data3_o(transpose_data3_w)
     ,.outport_idx_o(transpose_idx_w)
-    ,.outport_ready_i(transpose_ready_w)
+    ,.yumi_i(transpose_ready_w)
 );
 
 jpeg_idct_y
@@ -170,7 +177,6 @@ jpeg_idct_fifo
 #(
      .WIDTH(32)
     ,.DEPTH(8)
-    ,.ADDR_W(3)
 )
 u_id_fifo
 (
@@ -179,32 +185,12 @@ u_id_fifo
 
     ,.flush_i(img_start_i)
 
-    ,.push_i(inport_eob_i)
+    ,.valid_in_i(inport_eob_i)
     ,.data_in_i(inport_id_i)
-    ,.accept_o()
+    ,.ready_out_o()
 
-    ,.valid_o()
+    ,.valid_out_o()
     ,.data_out_o(outport_id_o)
-    ,.pop_i(outport_valid_o && outport_idx_o == 6'd63)
+    ,.ready_in_i(outport_valid_o && outport_idx_o == 6'd63)
 );
-
-`ifdef verilator
-function get_valid; /*verilator public*/
-begin
-    get_valid = outport_valid_o;
-end
-endfunction
-function [5:0] get_sample_idx; /*verilator public*/
-begin
-    get_sample_idx = outport_idx_o;
-end
-endfunction
-function [31:0] get_sample; /*verilator public*/
-begin
-    get_sample = outport_data_o;
-end
-endfunction
-`endif
-
-
 endmodule

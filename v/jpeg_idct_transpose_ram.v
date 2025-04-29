@@ -55,15 +55,15 @@ module jpeg_idct_transpose_ram
 // Mode: Read First
 //-----------------------------------------------------------------
 
-reg [31:0]   ram [31:0];
+logic [31:0]   ram [31:0];
 
 
-reg [31:0] ram_read0_q;
-reg [31:0] ram_read1_q;
+logic [31:0] ram_read0_q;
+logic [31:0] ram_read1_q;
 
 
 // Synchronous write
-always @ (posedge clk0_i)
+always_ff @ (posedge clk0_i)
 begin
     if (wr0_i)
         ram[addr0_i][31:0] <= data0_i[31:0];
@@ -71,7 +71,7 @@ begin
     ram_read0_q <= ram[addr0_i];
 end
 
-always @ (posedge clk1_i)
+always_ff @ (posedge clk1_i)
 begin
     if (wr1_i)
         ram[addr1_i][31:0] <= data1_i[31:0];
