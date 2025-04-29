@@ -50,13 +50,8 @@ module jpeg_idct_ram_dp
 
 
 
-//-----------------------------------------------------------------
-// Dual Port RAM
-// Mode: Read First
-//-----------------------------------------------------------------
-/* verilator lint_off MULTIDRIVEN */
-reg [15:0]   ram [63:0] /*verilator public*/;
-/* verilator lint_on MULTIDRIVEN */
+
+reg [15:0]   ram [63:0] 
 
 reg [15:0] ram_read0_q;
 reg [15:0] ram_read1_q;
