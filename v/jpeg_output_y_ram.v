@@ -227,7 +227,7 @@ logic [31:0] ram_read0_q;
 logic [31:0] ram_read1_q;
 
 // Synchronous write
-always_ff @ (posedge clk0_i)
+always @ (posedge clk0_i)
 begin
     if (wr0_i)
         ram[addr0_i] <= data0_i;
@@ -235,7 +235,7 @@ begin
     ram_read0_q <= ram[addr0_i];
 end
 
-always_ff @ (posedge clk1_i)
+always @ (posedge clk1_i)
 begin
     if (wr1_i)
         ram[addr1_i] <= data1_i;

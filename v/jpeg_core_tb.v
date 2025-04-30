@@ -35,6 +35,7 @@ module jpeg_core_tb;
 
   logic [63:0] rom_addr_li;
   logic [91:0] rom_data_lo;
+  logic jpeg_idle_o;
 
   logic tr_yumi_li, dut_yumi_li;
   bsg_fsb_node_trace_replay #(.ring_width_p(88)
@@ -88,7 +89,8 @@ module jpeg_core_tb;
 // Connecting the Trace_Replay module to our Design (DUT)
 // 88 bit trace inputs since we need to support 88 bit outputs (16*4 + 8*3)
 // Actual Input is 32 bits so the 92 bit trace will be <4 bit opcode>_<52 dummy data, ideally 0s>_<4 bit strobe>_<32 bit input data>
-    jpeg_core DUT #(.SUPPORT_WRITABLE_DHT(0)) (
+//Fixed Syntax error in jpeg_core_tb.v
+    jpeg_core DUT (   
     // Inputs
      .clk_i(clk),
      .rst_i(reset),
@@ -100,14 +102,14 @@ module jpeg_core_tb;
     // Outputs
      .inport_accept_o(dut_ready_lo),
      .outport_valid_o(dut_v_lo),
-     .outport_width_o(dut_data_lo[88:73]),
-     .outport_height_o(dut_data_lo[72:57]),
-     .outport_pixel_x_o(dut_data_lo[56:41]),
-     .outport_pixel_y_o(dut_data_lo[40:25]),
-     .outport_pixel_r_o(dut_data_lo[24:17]),
-     .outport_pixel_g_o(dut_data_lo[16:8]),
+     .outport_width_o(dut_data_lo[87:72]),
+     .outport_height_o(dut_data_lo[71:56]),
+     .outport_pixel_x_o(dut_data_lo[55:40]),
+     .outport_pixel_y_o(dut_data_lo[39:24]),
+     .outport_pixel_r_o(dut_data_lo[23:16]),
+     .outport_pixel_g_o(dut_data_lo[15:8]), // Fixed the bit width error
      .outport_pixel_b_o(dut_data_lo[7:0]),
-     .idle_o(dut_data_lo)
+     .idle_o(jpeg_idle_o)
     );
     
   always_ff @(negedge clk) 
