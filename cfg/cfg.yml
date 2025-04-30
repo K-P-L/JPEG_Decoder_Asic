@@ -2,6 +2,7 @@
 
 # Set top level for synthesis
 synthesis.inputs.top_module: "jpeg_core"
+sim.inputs.tb_name: "jpeg_core_tb"
 
 # Don't synthesize these gate-level netlist modules
 synthesis.inputs.preserve_modules: []

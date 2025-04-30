@@ -14,7 +14,7 @@ module jpeg_core_tb;
 
     /* Non-synth clock generator */
   logic clk;
-  bsg_nonsynth_clock_gen #(1000) clk_gen (clk);
+  bsg_nonsynth_clock_gen #(1000) clk_gen_1 (clk);
 
     /* Non-synth reset generator */
   logic reset;
@@ -37,15 +37,6 @@ module jpeg_core_tb;
   logic [91:0] rom_data_lo;
 
   logic tr_yumi_li, dut_yumi_li;
-
-  trace_rom #(.width_p(92),.addr_width_p(64))
-    ROM
-      (.addr_i( rom_addr_li )
-      ,.data_o( rom_data_lo )
-      );
- 
-
-
   bsg_fsb_node_trace_replay #(.ring_width_p(88)
                              ,.rom_addr_width_p(64) )
     trace_replay
@@ -76,11 +67,11 @@ module jpeg_core_tb;
       dut_data_r  <= dut_data_lo;
     end
 
-  always_ff @(negedge clk) 
-    begin
-      dut_yumi_li <= tr_ready_lo & dut_v_lo;
-    end
-
+  trace_rom #(.width_p(92),.addr_width_p(64))
+    ROM
+      (.addr_i( rom_addr_li )
+      ,.data_o( rom_data_lo )
+      );
 // Connecting the Trace_Replay module to our Design (DUT)
 // gcd DUT (
 //       .data_in_valid_i(tr_v_lo), 
@@ -119,6 +110,10 @@ module jpeg_core_tb;
      .idle_o(dut_data_lo)
     );
     
+  always_ff @(negedge clk) 
+    begin
+      dut_yumi_li <= tr_ready_lo & dut_v_lo;
+    end
 
 
 
