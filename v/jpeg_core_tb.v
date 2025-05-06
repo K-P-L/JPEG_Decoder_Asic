@@ -1,7 +1,7 @@
 // jpeg_core_tb.v
 //
 // This file contains the toplevel testbench for testing
-// this design. 
+// this design.
 //
 
 module jpeg_core_tb;
@@ -20,7 +20,7 @@ module jpeg_core_tb;
   logic reset;
   bsg_nonsynth_reset_gen #(.num_clocks_p(1),.reset_cycles_lo_p(5),. reset_cycles_hi_p(5))
     reset_gen
-      (.clk_i        ( clk )
+      (.clk_i         ( clk )
       ,.async_reset_o( reset )
       );
 
@@ -41,13 +41,13 @@ module jpeg_core_tb;
   bsg_fsb_node_trace_replay #(.ring_width_p(88)
                              ,.rom_addr_width_p(64) )
     trace_replay
-      ( .clk_i ( ~clk ) // Trace Replay should run no negative clock edge!
+      ( .clk_i ( ~clk ) // Trace Replay should run on negative clock edge!
       , .reset_i( reset )
       , .en_i( 1'b1 )
 
-      , .v_i    ( dut_v_r )
-      , .data_i ( {dut_data_r} ) //Appending the DUT output with 32 0s since the output is 32 bit but trace expects 64
-      , .ready_o( tr_ready_lo )
+      , .v_i   ( dut_v_r )
+      , .data_i ( dut_data_r ) // Connect 88-bit DUT output to 88-bit trace input
+      , .ready_o( tr_ready_lo ) // Trace replay ready to accept DUT output
 
       , .v_o   ( tr_v_lo )
       , .data_o( tr_data_lo )
@@ -60,7 +60,7 @@ module jpeg_core_tb;
       , .error_o()
       );
 
-  always_ff @(negedge clk) 
+  always_ff @(negedge clk)
     begin
       dut_ready_r <= dut_ready_lo;
       tr_yumi_li  <= dut_ready_r & tr_v_lo;
@@ -75,48 +75,47 @@ module jpeg_core_tb;
       );
 // Connecting the Trace_Replay module to our Design (DUT)
 // gcd DUT (
-//       .data_in_valid_i(tr_v_lo), 
+//       .data_in_valid_i(tr_v_lo),
 //       .A_i(tr_data_lo[63:32]),
 //       .B_i(tr_data_lo[31:0]),
 //       .ready_o(dut_ready_lo),
 //       .reset_i(reset),
 //       .clk_i(clk),
-//       .data_out_valid_o(dut_v_lo), 
-//       .data_out_o(dut_data_lo), 
+//       .data_out_valid_o(dut_v_lo),
+//       .data_out_o(dut_data_lo),
 //       .yumi_i(dut_yumi_li)
 //     );
 
 // Connecting the Trace_Replay module to our Design (DUT)
 // 88 bit trace inputs since we need to support 88 bit outputs (16*4 + 8*3)
-// Actual Input is 32 bits so the 92 bit trace will be <4 bit opcode>_<52 dummy data, ideally 0s>_<4 bit strobe>_<32 bit input data>
-//Fixed Syntax error in jpeg_core_tb.v
-    jpeg_core DUT (   
+// Actual Input is 32 bits so the 92 bit trace will be <4 bit opcode> <1 bit last> <4 bit strobe> <51 dummy data> <32 bit input data>
+// Fixed Syntax error in jpeg_core_tb.v and trace format
+    jpeg_core DUT (
     // Inputs
-     .clk_i(clk),
-     .rst_i(reset),
-     .inport_valid_i(tr_v_lo),
-     .inport_data_i(tr_data_lo[31:0]),
-     .inport_strb_i(tr_data_lo[32]),
-     .inport_last_i(tr_data_lo[33]),
-     .outport_accept_i(dut_yumi_li),
+      .clk_i(clk),
+      .rst_i(reset),
+      .inport_valid_i(tr_v_lo),
+      .inport_data_i(tr_data_lo[31:0]), // 32-bit data from trace [31:0]
+      .inport_strb_i(tr_data_lo[86:83]), // 4-bit strobe from trace [86:83]
+      .inport_last_i(tr_data_lo[87]), // 1-bit last from trace [87]
+      .outport_accept_i(dut_yumi_li),
     // Outputs
-     .inport_accept_o(dut_ready_lo),
-     .outport_valid_o(dut_v_lo),
-     .outport_width_o(dut_data_lo[87:72]),
-     .outport_height_o(dut_data_lo[71:56]),
-     .outport_pixel_x_o(dut_data_lo[55:40]),
-     .outport_pixel_y_o(dut_data_lo[39:24]),
-     .outport_pixel_r_o(dut_data_lo[23:16]),
-     .outport_pixel_g_o(dut_data_lo[15:8]), // Fixed the bit width error
-     .outport_pixel_b_o(dut_data_lo[7:0]),
-     .idle_o(jpeg_idle_o)
+      .inport_accept_o(dut_ready_lo),
+      .outport_valid_o(dut_v_lo),
+      .outport_width_o(dut_data_lo[87:72]),
+      .outport_height_o(dut_data_lo[71:56]),
+      .outport_pixel_x_o(dut_data_lo[55:40]),
+      .outport_pixel_y_o(dut_data_lo[39:24]),
+      .outport_pixel_r_o(dut_data_lo[23:16]),
+      .outport_pixel_g_o(dut_data_lo[15:8]),
+      .outport_pixel_b_o(dut_data_lo[7:0]),
+      .idle_o(jpeg_idle_o)
     );
-    
-  always_ff @(negedge clk) 
+
+  always_ff @(negedge clk)
     begin
       dut_yumi_li <= tr_ready_lo & dut_v_lo;
     end
-
 
 
 endmodule

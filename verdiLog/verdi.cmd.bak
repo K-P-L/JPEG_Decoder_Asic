@@ -6,122 +6,27 @@ debImport "-full64" "-dbdir" \
 debLoadSimResult \
            /home/vmetta/Documents/JPEG_Decoder_Asic/build/sim-rtl-rundir/waveform.fsdb
 wvCreateWindow
-srcHBSelect "jpeg_core_tb.DUT" -win $_nTrace1
-srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT" -delim "."
-srcHBSelect "jpeg_core_tb.DUT" -win $_nTrace1
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_input" -win $_nTrace1
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_input" -win $_nTrace1
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_input" -win $_nTrace1
-srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT.u_jpeg_input" -delim "."
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_input" -win $_nTrace1
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_input" -win $_nTrace1
-srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT.u_jpeg_input" -delim "."
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_input" -win $_nTrace1
-srcHBSelect "jpeg_core_tb" -win $_nTrace1
+wvSetCursor -win $_nWave2 9571.851199
 srcHBSelect "jpeg_core_tb.DUT" -win $_nTrace1
 srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT" -delim "."
 srcHBSelect "jpeg_core_tb.DUT" -win $_nTrace1
 srcHBSelect "jpeg_core_tb" -win $_nTrace1
-srcSignalView -on
-srcSignalViewSelect "jpeg_core_tb.DUT.inport_valid_i"
-srcSignalViewAddSelectedToWave -win $_nTrace1
-srcSignalViewSelect "jpeg_core_tb.DUT.inport_strb_i\[3:0\]"
-srcSignalViewAddSelectedToWave -win $_nTrace1
-srcSignalViewSelect "jpeg_core_tb.DUT.inport_valid_i"
-srcSignalViewAddSelectedToWave -win $_nTrace1
-srcSignalViewSelect "jpeg_core_tb.DUT.dqt_cfg_accept_w"
-srcSignalViewAddSelectedToWave -win $_nTrace1
-srcSignalViewSelect "jpeg_core_tb.DUT.lookup_table_w\[1:0\]"
-srcSignalViewAddSelectedToWave -win $_nTrace1
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_dht" -win $_nTrace1
-srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT.u_jpeg_dht" -delim "."
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_dht" -win $_nTrace1
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_dqt" -win $_nTrace1
-srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT.u_jpeg_dqt" -delim "."
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_dqt" -win $_nTrace1
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_dqt" -win $_nTrace1
-srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT.u_jpeg_dqt" -delim "."
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_dqt" -win $_nTrace1
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_input" -win $_nTrace1
-srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT.u_jpeg_input" -delim "."
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_input" -win $_nTrace1
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_dht" -win $_nTrace1
-srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT.u_jpeg_dht" -delim "."
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_dht" -win $_nTrace1
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_input" -win $_nTrace1
-srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT.u_jpeg_input" -delim "."
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_input" -win $_nTrace1
-srcSignalViewSelect "jpeg_core_tb.DUT.u_jpeg_input.img_dqt_table_y_o\[1:0\]"
-srcSignalViewAddSelectedToWave -win $_nTrace1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-srcSignalViewSelect "jpeg_core_tb.DUT.u_jpeg_input.dqt_cfg_data_o\[7:0\]"
-srcSignalViewAddSelectedToWave -win $_nTrace1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-srcHBSelect "jpeg_core_tb.DUT" -win $_nTrace1
-srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT" -delim "."
-srcHBSelect "jpeg_core_tb.DUT" -win $_nTrace1
+srcSetScope -win $_nTrace1 "jpeg_core_tb" -delim "."
+srcHBSelect "jpeg_core_tb" -win $_nTrace1
 srcHBSelect "jpeg_core_tb.DUT" -win $_nTrace1
 srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT" -delim "."
 srcHBSelect "jpeg_core_tb.DUT" -win $_nTrace1
 srcHBSelect "jpeg_core_tb.DUT.u_jpeg_input" -win $_nTrace1
 srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT.u_jpeg_input" -delim "."
 srcHBSelect "jpeg_core_tb.DUT.u_jpeg_input" -win $_nTrace1
-srcHBSelect "jpeg_core_tb.DUT.u_jpeg_input" -win $_nTrace1
-wvZoomAll -win $_nWave2
-wvCut -win $_nWave2
-wvSetPosition -win $_nWave2 {("G2" 0)}
-wvSetPosition -win $_nWave2 {("G1" 6)}
-wvSelectSignal -win $_nWave2 {( "G1" 2 )} 
-wvCut -win $_nWave2
-wvSetPosition -win $_nWave2 {("G2" 0)}
-wvSetPosition -win $_nWave2 {("G1" 5)}
-wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
-wvCut -win $_nWave2
-wvSetPosition -win $_nWave2 {("G2" 0)}
-wvSetPosition -win $_nWave2 {("G1" 4)}
-wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
-wvCut -win $_nWave2
-wvSetPosition -win $_nWave2 {("G2" 0)}
-wvSetPosition -win $_nWave2 {("G1" 3)}
-wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
-wvCut -win $_nWave2
-wvSetPosition -win $_nWave2 {("G2" 0)}
-wvSetPosition -win $_nWave2 {("G1" 2)}
-wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
-wvCut -win $_nWave2
-wvSetPosition -win $_nWave2 {("G2" 0)}
-wvSetPosition -win $_nWave2 {("G1" 1)}
-wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
-wvCut -win $_nWave2
-wvSetPosition -win $_nWave2 {("G2" 0)}
-wvSetPosition -win $_nWave2 {("G1" 0)}
-wvSelectGroup -win $_nWave2 {G1}
-wvCut -win $_nWave2
-wvSetPosition -win $_nWave2 {("G2" 0)}
-wvSelectGroup -win $_nWave2 {G2}
-wvCut -win $_nWave2
-wvSetPosition -win $_nWave2 {("G1" 0)}
-wvSelectGroup -win $_nWave2 {G1}
-srcSignalViewSelect "jpeg_core_tb.DUT.u_jpeg_input.clk_i"
+srcSignalViewSelect "jpeg_core_tb.DUT.u_jpeg_input.state_q\[4:0\]"
+srcSignalViewAddSelectedToWave -win $_nTrace1
+srcSignalViewSelect "jpeg_core_tb.DUT.u_jpeg_input.inport_data_i\[31:0\]"
+srcSignalViewAddSelectedToWave -win $_nTrace1
+srcSignalViewSelect "jpeg_core_tb.DUT.u_jpeg_input.next_state_r\[4:0\]"
+srcSignalViewAddSelectedToWave -win $_nTrace1
+srcSignalViewSelect "jpeg_core_tb.DUT.u_jpeg_input.data_valid_q"
+srcSignalViewAddSelectedToWave -win $_nTrace1
+srcSignalViewSelect "jpeg_core_tb.DUT.u_jpeg_input.idx_q\[5:0\]"
+srcSignalViewAddSelectedToWave -win $_nTrace1
+debExit
