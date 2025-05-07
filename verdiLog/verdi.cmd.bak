@@ -6,13 +6,6 @@ debImport "-full64" "-dbdir" \
 debLoadSimResult \
            /home/vmetta/Documents/JPEG_Decoder_Asic/build/sim-rtl-rundir/waveform.fsdb
 wvCreateWindow
-wvSetCursor -win $_nWave2 9571.851199
-srcHBSelect "jpeg_core_tb.DUT" -win $_nTrace1
-srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT" -delim "."
-srcHBSelect "jpeg_core_tb.DUT" -win $_nTrace1
-srcHBSelect "jpeg_core_tb" -win $_nTrace1
-srcSetScope -win $_nTrace1 "jpeg_core_tb" -delim "."
-srcHBSelect "jpeg_core_tb" -win $_nTrace1
 srcHBSelect "jpeg_core_tb.DUT" -win $_nTrace1
 srcSetScope -win $_nTrace1 "jpeg_core_tb.DUT" -delim "."
 srcHBSelect "jpeg_core_tb.DUT" -win $_nTrace1
@@ -23,10 +16,23 @@ srcSignalViewSelect "jpeg_core_tb.DUT.u_jpeg_input.state_q\[4:0\]"
 srcSignalViewAddSelectedToWave -win $_nTrace1
 srcSignalViewSelect "jpeg_core_tb.DUT.u_jpeg_input.inport_data_i\[31:0\]"
 srcSignalViewAddSelectedToWave -win $_nTrace1
-srcSignalViewSelect "jpeg_core_tb.DUT.u_jpeg_input.next_state_r\[4:0\]"
-srcSignalViewAddSelectedToWave -win $_nTrace1
-srcSignalViewSelect "jpeg_core_tb.DUT.u_jpeg_input.data_valid_q"
-srcSignalViewAddSelectedToWave -win $_nTrace1
-srcSignalViewSelect "jpeg_core_tb.DUT.u_jpeg_input.idx_q\[5:0\]"
-srcSignalViewAddSelectedToWave -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "inport_valid_i" -line 79 -pos 1 -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "last_b_q" -line 145 -pos 1 -win $_nTrace1
+wvCreateWindow
+wvSetPosition -win $_nWave3 {("G1" 0)}
+wvOpenFile -win $_nWave3 \
+           {/home/vmetta/Documents/JPEG_Decoder_Asic/build/sim-rtl-rundir/waveform.fsdb}
+srcAddSelectedToWave -clipboard -win $_nTrace1
+wvDrop -win $_nWave3
+wvTpfCloseForm -win $_nWave3
+wvGetSignalClose -win $_nWave3
+wvCloseWindow -win $_nWave3
+srcAddSelectedToWave -clipboard -win $_nTrace1
+wvDrop -win $_nWave2
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "data_r" -line 145 -pos 1 -win $_nTrace1
+srcAddSelectedToWave -clipboard -win $_nTrace1
+wvDrop -win $_nWave2
 debExit

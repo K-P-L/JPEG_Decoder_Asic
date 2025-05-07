@@ -26,15 +26,15 @@ fdb_campaign =
 fdb_tool = 
 [hb]
 postSimFile = /home/vmetta/Documents/JPEG_Decoder_Asic/build/sim-rtl-rundir/waveform.fsdb
-syncTime = 9571.851
-viewport = 403 148 900 700 0 0 230 898
+syncTime = 13469.597
+viewport = 0 27 1707 945 0 0 387 1705
 activeNode = "jpeg_core_tb.DUT.u_jpeg_input"
 activeScope = "jpeg_core_tb.DUT.u_jpeg_input"
 activeFile = "v/jpeg_input.v"
 interactiveMode = False
 viewType = Source
 simulatorMode = False
-sourceBeginLine = 406
+sourceBeginLine = 161
 baMode = False
 srcLineNum = True
 AutoWrap = True
@@ -55,7 +55,7 @@ SourceVerticalScrollLines = 1
 Scope1 = "jpeg_core_tb.DUT.u_jpeg_input"
 Scope2 = "jpeg_core_tb.DUT"
 Scope3 = "jpeg_core_tb"
-multipleSelection = 1 418 8 0 0
+multipleSelection = 1 178 2 0 0
 sdfCheckUndef = FALSE
 simFlow = FALSE
 [hb.design]
@@ -64,13 +64,13 @@ invokeDir = /home/vmetta/Documents/JPEG_Decoder_Asic
 [hb.sourceTab.1]
 scope = jpeg_core_tb.DUT.u_jpeg_input
 File = /home/vmetta/Documents/JPEG_Decoder_Asic/v/jpeg_input.v
-Line = 407
+Line = 162
 [nMemoryManager]
 WaveformFile = /home/vmetta/Documents/JPEG_Decoder_Asic/build/sim-rtl-rundir/waveform.fsdb
 UserActionNum = 0
 nMemWindowNum = 0
 [wave.0]
-viewPort = 0 25 900 256 100 65
+viewPort = 0 25 1707 413 203 65
 primaryWindow = TRUE
 SessionFile = /home/vmetta/Documents/JPEG_Decoder_Asic/verdiLog/novas_autosave.ses.wave.0
 displayGrid = FALSE

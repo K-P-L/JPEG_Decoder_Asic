@@ -2,7 +2,7 @@ Magic 271485
 Revision Verdi_Q-2020.03-SP2-8
 
 ; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
-viewPort 0 25 900 256 100 65
+viewPort 0 25 1707 413 203 65
 
 ; File list:
 ; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
@@ -16,8 +16,8 @@ signalSpacing 5
 
 ; windowTimeUnit is used for zoom, cursor & marker
 ; waveform viewport range
-zoom 5057.082749 17934.582749
-cursor 9571.85119887165
+zoom 23352.953423 43906.453423
+cursor 13469.59731068648
 marker 0.000000
 
 ; user define markers
@@ -25,7 +25,7 @@ marker 0.000000
 ; visible top row signal index
 top 0
 ; marker line index
-markerPos 5
+markerPos 11
 
 ; event list
 ; addEvent event_name event_expression
@@ -47,11 +47,17 @@ curSTATUS ByChange
 
 addGroup "G1"
 activeDirFile "" "/home/vmetta/Documents/JPEG_Decoder_Asic/build/sim-rtl-rundir/waveform.fsdb"
-addSignal -h 15 -UNSIGNED /jpeg_core_tb/DUT/u_jpeg_input/state_q[4:0]
+addSignal -h 15 /jpeg_core_tb/DUT/u_jpeg_input/clk_i
 addSignal -h 15 -holdScope inport_data_i[31:0]
+addSignal -expanded -h 15 -UNSIGNED -holdScope state_q[4:0]
+addSignal -h 15 -holdScope state_q[4]
+addSignal -h 15 -holdScope state_q[3]
+addSignal -h 15 -holdScope state_q[2]
+addSignal -h 15 -holdScope state_q[1]
+addSignal -h 15 -holdScope state_q[0]
+addSignal -h 15 -holdScope last_b_q[7:0]
+addSignal -h 15 -holdScope data_r[7:0]
 addSignal -h 15 -UNSIGNED -holdScope next_state_r[4:0]
-addSignal -h 15 -holdScope data_valid_q
-addSignal -h 15 -holdScope idx_q[5:0]
 addGroup "G2"
 
 ; getSignalForm Scope Hierarchy Status

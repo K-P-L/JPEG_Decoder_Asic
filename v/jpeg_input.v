@@ -377,7 +377,7 @@ always_ff @ (posedge clk_i)
 begin
     if (rst_i)
         data_valid_q <= 1'b0;
-    else if (inport_valid_i && data_yumi_i)
+    else if (inport_valid_i && data_yumi_i) // Fix me: revert back to original name.(data_yumi_i) 
         data_valid_q <= (state_q == STATE_IMG_DATA) && (inport_valid_i && ~token_pad_w && ~token_eoi_w);
     else if (state_q != STATE_IMG_DATA)
         data_valid_q <= 1'b0;
