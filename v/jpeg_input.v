@@ -271,7 +271,10 @@ begin
     STATE_SOF_DATA :
     begin
         if (inport_valid_i && inport_accept_w && length_q <= 16'd1)
-            next_state_r = STATE_ACTIVE;
+            if (token_sos_w)
+                next_state_r = STATE_IMG_LENH;
+            else
+                next_state_r = STATE_ACTIVE;
     end
     //-------------------------------------------------------------
     // DHT
@@ -348,7 +351,8 @@ begin
               state_q == STATE_DHT_DATA ||
               state_q == STATE_SOF_DATA ||
               state_q == STATE_IMG_SOS) && inport_valid_i && inport_accept_w)
-        length_q <= length_q - 16'd1;
+        // length_q <= length_q - 16'd1;
+        length_q <= {12'b0, length_q[3:0]} - 16'd1; //possible fix
 end
 
 //-----------------------------------------------------------------
