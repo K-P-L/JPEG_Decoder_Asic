@@ -394,8 +394,7 @@ begin
               state_q == STATE_DHT_DATA ||
               state_q == STATE_SOF_DATA ||
               state_q == STATE_IMG_SOS) && inport_valid_i && inport_accept_w)
-        //length_q <= length_q - 16'd1;
-        length_q <= {12'b0, length_q[3:0]} - 16'd1; //possible fix
+        length_q <= length_q - 16'd1;
     else if (state_q == STATE_DRI_LENH)
         length_q <= {data_r, 8'b0};
     else if (state_q == STATE_DRI_LENL)
@@ -408,7 +407,7 @@ end
 //-----------------------------------------------------------------
 assign dqt_cfg_v_o = (state_q == STATE_DQT_DATA) && inport_valid_i;
 assign dqt_cfg_data_o = data_r;
-assign dqt_cfg_last_o = inport_last_i || (length_q == 16'd1);
+assign dqt_cfg_last_o = inport_last_i || (state_q == STATE_DQT_DATA) && (length_q == 16'd1);
 
 //-----------------------------------------------------------------
 // DHT
@@ -416,7 +415,7 @@ assign dqt_cfg_last_o = inport_last_i || (length_q == 16'd1);
 //-----------------------------------------------------------------
 assign dht_cfg_v_o = (state_q == STATE_DHT_DATA) && inport_valid_i;
 assign dht_cfg_data_o = data_r;
-assign dht_cfg_last_o = inport_last_i || (length_q == 16'd1);
+assign dht_cfg_last_o = inport_last_i || (state_q == STATE_DHT_DATA) && (length_q == 16'd1);
 
 //----------------------------------------------------------------
 // DRI

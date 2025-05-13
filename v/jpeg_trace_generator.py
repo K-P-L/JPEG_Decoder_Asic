@@ -17,7 +17,7 @@ def binary_to_trace(input_file, output_file):
         # Process each line of binary data
         for i, line in enumerate(lines):
             # Clean up the line (remove whitespace)
-            binary_data = ''.join(line.strip().split())
+            binary_data = ''.join(line.strip().split()[::-1])
             
             # Make sure we have 32 bits
             if len(binary_data) != 32:
