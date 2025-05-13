@@ -46,7 +46,8 @@ module jpeg_mcu_proc
     ,input  logic [  4:0]   lookup_width_i
     ,input  logic [  7:0]   lookup_value_i
     ,input  logic           yumi_i              // YUMI input signal (replaces outport_blk_space_i)
-
+    ,input logic [15:0]     dri_value_i
+    ,input logic            dri_valid_i
     // Outputs
     ,output logic [  5:0]   inport_pop_o        // Special signal - indicates bits to consume
     ,output logic           lookup_req_o        // Request to lookup table
@@ -120,7 +121,8 @@ typedef enum logic [4:0] {
     STATE_HUFF_LOOKUP = 5'd2,
     STATE_OUTPUT      = 5'd3,
     STATE_EOB         = 5'd4,
-    STATE_EOF         = 5'd5
+    STATE_EOF         = 5'd5,
+    STATE_RESTART     = 5'd6
 } state_e;
 
 state_e state_q;
@@ -166,6 +168,20 @@ begin
         if (!img_end_i)
             next_state_r = STATE_IDLE;
     end
+    STATE_RESTART: begin
+        // Wait for valid input and a correct marker
+        if (inport_valid_i) begin
+            if (inport_data_i[31:24] == 8'hFF && (inport_data_i[23:16] & 8'hF8) == 8'hD0) begin
+                // Found a valid restart marker: 0xFF Dn (n = 0-7)
+                next_state_r = STATE_IDLE; // or STATE_FETCH_WORD //fixme - kaulad
+            end
+            else begin
+                // Unexpected data, keep skipping until we find marker
+                next_state_r = STATE_RESTART;
+            end
+        end
+    end
+
     default : ;
     endcase
 
@@ -176,10 +192,32 @@ end
 assign start_block_w = (state_q == STATE_IDLE && next_state_r != STATE_IDLE);
 assign next_block_w  = (state_q == STATE_EOB);
 
+//-----------------------------------------
+//Internal counter for DRI (Restart Markers)
+//-----------------------------------------
+logic [15:0] mcu_count_q;
+
+always_ff @ (posedge clk_i)
+begin
+    if (rst_i || img_start_i)
+        mcu_count_q <= 16'd0;
+    else if (state_q == STATE_EOB && dri_valid_i)
+        mcu_count_q <= mcu_count_q + 16'd1;
+end
+
+//--------------------------------------------
+//Detecting Restart Condition
+//--------------------------------------------
+logic restart_marker_w;
+assign restart_marker_w = (dri_value_i != 16'd0) && (mcu_count_q == dri_value_i) && dri_valid_i;
+
+
 always_ff @ (posedge clk_i)
 begin
     if (rst_i)
         state_q <= STATE_IDLE;
+    else if (restart_marker_w)
+        state_q <= STATE_RESTART;
     else
         state_q <= next_state_r;
 end
@@ -195,6 +233,9 @@ begin
     else if (state_q == STATE_OUTPUT)
         first_q <= 1'b0;
 end
+
+
+
 
 //-----------------------------------------------------------------
 // Huffman code lookup stash
@@ -274,6 +315,10 @@ begin
         else
             pop_bits_r = {1'b0, lookup_width_q} + coef_bits_w;
     end
+    STATE_RESTART: 
+    begin
+        pop_bits_r = 6'd16; // Pop 2 bytes from bitstream
+    end
     default: ;
     endcase
 end
@@ -338,16 +383,11 @@ assign comp_idx_w = block_type_w;
 always_ff @ (posedge clk_i)
 begin
 
-    if (rst_i)
+    if (rst_i || img_start_i || restart_marker_w)
       begin
         for (int i = 0; i < 4; i = i + 1)
             prev_dc_coeff_q[i] <= 16'b0;
       end
-    else if (img_start_i) //FIXME: kaulad - Make a part of if condition at line 313
-     begin
-        for (int i = 0; i < 4; i = i + 1)
-            prev_dc_coeff_q[i] <= 16'b0;
-     end
     else if (state_q == STATE_EOB)
         prev_dc_coeff_q[comp_idx_w] <= dc_coeff_q;
 end
@@ -394,9 +434,7 @@ end
 //-----------------------------------------------------------------
 always_ff @ (posedge clk_i)
 begin
-    if (rst_i)
-        coeff_idx_q <= 8'b0;
-    else if (state_q == STATE_EOB || img_start_i)
+    if (rst_i || state_q == STATE_EOB || img_start_i || restart_marker_w)
         coeff_idx_q <= 8'b0;
     else if (state_q == STATE_FETCH_WORD && !first_q && inport_valid_i)
         coeff_idx_q <= coeff_idx_q + 8'd1;

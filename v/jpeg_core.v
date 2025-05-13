@@ -109,6 +109,8 @@ wire           bb_outport_valid_w;
 wire           bb_inport_accept_w;
 wire  [ 31:0]  bb_outport_data_w;
 wire           dqt_cfg_last_w;
+wire  [ 15:0]  restart_val_w;
+wire           restart_valid_w;
 
 
 jpeg_input
@@ -144,6 +146,8 @@ u_jpeg_input
     ,.data_v_o(bb_inport_valid_w)
     ,.data_data_o(bb_inport_data_w)
     ,.data_last_o(bb_inport_last_w)
+    ,.restart_val_o(restart_val_w)
+    ,.restart_valid_o(restart_valid_w)
 );
 
 
@@ -297,6 +301,8 @@ u_jpeg_mcu_proc
     ,.lookup_width_i(lookup_width_w)
     ,.lookup_value_i(lookup_value_w)
     ,.yumi_i(dqt_inport_blk_space_w)
+    ,.dri_value_i(restart_val_w)
+    ,.dri_valid_i(restart_valid_w)
 
     // Outputs
     ,.inport_pop_o(bb_outport_pop_w)

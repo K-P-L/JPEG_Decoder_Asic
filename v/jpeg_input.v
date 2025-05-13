@@ -61,6 +61,8 @@ module jpeg_input
     ,output logic           data_v_o            // Valid output signal (replaces data_valid_o)
     ,output logic [  7:0]   data_data_o
     ,output logic           data_last_o
+    ,output logic [ 15:0]   restart_val_o
+    ,output logic           restart_valid_o
 );
 
 logic inport_accept_w;
@@ -138,12 +140,13 @@ assign token_sof0_w = (last_b_q == 8'hFF && data_r == 8'hc0);
 assign token_dqt_w  = (last_b_q == 8'hFF && data_r == 8'hdb);
 assign token_dht_w  = (last_b_q == 8'hFF && data_r == 8'hc4);
 assign token_eoi_w  = (last_b_q == 8'hFF && data_r == 8'hd9);
+assign token_dri_w  = (last_b_q == 8'hFF && data_r == 8'hdd);
 assign token_sos_w  = (last_b_q == 8'hFF && data_r == 8'hda);
 assign token_pad_w  = (last_b_q == 8'hFF && data_r == 8'h00);
 
+
 // Unsupported
 assign token_sof2_w = (last_b_q == 8'hFF && data_r == 8'hc2);
-assign token_dri_w  = (last_b_q == 8'hFF && data_r == 8'hdd);
 assign token_rst_w  = (last_b_q == 8'hFF && data_r >= 8'hd0 && data_r <= 8'hd7);
 assign token_app_w  = (last_b_q == 8'hFF && data_r >= 8'he0 && data_r <= 8'hef);
 assign token_com_w  = (last_b_q == 8'hFF && data_r == 8'hfe);
@@ -170,7 +173,12 @@ typedef enum logic [4:0] {
     STATE_IMG_DATA    = 5'd14,   // Compressed data streaming
     STATE_SOF_LENH    = 5'd15,   // SOF: length high byte
     STATE_SOF_LENL    = 5'd16,   // SOF: length low byte
-    STATE_SOF_DATA    = 5'd17    // SOF parameter extraction
+    STATE_SOF_DATA    = 5'd17,    // SOF parameter extraction
+    STATE_DRI_LENH    = 5'd18,   // DRI: length high byte
+    STATE_DRI_LENL    = 5'd19,   // DRI: length low byte
+    STATE_DRI_DATA1   = 5'd20,   // DRI: first byte of interval
+    STATE_DRI_DATA2   = 5'd21    // DRI: second byte of interval
+
 } state_e;
 
 state_e state_q;
@@ -202,13 +210,14 @@ begin
             next_state_r = STATE_DQT_LENH;
         else if (token_dht_w)
             next_state_r = STATE_DHT_LENH;
+        else if (token_dri_w)
+            next_state_r = STATE_DRI_LENH;
         else if (token_sos_w)
             next_state_r = STATE_IMG_LENH;
         else if (token_sof0_w)
             next_state_r = STATE_SOF_LENH;
         // Unsupported
         else if (token_sof2_w ||
-                 token_dri_w ||
                  token_rst_w ||
                  token_app_w ||
                  token_com_w)
@@ -295,6 +304,32 @@ begin
             next_state_r = STATE_ACTIVE;
     end
     //-------------------------------------------------------------
+    // DRI
+    //-------------------------------------------------------------
+    STATE_DRI_LENH:
+    begin
+        if (inport_valid_i)
+            next_state_r = STATE_DRI_LENL;
+    end
+
+    STATE_DRI_LENL:
+    begin
+        if (inport_valid_i)
+            next_state_r = STATE_DRI_DATA1;
+    end
+
+    STATE_DRI_DATA1:
+    begin
+        if (inport_valid_i)
+            next_state_r = STATE_DRI_DATA2;
+    end
+
+    STATE_DRI_DATA2:
+    begin
+        if (inport_valid_i)
+            next_state_r = STATE_ACTIVE;
+    end
+    //-------------------------------------------------------------
     // Unsupported sections - skip
     //-------------------------------------------------------------
     STATE_UXP_LENH :
@@ -321,12 +356,20 @@ begin
         next_state_r = STATE_IDLE;
 end
 
-always_ff @ (posedge clk_i)
+always_ff @(posedge clk_i)
 begin
-    if (rst_i)
-        state_q <= STATE_IDLE;
+    if (rst_i | token_eoi_w)
+        begin
+            state_q <= STATE_IDLE;
+            restart_valid_o <= 0;
+        end
     else
-        state_q <= next_state_r;
+        begin
+            if (state_q == STATE_DRI_DATA2)
+                restart_valid_o <= 1;
+            state_q <= next_state_r;
+        end
+        
 end
 
 //-----------------------------------------------------------------
@@ -351,8 +394,12 @@ begin
               state_q == STATE_DHT_DATA ||
               state_q == STATE_SOF_DATA ||
               state_q == STATE_IMG_SOS) && inport_valid_i && inport_accept_w)
-        // length_q <= length_q - 16'd1;
+        //length_q <= length_q - 16'd1;
         length_q <= {12'b0, length_q[3:0]} - 16'd1; //possible fix
+    else if (state_q == STATE_DRI_LENH)
+        length_q <= {data_r, 8'b0};
+    else if (state_q == STATE_DRI_LENL)
+        length_q <= {8'b0, data_r} - 16'd2;
 end
 
 //-----------------------------------------------------------------
@@ -370,6 +417,23 @@ assign dqt_cfg_last_o = inport_last_i || (length_q == 16'd1);
 assign dht_cfg_v_o = (state_q == STATE_DHT_DATA) && inport_valid_i;
 assign dht_cfg_data_o = data_r;
 assign dht_cfg_last_o = inport_last_i || (length_q == 16'd1);
+
+//----------------------------------------------------------------
+// DRI
+// Logic for DRI
+//----------------------------------------------------------------
+logic [15:0] restart_interval_q;
+always_ff @(posedge clk_i) 
+begin
+    if (rst_i)
+        restart_interval_q <= 16'b0;
+    else if (state_q == STATE_DRI_DATA1 && inport_valid_i)
+        restart_interval_q[15:8] <= data_r;
+    else if (state_q == STATE_DRI_DATA2 && inport_valid_i)
+        restart_interval_q[7:0] <= data_r;
+end
+
+assign restart_val_o = restart_interval_q;
 
 //-----------------------------------------------------------------
 // Image data
