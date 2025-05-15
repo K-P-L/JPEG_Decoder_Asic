@@ -34,27 +34,29 @@ module jpeg_output_fifo
 // Params
 //-----------------------------------------------------------------
 #(
-     parameter WIDTH            = 8,
-     parameter DEPTH            = 4,
-     parameter ADDR_W           = 2
+     parameter WIDTH            = 8
+    ,parameter DEPTH            = 4
+    ,parameter ADDR_W           = 2
 )
 //-----------------------------------------------------------------
 // Ports
 //-----------------------------------------------------------------
 (
     // Inputs
-     input  logic                clk_i
-    ,input  logic                rst_i
-    ,input  logic [WIDTH-1:0]    data_in_i
-    ,input  logic                push_i      // Valid input signal
-    ,input  logic                yumi_i      // YUMI input signal (replaces pop_i)
-    ,input  logic                flush_i
+     input           clk_i
+    ,input           rst_i
+    ,input  [WIDTH-1:0]  data_in_i
+    ,input           push_i
+    ,input           pop_i
+    ,input           flush_i
 
     // Outputs
-    ,output logic [WIDTH-1:0]    data_out_o
-    ,output logic                ready_o     // Ready output signal (replaces accept_o)
-    ,output logic                v_o         // Valid output signal (replaces valid_o)
+    ,output [WIDTH-1:0]  data_out_o
+    ,output          accept_o
+    ,output          valid_o
 );
+
+
 
 //-----------------------------------------------------------------
 // Local Params
@@ -64,62 +66,58 @@ localparam COUNT_W = ADDR_W + 1;
 //-----------------------------------------------------------------
 // Registers
 //-----------------------------------------------------------------
-// Synthesis attributes for RAM inference
-// synthesis attribute ram_style of ram_q is distributed
-logic [WIDTH-1:0]  ram_q[0:DEPTH-1];
-logic [ADDR_W-1:0] rd_ptr_q;
-logic [ADDR_W-1:0] wr_ptr_q;
-logic [COUNT_W-1:0] count_q;
+reg [WIDTH-1:0]   ram_q[DEPTH-1:0];
+reg [ADDR_W-1:0]  rd_ptr_q;
+reg [ADDR_W-1:0]  wr_ptr_q;
+reg [COUNT_W-1:0] count_q;
 
 //-----------------------------------------------------------------
 // Sequential
 //-----------------------------------------------------------------
-always_ff @ (posedge clk_i)
+always @ (posedge clk_i or posedge rst_i)
+if (rst_i)
 begin
-    if (rst_i)
+    count_q   <= {(COUNT_W) {1'b0}};
+    rd_ptr_q  <= {(ADDR_W) {1'b0}};
+    wr_ptr_q  <= {(ADDR_W) {1'b0}};
+end
+else if (flush_i)
+begin
+    count_q   <= {(COUNT_W) {1'b0}};
+    rd_ptr_q  <= {(ADDR_W) {1'b0}};
+    wr_ptr_q  <= {(ADDR_W) {1'b0}};
+end
+else
+begin
+    // Push
+    if (push_i & accept_o)
     begin
-        count_q   <= {(COUNT_W) {1'b0}};
-        rd_ptr_q  <= {(ADDR_W) {1'b0}};
-        wr_ptr_q  <= {(ADDR_W) {1'b0}};
+        ram_q[wr_ptr_q] <= data_in_i;
+        wr_ptr_q        <= wr_ptr_q + 1;
     end
-    else if (flush_i)
-    begin
-        count_q   <= {(COUNT_W) {1'b0}};
-        rd_ptr_q  <= {(ADDR_W) {1'b0}};
-        wr_ptr_q  <= {(ADDR_W) {1'b0}};
-    end
-    else
-    begin
-        // Push - when input valid and FIFO ready
-        if (push_i & ready_o)
-        begin
-            ram_q[wr_ptr_q] <= data_in_i;
-            wr_ptr_q        <= wr_ptr_q + 1'b1;
-        end
 
-        // Pop - when FIFO valid and downstream consumes (yumi)
-        if (yumi_i & v_o)
-            rd_ptr_q <= rd_ptr_q + 1'b1;
+    // Pop
+    if (pop_i & valid_o)
+        rd_ptr_q      <= rd_ptr_q + 1;
 
-        // Count up - push without pop
-        if ((push_i & ready_o) & ~(yumi_i & v_o))
-            count_q <= count_q + 1'b1;
-        // Count down - pop without push
-        else if (~(push_i & ready_o) & (yumi_i & v_o))
-            count_q <= count_q - 1'b1;
-    end
+    // Count up
+    if ((push_i & accept_o) & ~(pop_i & valid_o))
+        count_q <= count_q + 1;
+    // Count down
+    else if (~(push_i & accept_o) & (pop_i & valid_o))
+        count_q <= count_q - 1;
 end
 
 //-------------------------------------------------------------------
 // Combinatorial
 //-------------------------------------------------------------------
-// FIFO has valid data when count is non-zero
-assign v_o = (count_q != 0);
+/* verilator lint_off WIDTH */
+assign valid_o       = (count_q != 0);
+assign accept_o      = (count_q != DEPTH);
+/* verilator lint_on WIDTH */
 
-// FIFO can accept data when not full
-assign ready_o = (count_q != DEPTH);
+assign data_out_o    = ram_q[rd_ptr_q];
 
-// Output data from read pointer position
-assign data_out_o = ram_q[rd_ptr_q];
+
 
 endmodule

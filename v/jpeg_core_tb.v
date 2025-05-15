@@ -103,7 +103,7 @@ module jpeg_core_tb;
       .inport_data_i(tr_data_dummy_lo[31:0]), // 32-bit data from trace [31:0]
       .inport_strb_i(tr_data_dummy_lo[86:83]), // 4-bit strobe from trace [86:83]
       .inport_last_i(tr_data_dummy_lo[87]), // 1-bit last from trace [87]
-      .outport_accept_i(dut_yumi_dummy_li), // TODO : Take it out, put it in temp module.
+      .outport_accept_i(1), // Hardcoded to 1 instead of dut_yumi_dummy_li from trace, TODO: dump data
     // Outputs
       .inport_accept_o(dut_ready_lo),//
       .outport_valid_o(dut_v_lo),

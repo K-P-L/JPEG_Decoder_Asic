@@ -28,97 +28,91 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //-----------------------------------------------------------------
-
 module jpeg_dqt
 (
     // Inputs
-     input  logic           clk_i
-    ,input  logic           rst_i
-    ,input  logic           img_start_i
-    ,input  logic           img_end_i
-    ,input  logic [  1:0]   img_dqt_table_y_i
-    ,input  logic [  1:0]   img_dqt_table_cb_i
-    ,input  logic [  1:0]   img_dqt_table_cr_i
-    ,input  logic           cfg_valid_i
-    ,input  logic [  7:0]   cfg_data_i
-    ,input  logic           cfg_last_i
-    ,input  logic           inport_valid_i
-    ,input  logic [ 15:0]   inport_data_i
-    ,input  logic [  5:0]   inport_idx_i
-    ,input  logic [ 31:0]   inport_id_i
-    ,input  logic           inport_eob_i
-    ,input  logic           yumi_i            // Yumi input signal (replaces outport_accept_i)
+     input           clk_i
+    ,input           rst_i
+    ,input           img_start_i
+    ,input           img_end_i
+    ,input  [  1:0]  img_dqt_table_y_i
+    ,input  [  1:0]  img_dqt_table_cb_i
+    ,input  [  1:0]  img_dqt_table_cr_i
+    ,input           cfg_valid_i
+    ,input  [  7:0]  cfg_data_i
+    ,input           cfg_last_i
+    ,input           inport_valid_i
+    ,input  [ 15:0]  inport_data_i
+    ,input  [  5:0]  inport_idx_i
+    ,input  [ 31:0]  inport_id_i
+    ,input           inport_eob_i
+    ,input           outport_accept_i
 
     // Outputs
-    ,output logic           cfg_accept_o
-    ,output logic           ready_o           // Ready output signal (replaces inport_blk_space_o)
-    ,output logic           v_o               // Valid output signal (replaces outport_valid_o)
-    ,output logic [ 15:0]   outport_data_o
-    ,output logic [  5:0]   outport_idx_o
-    ,output logic [ 31:0]   outport_id_o
-    ,output logic           outport_eob_o
+    ,output          cfg_accept_o
+    ,output          inport_blk_space_o
+    ,output          outport_valid_o
+    ,output [ 15:0]  outport_data_o
+    ,output [  5:0]  outport_idx_o
+    ,output [ 31:0]  outport_id_o
+    ,output          outport_eob_o
 );
+
+
 
 //-----------------------------------------------------------------
 // DQT tables
 //-----------------------------------------------------------------
 // 4 * 256
-// synthesis attribute ram_style of table_dqt_q is block
-  logic [7:0] table_dqt_q[0:255];  //FIXME: kaulad - 8 * 256 instead of 4 * 256?
-
+logic  [7:0] table_dqt_q[0:255];
 
 //-----------------------------------------------------------------
 // Capture Index
 //-----------------------------------------------------------------
-logic [7:0] idx_q;
+logic  [7:0] idx_q;
 
-always_ff @ (posedge clk_i)
-begin
-    if (rst_i)
-        idx_q <= 8'hFF;
-    else if (cfg_valid_i && cfg_last_i && cfg_accept_o)
-        idx_q <= 8'hFF;
-    else if (cfg_valid_i && cfg_accept_o)
-        idx_q <= idx_q + 8'd1;
-end
+always @ (posedge clk_i )
+if (rst_i)
+    idx_q <= 8'hFF;
+else if (cfg_valid_i && cfg_last_i && cfg_accept_o)
+    idx_q <= 8'hFF;
+else if (cfg_valid_i && cfg_accept_o)
+    idx_q <= idx_q + 8'd1;
 
-assign cfg_accept_o = 1'b1; // FIXME: kaulad - Why do we have an always high signal, can be eliminated?
+assign cfg_accept_o = 1'b1;
 
 //-----------------------------------------------------------------
 // Write DQT table
 //-----------------------------------------------------------------
-logic [1:0] cfg_table_q;
+logic  [1:0] cfg_table_q;
+logic  [7:0] cfg_table_addr_w;
+logic  [7:0] table_rd_idx_w;
+logic        dqt_write_w;
+logic  [7:0] dqt_table_addr_w;
 
-always_ff @ (posedge clk_i)
-begin
-    if (rst_i)
-        cfg_table_q <= 2'b0;
-    else if (cfg_valid_i && cfg_accept_o && idx_q == 8'hFF)
-        cfg_table_q <= cfg_data_i[1:0];
-end
+always @ (posedge clk_i )
+if (rst_i)
+    cfg_table_q <= 2'b0;
+else if (cfg_valid_i && cfg_accept_o && idx_q == 8'hFF)
+    cfg_table_q <= cfg_data_i[1:0];
 
-logic [7:0] cfg_table_addr_w;
 assign cfg_table_addr_w = {cfg_table_q, idx_q[5:0]};
 
-logic [1:0] table_src_w[0:3];
+logic  [1:0] table_src_w[3:0];
 
-assign table_src_w[0] = img_dqt_table_y_i; //FIXME: kaulad - Why are we using 2 bits for YCbCr but only using LSB here
+assign table_src_w[0] = img_dqt_table_y_i;
 assign table_src_w[1] = img_dqt_table_cb_i;
 assign table_src_w[2] = img_dqt_table_cr_i;
-assign table_src_w[3] = 2'b0; // FIXME: kaulad - Why is there an extra table?
+assign table_src_w[3] = 2'b0;
 
-logic [7:0] table_rd_idx_w;
-assign table_rd_idx_w = {table_src_w[inport_id_i[31:30]], inport_idx_i};
+assign table_rd_idx_w   = {table_src_w[inport_id_i[31:30]], inport_idx_i};
 
-logic dqt_write_w;
-assign dqt_write_w = cfg_valid_i && cfg_accept_o && idx_q != 8'hFF;
+assign  dqt_write_w      = cfg_valid_i && cfg_accept_o && idx_q != 8'hFF;
+assign  dqt_table_addr_w = dqt_write_w ? cfg_table_addr_w : table_rd_idx_w;
 
-logic [7:0] dqt_table_addr_w;
-assign dqt_table_addr_w = dqt_write_w ? cfg_table_addr_w : table_rd_idx_w;
+logic  [7:0] dqt_entry_q;
 
-logic [7:0] dqt_entry_q;
-
-always_ff @ (posedge clk_i)
+always @ (posedge clk_i )
 begin
     if (dqt_write_w)
         table_dqt_q[dqt_table_addr_w] <= cfg_data_i;
@@ -129,9 +123,9 @@ end
 //-----------------------------------------------------------------
 // dezigzag: Reverse zigzag process
 //-----------------------------------------------------------------
-function logic [5:0] dezigzag;
-    input logic [5:0] idx;
-    logic [5:0] out_idx;
+function [5:0] dezigzag;
+    input [5:0] idx;
+    logic  [5:0] out_idx;
 begin
     case (idx)
     6'd0: out_idx = 6'd0;
@@ -207,108 +201,106 @@ endfunction
 //-----------------------------------------------------------------
 // Process dequantisation and dezigzag
 //-----------------------------------------------------------------
-logic        inport_valid_q;
-logic [15:0] inport_data_q;
-logic [5:0]  inport_idx_q;
-logic [31:0] inport_id_q;
-logic        inport_eob_q;
+logic         inport_valid_q;
+logic  [15:0] inport_data_q;
+logic  [5:0]  inport_idx_q;
+logic  [31:0] inport_id_q;
+logic         inport_eob_q;
 
-always_ff @ (posedge clk_i)
-begin
-    if (rst_i)
-        inport_valid_q <= 1'b0;
-    else
-        inport_valid_q <= inport_valid_i && ~img_start_i;
-end
+always @ (posedge clk_i )
+if (rst_i)
+    inport_valid_q <= 1'b0;
+else
+    inport_valid_q <= inport_valid_i && ~img_start_i;
 
-always_ff @ (posedge clk_i)
-begin
-    if (rst_i)
-        inport_idx_q <= 6'b0;
-    else
-        inport_idx_q <= inport_idx_i;
-end
+always @ (posedge clk_i )
+if (rst_i)
+    inport_idx_q <= 6'b0;
+else
+    inport_idx_q <= inport_idx_i;
 
-always_ff @ (posedge clk_i)
-begin
-    if (rst_i)
-        inport_data_q <= 16'b0;
-    else
-        inport_data_q <= inport_data_i;
-end
+always @ (posedge clk_i )
+if (rst_i)
+    inport_data_q <= 16'b0;
+else
+    inport_data_q <= inport_data_i;
 
-always_ff @ (posedge clk_i)
-begin
-    if (rst_i)
-        inport_id_q <= 32'b0;
-    else if (inport_valid_i)
-        inport_id_q <= inport_id_i;
-end
+always @ (posedge clk_i )
+if (rst_i)
+    inport_id_q <= 32'b0;
+else if (inport_valid_i)
+    inport_id_q <= inport_id_i;
 
-always_ff @ (posedge clk_i)
-begin
-    if (rst_i)
-        inport_eob_q <= 1'b0;
-    else
-        inport_eob_q <= inport_eob_i;
-end
+always @ (posedge clk_i )
+if (rst_i)
+    inport_eob_q <= 1'b0;
+else
+    inport_eob_q <= inport_eob_i;
 
 //-----------------------------------------------------------------
 // Output
 //-----------------------------------------------------------------
-logic               outport_valid_q;
-logic signed [15:0] outport_data_q;
-logic [5:0]         outport_idx_q;
-logic [31:0]        outport_id_q;
-logic               outport_eob_q;
+logic                outport_valid_q;
+logic  signed [15:0] outport_data_q;
+logic  [5:0]         outport_idx_q;
+logic  [31:0]        outport_id_q;
+logic                outport_eob_q;
 
-always_ff @ (posedge clk_i)
+always @ (posedge clk_i )
+if (rst_i)
+    outport_valid_q <= 1'b0;
+else
+    outport_valid_q <= inport_valid_q && ~img_start_i;
+
+always @ (posedge clk_i )
+if (rst_i)
+    outport_data_q <= 16'b0;
+else
+    outport_data_q <= inport_data_q * dqt_entry_q;
+
+always @ (posedge clk_i )
+if (rst_i)
+    outport_idx_q <= 6'b0;
+else
+    outport_idx_q <= dezigzag(inport_idx_q);
+
+always @ (posedge clk_i )
+if (rst_i)
+    outport_id_q <= 32'b0;
+else
+    outport_id_q <= inport_id_q;
+
+always @ (posedge clk_i )
+if (rst_i)
+    outport_eob_q <= 1'b0;
+else
+    outport_eob_q <= inport_eob_q;
+
+assign outport_valid_o = outport_valid_q;
+assign outport_data_o  = outport_data_q;
+assign outport_idx_o   = outport_idx_q;
+assign outport_id_o    = outport_id_q;    
+assign outport_eob_o   = outport_eob_q;
+
+// TODO: Perf
+assign inport_blk_space_o = outport_accept_i && !(outport_eob_q || inport_eob_q);
+
+`ifdef verilator
+function get_valid; /*verilator public*/
 begin
-    if (rst_i)
-        outport_valid_q <= 1'b0;
-    else
-        outport_valid_q <= inport_valid_q && ~img_start_i;
+    get_valid = outport_valid_o;
 end
-
-always_ff @ (posedge clk_i)
+endfunction
+function [15:0] get_sample; /*verilator public*/
 begin
-    if (rst_i)
-        outport_data_q <= 16'b0;
-    else
-        outport_data_q <= inport_data_q * dqt_entry_q;
+    get_sample = outport_data_o;
 end
-
-always_ff @ (posedge clk_i)
+endfunction
+function [5:0] get_sample_idx; /*verilator public*/
 begin
-    if (rst_i)
-        outport_idx_q <= 6'b0;
-    else
-        outport_idx_q <= dezigzag(inport_idx_q);
+    get_sample_idx = outport_idx_o;
 end
-
-always_ff @ (posedge clk_i)
-begin
-    if (rst_i)
-        outport_id_q <= 32'b0;
-    else
-        outport_id_q <= inport_id_q;
-end
-
-always_ff @ (posedge clk_i)
-begin
-    if (rst_i)
-        outport_eob_q <= 1'b0;
-    else
-        outport_eob_q <= inport_eob_q;
-end
-
-assign v_o = outport_valid_q;
-assign outport_data_o = outport_data_q;
-assign outport_idx_o = outport_idx_q;
-assign outport_id_o = outport_id_q;    
-assign outport_eob_o = outport_eob_q;
-
-// Yumi protocol: Only advance if data is consumed (yumi_i) or no data to consume (!v_o)
-assign ready_o = yumi_i || !v_o;
+endfunction
+`endif
 
 endmodule

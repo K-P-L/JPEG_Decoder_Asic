@@ -28,7 +28,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //-----------------------------------------------------------------
-
 module jpeg_core
 //-----------------------------------------------------------------
 // Params
@@ -123,12 +122,12 @@ u_jpeg_input
     ,.inport_data_i(inport_data_i)
     ,.inport_strb_i(inport_strb_i)
     ,.inport_last_i(inport_last_i)
-    ,.dqt_cfg_yumi_i(dqt_cfg_accept_w)
-    ,.dht_cfg_yumi_i(dht_cfg_accept_w)
-    ,.data_yumi_i(bb_inport_accept_w)
+    ,.dqt_cfg_accept_i(dqt_cfg_accept_w)
+    ,.dht_cfg_accept_i(dht_cfg_accept_w)
+    ,.data_accept_i(bb_inport_accept_w)
 
     // Outputs
-    ,.ready_o(inport_accept_o)
+    ,.inport_accept_o(inport_accept_o)
     ,.img_start_o(img_start_w)
     ,.img_end_o(img_end_w)
     ,.img_width_o(img_width_w)
@@ -137,13 +136,13 @@ u_jpeg_input
     ,.img_dqt_table_y_o(img_dqt_table_y_w)
     ,.img_dqt_table_cb_o(img_dqt_table_cb_w)
     ,.img_dqt_table_cr_o(img_dqt_table_cr_w)
-    ,.dqt_cfg_v_o(dqt_cfg_valid_w)
+    ,.dqt_cfg_valid_o(dqt_cfg_valid_w)
     ,.dqt_cfg_data_o(dqt_cfg_data_w)
     ,.dqt_cfg_last_o(dqt_cfg_last_w)
-    ,.dht_cfg_v_o(dht_cfg_valid_w)
+    ,.dht_cfg_valid_o(dht_cfg_valid_w)
     ,.dht_cfg_data_o(dht_cfg_data_w)
     ,.dht_cfg_last_o(dht_cfg_last_w)
-    ,.data_v_o(bb_inport_valid_w)
+    ,.data_valid_o(bb_inport_valid_w)
     ,.data_data_o(bb_inport_data_w)
     ,.data_last_o(bb_inport_last_w)
     ,.restart_val_o(restart_val_w)
@@ -218,12 +217,12 @@ u_jpeg_dqt
     ,.inport_idx_i(dqt_inport_idx_w)
     ,.inport_id_i(dqt_inport_id_w)
     ,.inport_eob_i(dqt_inport_eob_w)
-    ,.yumi_i(idct_inport_accept_w)
+    ,.outport_accept_i(idct_inport_accept_w)
 
     // Outputs
     ,.cfg_accept_o(dqt_cfg_accept_w)
-    ,.ready_o(dqt_inport_blk_space_w)
-    ,.v_o(idct_inport_valid_w)
+    ,.inport_blk_space_o(dqt_inport_blk_space_w)
+    ,.outport_valid_o(idct_inport_valid_w)
     ,.outport_data_o(idct_outport_data_w)
     ,.outport_idx_o(idct_inport_idx_w)
     ,.outport_id_o(idct_inport_id_w)
@@ -246,11 +245,11 @@ u_jpeg_output
     ,.inport_data_i(output_outport_data_w)
     ,.inport_idx_i(output_inport_idx_w)
     ,.inport_id_i(output_inport_id_w)
-    ,.yumi_i(outport_accept_i)
+    ,.outport_accept_i(outport_accept_i)
 
     // Outputs
-    ,.ready_o(output_inport_accept_w)
-    ,.v_o(outport_valid_o)
+    ,.inport_accept_o(output_inport_accept_w)
+    ,.outport_valid_o(outport_valid_o)
     ,.outport_width_o(outport_width_o)
     ,.outport_height_o(outport_height_o)
     ,.outport_pixel_x_o(outport_pixel_x_o)
@@ -273,11 +272,11 @@ u_jpeg_bitbuffer
     ,.inport_valid_i(bb_inport_valid_w)
     ,.inport_data_i(bb_inport_data_w)
     ,.inport_last_i(bb_inport_last_w)
-    ,.yumi_i(bb_outport_pop_w)
+    ,.outport_pop_i(bb_outport_pop_w)
 
     // Outputs
-    ,.ready_o(bb_inport_accept_w)
-    ,.v_o(bb_outport_valid_w)
+    ,.inport_accept_o(bb_inport_accept_w)
+    ,.outport_valid_o(bb_outport_valid_w)
     ,.outport_data_o(bb_outport_data_w)
     ,.outport_last_o(bb_outport_last_w)
 );
@@ -300,16 +299,16 @@ u_jpeg_mcu_proc
     ,.lookup_valid_i(lookup_valid_w)
     ,.lookup_width_i(lookup_width_w)
     ,.lookup_value_i(lookup_value_w)
-    ,.yumi_i(dqt_inport_blk_space_w)
+    ,.outport_blk_space_i(dqt_inport_blk_space_w)
     ,.dri_value_i(restart_val_w)
     ,.dri_valid_i(restart_valid_w)
-
+    
     // Outputs
     ,.inport_pop_o(bb_outport_pop_w)
     ,.lookup_req_o(lookup_req_w)
     ,.lookup_table_o(lookup_table_w)
     ,.lookup_input_o(lookup_input_w)
-    ,.v_o(dqt_inport_valid_w)
+    ,.outport_valid_o(dqt_inport_valid_w)
     ,.outport_data_o(dqt_outport_data_w)
     ,.outport_idx_o(dqt_inport_idx_w)
     ,.outport_id_o(dqt_inport_id_w)

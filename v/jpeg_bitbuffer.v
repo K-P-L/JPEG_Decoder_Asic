@@ -29,8 +29,6 @@
 // limitations under the License.
 //-----------------------------------------------------------------
 
-
-// TODO: kaulad - Potential for throughput improvement in the bitbuffer input, can we get 4 Bytes at a time?
 module jpeg_bitbuffer
 (
     // Inputs
@@ -41,44 +39,44 @@ module jpeg_bitbuffer
     ,input           inport_valid_i
     ,input  [  7:0]  inport_data_i
     ,input           inport_last_i
-    ,input  [  5:0]  yumi_i           // Replaces outport_pop_i - indicates bits consumed
+    ,input  [  5:0]  outport_pop_i
 
     // Outputs
-    ,output          ready_o          // Replaces inport_accept_o
-    ,output          v_o              // Replaces outport_valid_o
+    ,output          inport_accept_o
+    ,output          outport_valid_o
     ,output [ 31:0]  outport_data_o
     ,output          outport_last_o
 );
 
+
+
 //-----------------------------------------------------------------
 // Registers
 //-----------------------------------------------------------------
-// Memory elements
-logic [7:0] ram_q[0:7];    // 8x8-bit RAM array
-logic [5:0] rd_ptr_q;      // Read pointer
-logic [5:0] wr_ptr_q;      // Write pointer
-logic [6:0] count_q;       // Bit count
-logic       drain_q;       // Drain mode flag
+reg [7:0] ram_q[7:0];
+reg [5:0] rd_ptr_q;
+reg [5:0] wr_ptr_q;
+reg [6:0] count_q;
+reg       drain_q;
 
 //-----------------------------------------------------------------
 // Input side FIFO
-// FIXME: kaulad - Not a good verilog coding practice?
 //-----------------------------------------------------------------
-logic [6:0] count_r; 
-always_comb
+reg [6:0] count_r; 
+always @ *
 begin
     count_r = count_q;
 
     // Count up
-    if (inport_valid_i && ready_o)
+    if (inport_valid_i && inport_accept_o)
         count_r = count_r + 7'd8;
 
-    // Count down - only when data is valid AND consumed
-    if (v_o && (|yumi_i))
-        count_r = count_r - yumi_i;
+    // Count down
+    if (outport_valid_o && (|outport_pop_i))
+        count_r = count_r - outport_pop_i;
 end
 
-always_ff @ (posedge clk_i)
+always @ (posedge clk_i )
 if (rst_i)
 begin
     count_q   <= 7'b0;
@@ -86,7 +84,7 @@ begin
     wr_ptr_q  <= 6'b0;
     drain_q   <= 1'b0;
 end
-else if (img_start_i) // FIXME: kaulad - put in if as an OR statement at line 82
+else if (img_start_i)
 begin
     count_q   <= 7'b0;
     rd_ptr_q  <= 6'b0;
@@ -100,27 +98,27 @@ begin
         drain_q <= 1'b1;
 
     // Push
-    if (inport_valid_i && ready_o)
+    if (inport_valid_i && inport_accept_o)
     begin
         ram_q[wr_ptr_q[5:3]] <= inport_data_i;
         wr_ptr_q             <= wr_ptr_q + 6'd8;
     end
 
-    // Pop - only when data is valid AND consumed
-    if (v_o && (|yumi_i))
-        rd_ptr_q <= rd_ptr_q + yumi_i;
+    // Pop
+    if (outport_valid_o && (|outport_pop_i))
+        rd_ptr_q <= rd_ptr_q + outport_pop_i;
 
     count_q <= count_r;
 end
 
-assign ready_o = (count_q <= 7'd56);
+assign inport_accept_o = (count_q <= 7'd56);
 
 //-------------------------------------------------------------------
 // Output side FIFO
 //-------------------------------------------------------------------
-logic [39:0] fifo_data_r;
+reg [39:0] fifo_data_r;
 
-always_comb
+always @ *
 begin
     fifo_data_r = 40'b0;
 
@@ -136,32 +134,27 @@ begin
     endcase
 end
 
+wire [39:0] data_shifted_w = fifo_data_r << rd_ptr_q[2:0];
 
-logic [39:0] data_shifted_w;
-assign data_shifted_w = fifo_data_r << rd_ptr_q[2:0];
+assign outport_valid_o  = (count_q >= 7'd32) || (drain_q && count_q != 7'd0);
+assign outport_data_o   = data_shifted_w[39:8];
+assign outport_last_o   = 1'b0;
 
-assign v_o            = (count_q >= 7'd32) || (drain_q && count_q != 7'd0);
-assign outport_data_o = data_shifted_w[39:8];
-assign outport_last_o = 1'b0;
 
-// Comments: kaulad - Commented out below code for performance modelling.
+`ifdef verilator
+function get_valid; /*verilator public*/
+begin
+    get_valid = inport_valid_i && inport_accept_o;
+end
+endfunction
+function [7:0] get_data; /*verilator public*/
+begin
+    get_data = inport_data_i;
+end
+endfunction
+`endif
 
-// `ifdef verilator
-// function get_valid; /*verilator public*/
-// begin
-//     get_valid = inport_valid_i && inport_accept_o;
-// end
-// endfunction
-// function [7:0] get_data; /*verilator public*/
-// begin
-//     get_data = inport_data_i;
-// end
-// endfunction
-// `endif
 
-// Synthesis attributes for RAM optimization
-// synthesis attribute ram_style of ram_q is block
-// synthesis attribute ram_extract of ram_q is yes
 
 
 endmodule

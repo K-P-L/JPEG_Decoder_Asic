@@ -38,12 +38,12 @@ module jpeg_input
     ,input  logic [ 31:0]   inport_data_i
     ,input  logic [  3:0]   inport_strb_i
     ,input  logic           inport_last_i
-    ,input  logic           dqt_cfg_yumi_i      // Yumi input signal (replaces dqt_cfg_accept_i)
-    ,input  logic           dht_cfg_yumi_i      // Yumi input signal (replaces dht_cfg_accept_i)
-    ,input  logic           data_yumi_i         // Yumi input signal (replaces data_accept_i)
+    ,input  logic           dqt_cfg_accept_i 
+    ,input  logic           dht_cfg_accept_i
+    ,input  logic           data_accept_i
 
     // Outputs
-    ,output logic           ready_o             // Ready output signal (replaces inport_accept_o)
+    ,output logic           inport_accept_o
     ,output logic           img_start_o
     ,output logic           img_end_o
     ,output logic [ 15:0]   img_width_o
@@ -52,13 +52,13 @@ module jpeg_input
     ,output logic [  1:0]   img_dqt_table_y_o
     ,output logic [  1:0]   img_dqt_table_cb_o
     ,output logic [  1:0]   img_dqt_table_cr_o
-    ,output logic           dqt_cfg_v_o         // Valid output signal (replaces dqt_cfg_valid_o)
+    ,output logic           dqt_cfg_valid_o
     ,output logic [  7:0]   dqt_cfg_data_o
     ,output logic           dqt_cfg_last_o
-    ,output logic           dht_cfg_v_o         // Valid output signal (replaces dht_cfg_valid_o)
+    ,output logic           dht_cfg_valid_o
     ,output logic [  7:0]   dht_cfg_data_o
     ,output logic           dht_cfg_last_o
-    ,output logic           data_v_o            // Valid output signal (replaces data_valid_o)
+    ,output logic           data_valid_o
     ,output logic [  7:0]   data_data_o
     ,output logic           data_last_o
     ,output logic [ 15:0]   restart_val_o
@@ -405,7 +405,7 @@ end
 // DQT
 // Enable DQT Logic and tells it when it is supposed to be disabled
 //-----------------------------------------------------------------
-assign dqt_cfg_v_o = (state_q == STATE_DQT_DATA) && inport_valid_i;
+assign dqt_cfg_valid_o = (state_q == STATE_DQT_DATA) && inport_valid_i;
 assign dqt_cfg_data_o = data_r;
 assign dqt_cfg_last_o = inport_last_i || (state_q == STATE_DQT_DATA) && (length_q == 16'd1);
 
@@ -413,7 +413,7 @@ assign dqt_cfg_last_o = inport_last_i || (state_q == STATE_DQT_DATA) && (length_
 // DHT
 // Enable DHT Logic and tells it when it is supposed to be disabled
 //-----------------------------------------------------------------
-assign dht_cfg_v_o = (state_q == STATE_DHT_DATA) && inport_valid_i;
+assign dht_cfg_valid_o = (state_q == STATE_DHT_DATA) && inport_valid_i;
 assign dht_cfg_data_o = data_r;
 assign dht_cfg_last_o = inport_last_i || (state_q == STATE_DHT_DATA) && (length_q == 16'd1);
 
@@ -444,7 +444,7 @@ always_ff @ (posedge clk_i)
 begin
     if (rst_i)
         data_valid_q <= 1'b0;
-    else if (inport_valid_i && data_yumi_i) // Fix me: revert back to original name.(data_yumi_i) 
+    else if (inport_valid_i && data_accept_i) 
         data_valid_q <= (state_q == STATE_IMG_DATA) && (inport_valid_i && ~token_pad_w && ~token_eoi_w);
     else if (state_q != STATE_IMG_DATA)
         data_valid_q <= 1'b0;
@@ -454,11 +454,11 @@ always_ff @ (posedge clk_i)
 begin
     if (rst_i)
         data_data_q <= 8'b0;
-    else if (inport_valid_i && data_yumi_i)
+    else if (inport_valid_i && data_accept_i)
         data_data_q <= data_r;
 end
 
-assign data_v_o = data_valid_q && inport_valid_i && !token_eoi_w;
+assign data_valid_o = data_valid_q && inport_valid_i && !token_eoi_w;
 assign data_data_o = data_data_q;
 
 // NOTE: Last is delayed by one cycles (not qualified by data_v_o)
@@ -471,14 +471,14 @@ assign data_last_o = data_valid_q && inport_valid_i && token_eoi_w;
 logic last_byte_w;
 assign last_byte_w = (byte_idx_q == 2'd3) || inport_last_i;
 
-assign inport_accept_w = (state_q == STATE_DQT_DATA && dqt_cfg_yumi_i) ||
-                         (state_q == STATE_DHT_DATA && dht_cfg_yumi_i) ||
-                         (state_q == STATE_IMG_DATA && (data_yumi_i || token_pad_w)) ||
+assign inport_accept_w = (state_q == STATE_DQT_DATA && dqt_cfg_accept_i) ||
+                         (state_q == STATE_DHT_DATA && dht_cfg_accept_i) ||
+                         (state_q == STATE_IMG_DATA && (data_accept_i || token_pad_w)) ||
                          (state_q != STATE_DQT_DATA && 
                           state_q != STATE_DHT_DATA && 
                           state_q != STATE_IMG_DATA);
 
-assign ready_o = last_byte_w && inport_accept_w;
+assign inport_accept_o = last_byte_w && inport_accept_w;
 
 //-----------------------------------------------------------------
 // Capture Index

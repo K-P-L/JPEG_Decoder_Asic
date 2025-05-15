@@ -29,6 +29,7 @@
 // limitations under the License.
 //-----------------------------------------------------------------
 
+//Candidate for BSGMEM
 module jpeg_idct_transpose_ram
 (
     // Inputs
@@ -54,12 +55,12 @@ module jpeg_idct_transpose_ram
 // Dual Port RAM
 // Mode: Read First
 //-----------------------------------------------------------------
+/* verilator lint_off MULTIDRIVEN */
+reg [31:0]   ram [31:0] /*verilator public*/;
+/* verilator lint_on MULTIDRIVEN */
 
-logic [31:0]   ram [31:0];
-
-
-logic [31:0] ram_read0_q;
-logic [31:0] ram_read1_q;
+reg [31:0] ram_read0_q;
+reg [31:0] ram_read1_q;
 
 
 // Synchronous write

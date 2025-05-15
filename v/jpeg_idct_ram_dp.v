@@ -29,6 +29,8 @@
 // limitations under the License.
 //-----------------------------------------------------------------
 
+
+//Candidate for BSGMEM
 module jpeg_idct_ram_dp
 (
     // Inputs
@@ -50,11 +52,16 @@ module jpeg_idct_ram_dp
 
 
 
+//-----------------------------------------------------------------
+// Dual Port RAM
+// Mode: Read First
+//-----------------------------------------------------------------
+/* verilator lint_off MULTIDRIVEN */
+reg [15:0]   ram [63:0] /*verilator public*/;
+/* verilator lint_on MULTIDRIVEN */
 
-logic [15:0]   ram [63:0]; 
-
-logic [15:0] ram_read0_q;
-logic [15:0] ram_read1_q;
+reg [15:0] ram_read0_q;
+reg [15:0] ram_read1_q;
 
 
 // Synchronous write
@@ -77,7 +84,5 @@ end
 
 assign data0_o = ram_read0_q;
 assign data1_o = ram_read1_q;
-
-
 
 endmodule
