@@ -3,6 +3,7 @@ __pycache__/
 
 # Ignore build folders
 build/
+verdilog/
 
 # Ignore log files
 *.log
@@ -12,3 +13,6 @@ build/
 
 # Ignore Output Files
 *.json
+
+#Miscellanous
+novas*
