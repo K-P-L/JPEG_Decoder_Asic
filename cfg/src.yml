@@ -1,36 +1,36 @@
 # List of all Verilog source files to include in this build.
 # Used by both synthesis and RTL simulation.
 synthesis.inputs.input_files: [
-  "v/jpeg_core.v",
-  "v/jpeg_bitbuffer.v",
-  "v/jpeg_dht_std_cx_ac.v",
-  "v/jpeg_dht_std_cx_dc.v",
-  "v/jpeg_dht_std_y_ac.v",
-  "v/jpeg_dht_std_y_dc.v",
-  "v/jpeg_dht.v",
-  "v/jpeg_dqt.v",
-  "v/jpeg_idct_fifo.v",
-  "v/jpeg_idct_ram_dp.v",
-  "v/jpeg_idct_ram.v",
-  "v/jpeg_idct_transpose_ram.v",
-  "v/jpeg_idct_transpose.v",
-  "v/jpeg_idct_x.v",
-  "v/jpeg_idct_y.v",
-  "v/jpeg_idct.v",
-  "v/jpeg_input.v",
-  "v/jpeg_mcu_id.v",
-  "v/jpeg_mcu_proc.v",
-  "v/jpeg_output_cx_ram.v",
-  "v/jpeg_output_fifo.v",
-  "v/jpeg_output_y_ram.v",
-  "v/jpeg_output.v",
+  "sv/jpeg_core.sv",
+  "sv/jpeg_bitbuffer.sv",
+  "sv/jpeg_dht_std_cx_ac.sv",
+  "sv/jpeg_dht_std_cx_dc.sv",
+  "sv/jpeg_dht_std_y_ac.sv",
+  "sv/jpeg_dht_std_y_dc.sv",
+  "sv/jpeg_dht.sv",
+  "sv/jpeg_dqt.sv",
+  "sv/jpeg_idct_fifo.sv",
+  "sv/jpeg_idct_ram_dp.sv",
+  "sv/jpeg_idct_ram.sv",
+  "sv/jpeg_idct_transpose_ram.sv",
+  "sv/jpeg_idct_transpose.sv",
+  "sv/jpeg_idct_x.sv",
+  "sv/jpeg_idct_y.sv",
+  "sv/jpeg_idct.sv",
+  "sv/jpeg_input.sv",
+  "sv/jpeg_mcu_id.sv",
+  "sv/jpeg_mcu_proc.sv",
+  "sv/jpeg_output_cx_ram.sv",
+  "sv/jpeg_output_fifo.sv",
+  "sv/jpeg_output_y_ram.sv",
+  "sv/jpeg_output.sv",
 
 
   
   
 
   # TODO: Add any additional BSG files needed
-  "${bsg_root}/bsg_misc/bsg_defines.v",
+  "${bsg_root}/bsg_misc/bsg_defines.sv",
 
 
   
