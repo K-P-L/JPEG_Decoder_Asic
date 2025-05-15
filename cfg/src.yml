@@ -30,7 +30,7 @@ synthesis.inputs.input_files: [
   
 
   # TODO: Add any additional BSG files needed
-  "${bsg_root}/bsg_misc/bsg_defines.sv",
+  "${bsg_root}/bsg_misc/bsg_defines.v",
 
 
   
