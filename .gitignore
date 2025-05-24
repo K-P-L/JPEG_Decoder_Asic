@@ -3,7 +3,7 @@ __pycache__/
 
 # Ignore build folders
 build/
-verdilog/
+verdiLog/
 
 # Ignore log files
 *.log
