@@ -63,6 +63,18 @@ module jpeg_dqt
 //-----------------------------------------------------------------
 // DQT tables
 //-----------------------------------------------------------------
+// bsg_mem_1rw_sync #(parameter `BSG_INV_PARAM(8)
+//                           , parameter `BSG_INV_PARAM(256)
+// ) table_dqt_q_impl
+//    (.clk_i(clk_i)
+//     ,.reset_i(rst_i)
+//     ,.data_i(cfg_data_i)
+//     ,.addr_i(dqt_table_addr_w)
+//     , .v_i(1'b1)
+//     , .w_i(dqt_write_w)
+//     , .data_o(dqt_entry_q)
+//     );
+
 // 4 * 256
 logic  [7:0] table_dqt_q[0:255];
 

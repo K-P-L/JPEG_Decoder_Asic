@@ -682,6 +682,19 @@ begin
     // RAM for storing Huffman decode values
     //-----------------------------------------------------------------
     // LUT for decode values
+//      bsg_mem_1r1w_sync #(parameter `BSG_INV_PARAM(8)
+//                           , parameter `BSG_INV_PARAM(1024)
+//     ) memory_dht
+//    ( .clk_i(clk_i)
+//     ,.reset_i(rst_i)
+//     ,.w_v_i(alloc_entry_w)
+//     ,.w_data_i(cfg_data_i)
+//     ,.w_addr_i(next_ptr_q)
+//     ,.r_v_i(1'b1)
+//     , .r_addr_i(lookup_addr_r)
+//     , .r_data_o(data_value_q)
+//     );
+// FROM HERE
     logic [7:0]  ram[0:1023];
 
     always @ (posedge clk_i)
@@ -696,6 +709,8 @@ begin
     begin
         data_value_q <= ram[lookup_addr_r[9:0]];
     end
+
+//     TO HERE
 
     logic lookup_valid_q;
     always @ (posedge clk_i )

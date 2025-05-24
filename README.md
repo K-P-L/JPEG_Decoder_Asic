@@ -14,8 +14,4 @@ cd ..
 Make a fresh directory <YOURDIR> in which you can clone this repo.
 
 
-
-#To Dos:
-Setup runs
-Replace FPGA IPs
-Convert V to SV
+This is a temporary branch which is created to test logic with potential bsg ip replacements. 

@@ -56,6 +56,26 @@ module jpeg_idct_transpose_ram
 // Mode: Read First
 //-----------------------------------------------------------------
 /* verilator lint_off MULTIDRIVEN */
+// bsg_mem_2r2w_sync #(parameter `BSG_INV_PARAM(32)
+//                            , parameter `BSG_INV_PARAM(32)
+
+// ) jpeg_idct_trans_ram_mem
+//    (.clk_i(clk_i)
+//     , .reset_i(rst_i)
+
+//     , .a_v_i(1'b1)
+//     , .a_addr_i(addr0_i)
+//     , .a_data_i(data0_i)
+//     ,.a_w_i(wr0_i)
+//     , .b_v_i(1'b1)
+//     , .b_addr_i(addr1_i)
+//     , .b_data_i(data1_i)
+//     ,.b_w_i(wr1_i)
+
+//     // currently unused
+//     , .a_data_o(data0_o)
+//     , .b_data_o(data1_o)
+//     );
 reg [31:0]   ram [31:0] /*verilator public*/;
 /* verilator lint_on MULTIDRIVEN */
 

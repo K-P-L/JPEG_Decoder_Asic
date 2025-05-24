@@ -207,7 +207,26 @@ module jpeg_output_y_ram_ram_dp_512_9
     ,output [ 31:0]  data0_o
     ,output [ 31:0]  data1_o
 );
+// bsg_mem_2r2w_sync #(parameter `BSG_INV_PARAM(32)
+//                            , parameter `BSG_INV_PARAM(512)
 
+// ) jpeg_idct_ram_dp_mem
+//    (.clk_i(clk_i)
+//     , .reset_i(rst_i)
+
+//     , .a_v_i(1'b1)
+//     , .a_addr_i(addr0_i)
+//     , .a_data_i(data0_i)
+//     ,.a_w_i(wr0_i)
+//     , .b_v_i(1'b1)
+//     , .b_addr_i(addr1_i)
+//     , .b_data_i(data1_i)
+//     ,.b_w_i(wr1_i)
+
+//     // currently unused
+//     , .a_data_o(data0_o)
+//     , .b_data_o(data1_o)
+//     );
 /* verilator lint_off MULTIDRIVEN */
 reg [31:0]   ram [511:0] /*verilator public*/;
 /* verilator lint_on MULTIDRIVEN */
