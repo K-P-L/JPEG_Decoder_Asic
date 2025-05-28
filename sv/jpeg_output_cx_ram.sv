@@ -432,10 +432,10 @@ jpeg_output_cx_ram_ram_dp_256_8
 u_ram
 (
     // Inputs
-    .clk0_i(clk_i),
-    .rst0_i(rst_i),
-    .clk1_i(clk_i),
-    .rst1_i(rst_i),
+    .clk_i(clk_i),
+    .rst_i(rst_i),
+    // .clk1_i(clk_i),
+    // .rst1_i(rst_i),
 
     // Write side
     .addr0_i({wr_ptr_q[7:6], wr_idx_i}),
@@ -488,13 +488,13 @@ endmodule
 module jpeg_output_cx_ram_ram_dp_256_8
 (
     // Inputs
-     input           clk0_i
-    ,input           rst0_i
+     input           clk_i
+    ,input           rst_i
     ,input  [ 7:0]  addr0_i
     ,input  [ 31:0]  data0_i
     ,input           wr0_i
-    ,input           clk1_i
-    ,input           rst1_i
+    // ,input           clk1_i
+    // ,input           rst1_i
     ,input  [ 7:0]  addr1_i
     ,input  [ 31:0]  data1_i
     ,input           wr1_i
@@ -503,10 +503,37 @@ module jpeg_output_cx_ram_ram_dp_256_8
     ,output [ 31:0]  data0_o
     ,output [ 31:0]  data1_o
 );
-// bsg_mem_2r2w_sync #(parameter `BSG_INV_PARAM(32)
-//                            , parameter `BSG_INV_PARAM(256)
+    bsg_mem_1rw_sync #(.width_p(32)
+                          , .els_p(256)
+) jpeg_cx_mem1
+   (.clk_i(clk_i)
+    ,.reset_i(rst_i)
+    ,.data_i(data0_i)
+    ,.addr_i(addr0_i)
+    , .v_i(1'b1)
+    , .w_i(wr0_i)
+    , .data_o(data0_o)
+    );
 
-// ) jpeg_idct_ram_dp_mem
+        bsg_mem_1rw_sync #(.width_p(32)
+                          , .els_p(256)
+) jpeg_cx_mem2
+   (.clk_i(clk_i)
+    ,.reset_i(rst_i)
+    ,.data_i(data1_i)
+    ,.addr_i(addr1_i)
+    , .v_i(1'b1)
+    , .w_i(wr1_i)
+    , .data_o(data1_o)
+    );
+
+
+
+// bsg_mem_2rw_sync #(.width_p(32)
+//                            , .els_p(256), .read_write_same_addr_p(1)  // Allow same addr read/write
+//                   , .disable_collision_warning_p(1)  // Disable warnings
+
+// ) jpeg_outpu_cx_ram_mem
 //    (.clk_i(clk_i)
 //     , .reset_i(rst_i)
 
@@ -524,31 +551,31 @@ module jpeg_output_cx_ram_ram_dp_256_8
 //     , .b_data_o(data1_o)
 //     );
 /* verilator lint_off MULTIDRIVEN */
-reg [31:0]   ram [255:0] /*verilator public*/;
-/* verilator lint_on MULTIDRIVEN */
+// reg [31:0]   ram [255:0] /*verilator public*/;
+// /* verilator lint_on MULTIDRIVEN */
 
-reg [31:0] ram_read0_q;
-reg [31:0] ram_read1_q;
+// reg [31:0] ram_read0_q;
+// reg [31:0] ram_read1_q;
 
-// Synchronous write
-always @ (posedge clk0_i)
-begin
-    if (wr0_i)
-        ram[addr0_i] <= data0_i;
+// // Synchronous write
+// always @ (posedge clk0_i)
+// begin
+//     if (wr0_i)
+//         ram[addr0_i] <= data0_i;
 
-    ram_read0_q <= ram[addr0_i];
-end
+//     ram_read0_q <= ram[addr0_i];
+// end
 
-always @ (posedge clk1_i)
-begin
-    if (wr1_i)
-        ram[addr1_i] <= data1_i;
+// always @ (posedge clk1_i)
+// begin
+//     if (wr1_i)
+//         ram[addr1_i] <= data1_i;
 
-    ram_read1_q <= ram[addr1_i];
-end
+//     ram_read1_q <= ram[addr1_i];
+// end
 
-assign data0_o = ram_read0_q;
-assign data1_o = ram_read1_q;
+// assign data0_o = ram_read0_q;
+// assign data1_o = ram_read1_q;
 
 
 

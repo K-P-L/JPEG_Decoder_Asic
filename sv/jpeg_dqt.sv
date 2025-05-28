@@ -58,25 +58,31 @@ module jpeg_dqt
     ,output          outport_eob_o
 );
 
+logic  [1:0] cfg_table_q;
+logic  [7:0] cfg_table_addr_w;
+logic  [7:0] table_rd_idx_w;
+logic        dqt_write_w;
+logic  [7:0] dqt_table_addr_w;
 
 
 //-----------------------------------------------------------------
 // DQT tables
 //-----------------------------------------------------------------
-// bsg_mem_1rw_sync #(parameter `BSG_INV_PARAM(8)
-//                           , parameter `BSG_INV_PARAM(256)
-// ) table_dqt_q_impl
-//    (.clk_i(clk_i)
-//     ,.reset_i(rst_i)
-//     ,.data_i(cfg_data_i)
-//     ,.addr_i(dqt_table_addr_w)
-//     , .v_i(1'b1)
-//     , .w_i(dqt_write_w)
-//     , .data_o(dqt_entry_q)
-//     );
+logic  [7:0] dqt_entry_q;
+bsg_mem_1rw_sync #(.width_p(8)
+                          , .els_p(256)
+) table_dqt_q_impl
+   (.clk_i(clk_i)
+    ,.reset_i(rst_i)
+    ,.data_i(cfg_data_i)
+    ,.addr_i(dqt_table_addr_w)
+    , .v_i(1'b1)
+    , .w_i(dqt_write_w)
+    , .data_o(dqt_entry_q)
+    );
 
 // 4 * 256
-logic  [7:0] table_dqt_q[0:255];
+// logic  [7:0] table_dqt_q[0:255];
 
 //-----------------------------------------------------------------
 // Capture Index
@@ -96,11 +102,11 @@ assign cfg_accept_o = 1'b1;
 //-----------------------------------------------------------------
 // Write DQT table
 //-----------------------------------------------------------------
-logic  [1:0] cfg_table_q;
-logic  [7:0] cfg_table_addr_w;
-logic  [7:0] table_rd_idx_w;
-logic        dqt_write_w;
-logic  [7:0] dqt_table_addr_w;
+// logic  [1:0] cfg_table_q;
+// logic  [7:0] cfg_table_addr_w;
+// logic  [7:0] table_rd_idx_w;
+// logic        dqt_write_w;
+// logic  [7:0] dqt_table_addr_w;
 
 always @ (posedge clk_i )
 if (rst_i)
@@ -122,15 +128,15 @@ assign table_rd_idx_w   = {table_src_w[inport_id_i[31:30]], inport_idx_i};
 assign  dqt_write_w      = cfg_valid_i && cfg_accept_o && idx_q != 8'hFF;
 assign  dqt_table_addr_w = dqt_write_w ? cfg_table_addr_w : table_rd_idx_w;
 
-logic  [7:0] dqt_entry_q;
+// logic  [7:0] dqt_entry_q;
 
-always @ (posedge clk_i )
-begin
-    if (dqt_write_w)
-        table_dqt_q[dqt_table_addr_w] <= cfg_data_i;
+// always @ (posedge clk_i )
+// begin
+//     if (dqt_write_w)
+//         table_dqt_q[dqt_table_addr_w] <= cfg_data_i;
 
-    dqt_entry_q <= table_dqt_q[dqt_table_addr_w];
-end
+//     dqt_entry_q <= table_dqt_q[dqt_table_addr_w];
+// end
 
 //-----------------------------------------------------------------
 // dezigzag: Reverse zigzag process
