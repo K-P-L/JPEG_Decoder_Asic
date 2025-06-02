@@ -43,10 +43,10 @@ wire wr3_w = inport_valid_i && inport_accept_o && (inport_idx_i[2:0] == 3'd6 || 
 jpeg_idct_ram_dp
 u_ram0
 (
-     .clk_i(clk_i)
-    ,.rst_i(rst_i)
-    // ,.clk1_i(clk_i)
-    // ,.rst1_i(rst_i)
+     .clk0_i(clk_i)
+    ,.rst0_i(rst_i)
+    ,.clk1_i(clk_i)
+    ,.rst1_i(rst_i)
 
     ,.addr0_i(wr_ptr_w)
     ,.data0_i(inport_data_i)
@@ -62,10 +62,10 @@ u_ram0
 jpeg_idct_ram_dp
 u_ram1
 (
-     .clk_i(clk_i)
-    ,.rst_i(rst_i)
-    // ,.clk1_i(clk_i)
-    // ,.rst1_i(rst_i)
+     .clk0_i(clk_i)
+    ,.rst0_i(rst_i)
+    ,.clk1_i(clk_i)
+    ,.rst1_i(rst_i)
 
     ,.addr0_i(wr_ptr_w)
     ,.data0_i(inport_data_i)
@@ -81,10 +81,10 @@ u_ram1
 jpeg_idct_ram_dp
 u_ram2
 (
-     .clk_i(clk_i)
-    ,.rst_i(rst_i)
-    // ,.clk1_i(clk_i)
-    // ,.rst1_i(rst_i)
+     .clk0_i(clk_i)
+    ,.rst0_i(rst_i)
+    ,.clk1_i(clk_i)
+    ,.rst1_i(rst_i)
 
     ,.addr0_i(wr_ptr_w)
     ,.data0_i(inport_data_i)
@@ -100,10 +100,10 @@ u_ram2
 jpeg_idct_ram_dp
 u_ram3
 (
-     .clk_i(clk_i)
-    ,.rst_i(rst_i)
-    // ,.clk1_i(clk_i)
-    // ,.rst1_i(rst_i)
+     .clk0_i(clk_i)
+    ,.rst0_i(rst_i)
+    ,.clk1_i(clk_i)
+    ,.rst1_i(rst_i)
 
     ,.addr0_i(wr_ptr_w)
     ,.data0_i(inport_data_i)

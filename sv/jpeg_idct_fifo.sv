@@ -62,7 +62,19 @@ module jpeg_idct_fifo
 );
 
 
-
+// bsg_fifo_1r1w_small #(
+//     .width_p(WIDTH),    // 8 bits in your case
+//     .els_p(4)          // 4 elements depth - matches your DEPTH parameter
+// ) fifo (
+//     .clk_i(clk_i),
+//     .reset_i(rst_i | flush_i),  // Combine reset and flush
+//     .v_i(push_i),               // Direct mapping
+//     .data_i(data_in_i),         
+//     .ready_param_o(accept_o),         // Direct mapping
+//     .v_o(valid_o),              // Direct mapping
+//     .data_o(data_out_o),
+//     .yumi_i(pop_i & valid_o)    // Consumption signal
+// );
 //-----------------------------------------------------------------
 // Local Params
 //-----------------------------------------------------------------
