@@ -30,7 +30,21 @@ synthesis.inputs.input_files: [
   
 
   # TODO: Add any additional BSG files needed
-  "${bsg_root}/bsg_misc/bsg_defines.v",
+  "${bsg_root}/bsg_misc/bsg_defines.sv",
+  "${bsg_root}/bsg_mem/bsg_mem_1r1w_sync.sv",
+  "${bsg_root}/bsg_mem/bsg_mem_1r1w_sync_synth.sv",
+  "${bsg_root}/bsg_mem/bsg_mem_1r1w.sv",
+  "${bsg_root}/bsg_mem/bsg_mem_1r1w_synth.sv", 
+  "${bsg_root}/bsg_misc/bsg_dff.sv",
+  "${bsg_root}/bsg_misc/bsg_dff_en.sv",
+  "${bsg_root}/bsg_misc/bsg_dff_en_bypass.sv",
+  "${bsg_root}/bsg_mem/bsg_mem_1rw_sync.sv",
+  "${bsg_root}/bsg_mem/bsg_mem_1rw_sync_synth.sv",
+ 
+
+
+
+
 
 
   
